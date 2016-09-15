@@ -1,12 +1,12 @@
 <div id="header-container">
     
-    <?php if ($dontShowBannerAd) { ?>
+    <?php if (!$dontShowBannerAd) { ?>
     <div id="top-banner">
         <!-- header banner loads into this -->
     </div><!-- #top-banner -->
     <?php } ?>
     
-    <header id="header"<?php if (!$showBanner) { echo ' class="fixed no-banner"'; } ?>>
+    <header id="header"<?php if ($dontShowBannerAd) { echo ' class="fixed no-banner"'; } ?>>
         <div id="header-left">
             <div id="logo">
                 <a href="<?php echo home_url(); ?>">
