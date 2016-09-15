@@ -1,0 +1,1 @@
+This is the header and footer to be used on every Skift site
