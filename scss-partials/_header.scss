@@ -3,6 +3,8 @@ $headerVPadding: 25px;
 $headerHPadding: 30px;
 $headerInnerHeight: $headerHeight - (2 * $headerVPadding);
 
+$subNavHeight:55px;
+
 $mobileBP: 730px;
 
 @mixin header-link() {
@@ -14,7 +16,9 @@ $mobileBP: 730px;
 
     display: inline-block;
     
-    &:hover {
+    @include transition(background-color 0.3s);
+    
+    &:hover,&.selected {
         background-color:$darkYellow;
         text-decoration: none;
     }
@@ -52,6 +56,7 @@ body {
         height: $headerHeight;
         background-color: $yellow;
         position: relative;
+        z-index: 300;
         
         &.fixed {
             position:fixed;
@@ -64,9 +69,11 @@ body {
         }
 
         #header-left {
-            width:auto;
+            width:100%;
             height:$headerHeight;
             float: left;
+            
+            background-color:$yellow;
 
             #logo {
                 width:auto;
@@ -82,6 +89,54 @@ body {
                     height:$headerInnerHeight;
                 }
             }
+            
+            .sub-menu {
+                z-index: -1;
+                                        
+                top:$headerHeight;
+                
+                @include transition(top 0.3s);
+                
+                width:100%;
+                height:$subNavHeight;
+                
+                position: absolute;
+                left:0;
+                
+                list-style: none;
+                padding:0;
+                margin:0;
+                
+                display: block;
+                text-align: center;
+                
+                background-color:$darkYellow;
+                
+                white-space: nowrap;
+                overflow-x: auto;
+            
+                & > li {
+                    position: relative;
+                    display: inline-block;
+            
+                    margin:0 5px;
+            
+                    & > a {
+                        @include header-link();
+                        
+                        padding-top:15px;
+                        padding-bottom:12px;
+                        
+                        border-bottom:4px solid $darkYellow;
+                        
+                        @include transition(border-bottom 0.3s);
+                        
+                        &:hover {
+                            border-bottom:4px solid $black;
+                        }
+                    }
+                }
+            }
 
             #primary-nav {
                 width:auto;
@@ -91,7 +146,7 @@ body {
 
                 margin-left:40px;
 
-                & > ul {
+                & > #navigation-menu {
                     width:auto;
                     height:$headerHeight;
 
@@ -99,14 +154,13 @@ body {
                     margin:0;
 
                     & > li {
-                        position: relative;
                         display: inline-block;
 
                         margin:0 5px;
 
                         & > a {
                             @include header-link();
-
+                            
                             .ddCarrot {
                                 display: inline;
                                 margin-left:10px;
@@ -114,46 +168,16 @@ body {
                         }
 
                         .sub-menu {
-                            display: none;
+                            top:0;
                         }
 
-                        &:hover {
-                            background-color:$darkYellow;
-
+                        &:hover,&.selected {
+                            & > a {
+                                background-color:$darkYellow;                            
+                            }
+                            
                             .sub-menu {
-
-                                width:180px;
-                                
-                                position: absolute;
-                                list-style: none;
-                                padding:0;
-                                margin:0;
-
-                                z-index:100;
-                                
-                                display: block;
-                                
-                                padding-bottom:10px;
-
-                                background-color:$darkYellow;
-
-                                & > li {
-                                    a {
-                                        padding:4px 15px 4px 15px;
-                                        display: block;
-                                        
-                                        color:$charcoal;
-                                        font-weight: 200;
-                                        font-size:14px;
-                                        @include transition(border 0.3s);
-                                        border-left: 0px solid black;
-                                        
-                                        &:hover {
-                                            border-left:8px solid $black;
-                                            text-decoration: none;
-                                        }
-                                    }
-                                }
+                                top:$headerHeight;
                             }
                         }
                     }
@@ -282,15 +306,26 @@ body {
             display: none;
         }
     }
+
+    @media screen and (min-width:$mobileBP + 1) {
+
+        &.has-sub-nav {
+            #header-pad {
+                height:$headerHeight + $subNavHeight;
+            }
+            #header {
+                height:$headerHeight + $subNavHeight;
+            }
+        }   
+    } 
     
-    
-    @media screen and (max-width:1040px) {
+    @media screen and (max-width:1080px) {
         // strink the spacing between logo and nav
         
         #header {
             #header-left {
                 #logo {
-                    padding-right:0;
+                    padding-right:10px;
                 }
                 
                 #primary-nav {
@@ -300,14 +335,11 @@ body {
         }
     }
     
-    @media screen and (max-width:925px) {
+    @media screen and (max-width:1010px) {
         // strink the spacing between logo and nav more and shrink the space between the primary nav items
         
         #header {
             #header-left {
-                #logo {
-                    padding-right:10px;
-                }
                 #primary-nav {
                     #navigation-menu {
                         padding:0;
@@ -324,13 +356,17 @@ body {
         }
     }
     
-    @media screen and (max-width:840px) {
+    @media screen and (max-width:925px) {
+        #header #header-left #primary-nav > #navigation-menu > li > a {
+            padding: 28px 10px;
+            font-size:14px;
+        }
         #header #header-right #header-social .header-social-btn {
             margin:0 5px;
         }
     }
     
-    @media screen and (max-width:800px) {
+    @media screen and (max-width:820px) {
         #header {
             #header-left {
                 #primary-nav > ul > li > a {
@@ -343,6 +379,19 @@ body {
                 font-size:13px;
             }
         }
+        
+        #header #header-right #header-social {
+            width: 80px;
+            text-align: center;
+            padding: 13px 0;
+        }
+    }
+    
+    @media screen and (max-width:780px) {
+        #header #header-right #search {
+            margin-left:0;
+            margin-right: -190px;
+        }
     }
     
     @media screen and (max-width:$mobileBP) {
@@ -351,6 +400,7 @@ body {
         }
         
         #header {
+            
             #mobile-menu {
                 position: fixed;
                 top:0;
