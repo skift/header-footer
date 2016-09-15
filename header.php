@@ -88,13 +88,11 @@
         <nav id="sub-nav">
             <ul id="sub-nav-menu">
                 <?php 
-
-                    wp_nav_menu(array(
-                        'theme_location' => $sub_nav,
-                        'container' => false,
-                        'items_wrap' => '%3$s'
-                    ));
-
+                wp_nav_menu(array(
+                    'theme_location' => $sub_nav,
+                    'container' => false,
+                    'items_wrap' => '%3$s'
+                ));
                 ?>
             </ul>
         </nav>
