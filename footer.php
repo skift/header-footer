@@ -14,7 +14,7 @@
                         ?>
                     <ul>
 						<li class="menu-item"><a href="<?php echo home_url(); ?>/about">About Skift</a></li>
-						<li class="menu-item"><a href="<?php echo home_url(); ?>/advertise">Advertise</a></li>
+						<li class="menu-item"><a href="http://www.skiftx.com">Advertising</a></li>
                         <li class="menu-item"><a href="<?php echo home_url(); ?>/terms">Terms of Use</a></li>
                         <li class="menu-item"><a href="<?php echo home_url(); ?>/privacy">Privacy Policy</a></li>
 					</ul>
