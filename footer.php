@@ -3,17 +3,15 @@
 			<div class="footer-column first">
 				<div class="footer-item" id="footer-nav">
 					<div class="footer-title">Skift Corporate</div>
-<!--
-					<ul>
 						<?php
+/*
 							wp_nav_menu(array(
 								'theme_location' => 'footer-menu',
 								'container' => false,
 								'items_wrap' => '%3$s',
 							));
-						?>
-					</ul>
--->
+*/
+                        ?>
                     <ul>
 						<li class="menu-item"><a href="<?php echo home_url(); ?>/about">About Skift</a></li>
 						<li class="menu-item"><a href="<?php echo home_url(); ?>/advertise">Advertise</a></li>

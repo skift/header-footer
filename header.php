@@ -1,6 +1,6 @@
 <div id="header-container">
     
-    <?php if ($showBanner) { ?>
+    <?php if ($dontShowBannerAd) { ?>
     <div id="top-banner">
         <!-- header banner loads into this -->
     </div><!-- #top-banner -->
@@ -112,13 +112,22 @@
         <nav id="mobile-menu">
             <ul>
                 <?php 
+/*
                     wp_nav_menu(array(
                         'theme_location' => 'primary-menu',
                         'container' => false,
                         'items_wrap' => '%3$s',
                         'depth' => 1
                     ));
+*/
                 ?>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-156125"><a href="http://skiftish.staging.wpengine.com/2016">News</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-156126"><a href="http://trends.skift.com/?__hstc=1833966.56de81dfb3bc35b495ac0e939473766a.1459881803857.1473884975445.1473895021008.110&amp;__hssc=1833966.2.1473895021008&amp;__hsfp=1775577900">Research</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-156127"><a href="http://forum.skift.com/?__hstc=1833966.56de81dfb3bc35b495ac0e939473766a.1459881803857.1473884975445.1473895021008.110&amp;__hssc=1833966.2.1473895021008&amp;__hsfp=1775577900">Conferences</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-196026"><a href="#">Services</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-196029"><a href="https://skift.com/newsletters/?__hstc=1833966.56de81dfb3bc35b495ac0e939473766a.1459881803857.1473884975445.1473895021008.110&amp;__hssc=1833966.2.1473895021008&amp;__hsfp=1775577900">Newsletters</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-196035"><a href="#">Advertising</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-186520"><a href="https://edu.skift.com/?__hstc=1833966.56de81dfb3bc35b495ac0e939473766a.1459881803857.1473884975445.1473895021008.110&amp;__hssc=1833966.2.1473895021008&amp;__hsfp=1775577900">Education</a></li>
             </ul>
         </nav>
     </header>
