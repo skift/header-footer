@@ -46,6 +46,7 @@
 
 
             &.first {
+                
                 .footer-item {
                     padding-left:0;
                 }
@@ -61,8 +62,12 @@
         .first {
             width: 20%;
             white-space: normal;
-
+            padding-right: 20px;
+            
             #footer-nav{
+                padding:20px;
+                background-color: $gray;
+                
                 li{
                     padding: 5px;
                 }
