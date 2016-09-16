@@ -131,6 +131,12 @@ body {
                             border-bottom:4px solid $black;
                         }
                     }
+                    
+                    &.all-sectors {
+                        a {
+                            font-weight: 600;
+                        }
+                    }
                 }
             }
 
