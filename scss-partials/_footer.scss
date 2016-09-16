@@ -189,7 +189,13 @@
                 }
             }
         }
-
+        
+/*
+        @media screen and (max-width:890px) {
+            padding:0 15px 20px 15px;
+        }
+*/
+        
         @media screen and (max-width:840px) {
 
             .footer-column {
@@ -201,6 +207,15 @@
                         font-size: 14px;
                         padding-bottom: 13px;
                     }
+                }
+            }
+            
+            .first {
+                padding-right:0;
+                
+                #footer-nav{
+                    padding:0;
+                    background:none;
                 }
             }
 
