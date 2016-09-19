@@ -6,6 +6,7 @@ $(function() {
   var $header = $("#header");
   var $headerPad = $("#header-pad");
   var scrollOffset;
+  var headerTop = 0;
   
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
@@ -14,18 +15,38 @@ $(function() {
   
   setHeaderOffset();
   
+  bouncex.bcxReady = function() {
+    var bouncexcampaigns = bouncex.campaigns;
+        
+    for (var campaign in bouncexcampaigns) {
+        if (bouncexcampaigns.hasOwnProperty(campaign)) {
+            if (bouncexcampaigns[campaign].type === "nanobar") {
+                                
+                var lookForBouncexNanoBar = setInterval(function() {
+                    if ($(".bxc.bx-type-nanobar").length) {
+                        headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
+                        clearInterval(lookForBouncexNanoBar);
+                    }
+                }, 50);
+                
+            }
+        }
+    }
+  };
+
+  
   if (!$header.hasClass("no-banner")) {
       $(window).scroll(function() {
          scrollOffset = $(window).scrollTop();
     
          if (scrollOffset >= headerOffset) {
             if (!$header.hasClass("fixed")) {
-                $header.addClass("fixed");
+                $header.addClass("fixed").css("top",headerTop);
                 $headerPad.show();
             }
          } else {
             if ($header.hasClass("fixed")) {
-                $header.removeClass("fixed");
+                $header.removeClass("fixed").css("top",0);
                 $headerPad.hide();
             }
          }
