@@ -16,7 +16,7 @@ $skiftHomeUrl = home_url();
         <div id="header-left">
             <div id="logo">
                 <a href="<?php echo $skiftHomeUrl; ?>">
-                    <img src="<?php bloginfo('template_directory') ?>/img/svg/logo.svg" class="svg" alt="Skift Logo" />
+                    <img src="<?php bloginfo('template_directory') ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div><!-- #logo -->
                         
