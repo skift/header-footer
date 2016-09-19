@@ -82,7 +82,15 @@
 					<div class="footer-title">Listen to us</div>
 					<ul>
 						<?php
-						$rss_items = get_recent_podcasts(3);
+                        function get_recent_podcasts_footer( $num ){
+                            $url = "http://podcast.skift.com/feed/";
+                            $rss = fetch_feed ($url);
+                        
+                            $first_group = $rss->get_item_quantity($num);
+                            return $rss->get_items(0, $first_group);
+                        }
+                        
+						$rss_items = get_recent_podcasts_footer(3);
 						foreach ($rss_items as $item) : ?>
 							<li><a target="_blank" href="<?php echo esc_url( $item->get_permalink() ); ?>">
 								<?php echo esc_html( $item->get_title() ); ?>&nbsp;<i class="fa fa-chevron-right"></i>
