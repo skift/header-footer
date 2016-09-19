@@ -15,14 +15,14 @@ $(function() {
   
   setHeaderOffset();
   
-  var setHeaderFixed = function() {
+  var setHeaderFixed = function(force) {
     if (scrollOffset >= headerOffset) {
-        if (!$header.hasClass("fixed")) {
+        if (!$header.hasClass("fixed") || force) {
             $header.addClass("fixed").css("top",headerTop);
             $headerPad.show();
         }
     } else {
-        if ($header.hasClass("fixed")) {
+        if ($header.hasClass("fixed") || force) {
             $header.removeClass("fixed").css("top",0);
             $headerPad.hide();
         }
@@ -40,7 +40,7 @@ $(function() {
                     var lookForBouncexNanoBar = setInterval(function() {
                         if ($(".bxc.bx-type-nanobar").length) {
                             headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
-                            setHeaderFixed();
+                            setHeaderFixed(true);
                             clearInterval(lookForBouncexNanoBar);
                         }
                     }, 50);
