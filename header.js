@@ -15,24 +15,34 @@ $(function() {
   
   setHeaderOffset();
   
-  bouncex.bcxReady = function() {
-    var bouncexcampaigns = bouncex.campaigns;
-        
-    for (var campaign in bouncexcampaigns) {
-        if (bouncexcampaigns.hasOwnProperty(campaign)) {
-            if (bouncexcampaigns[campaign].type === "nanobar") {
-                                
-                var lookForBouncexNanoBar = setInterval(function() {
-                    if ($(".bxc.bx-type-nanobar").length) {
-                        headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
-                        clearInterval(lookForBouncexNanoBar);
-                    }
-                }, 50);
-                
+  var checkForNanoBar = function() {
+      bouncex.bcxReady = function() {
+        var bouncexcampaigns = bouncex.campaigns;
+            
+        for (var campaign in bouncexcampaigns) {
+            if (bouncexcampaigns.hasOwnProperty(campaign)) {
+                if (bouncexcampaigns[campaign].type === "nanobar") {
+                                    
+                    var lookForBouncexNanoBar = setInterval(function() {
+                        if ($(".bxc.bx-type-nanobar").length) {
+                            headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
+                            clearInterval(lookForBouncexNanoBar);
+                        }
+                    }, 50);
+                    
+                }
             }
         }
-    }
+      };
   };
+  
+    var checkForBouncex = setInterval(function() {
+        if (typeof bouncex !== "undefined") {
+            checkForNanoBar();
+            clearInterval(checkForBouncex);
+        }
+    }, 50);
+
 
   
   if (!$header.hasClass("no-banner")) {
