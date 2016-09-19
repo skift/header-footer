@@ -2,7 +2,7 @@ var headerOffset;
 
 $(function() {
   'use strict';
-  
+
   var $header = $("#header");
   var $headerPad = $("#header-pad");
   var scrollOffset;
