@@ -15,6 +15,20 @@ $(function() {
   
   setHeaderOffset();
   
+  var setHeaderFixed = function() {
+    if (scrollOffset >= headerOffset) {
+        if (!$header.hasClass("fixed")) {
+            $header.addClass("fixed").css("top",headerTop);
+            $headerPad.show();
+        }
+    } else {
+        if ($header.hasClass("fixed")) {
+            $header.removeClass("fixed").css("top",0);
+            $headerPad.hide();
+        }
+    }
+  };
+  
   var checkForNanoBar = function() {
       bouncex.bcxReady = function() {
         var bouncexcampaigns = bouncex.campaigns;
@@ -26,6 +40,7 @@ $(function() {
                     var lookForBouncexNanoBar = setInterval(function() {
                         if ($(".bxc.bx-type-nanobar").length) {
                             headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
+                            setHeaderFixed();
                             clearInterval(lookForBouncexNanoBar);
                         }
                     }, 50);
@@ -47,19 +62,9 @@ $(function() {
   
   if (!$header.hasClass("no-banner")) {
       $(window).scroll(function() {
-         scrollOffset = $(window).scrollTop();
+        scrollOffset = $(window).scrollTop();
     
-         if (scrollOffset >= headerOffset) {
-            if (!$header.hasClass("fixed")) {
-                $header.addClass("fixed").css("top",headerTop);
-                $headerPad.show();
-            }
-         } else {
-            if ($header.hasClass("fixed")) {
-                $header.removeClass("fixed").css("top",0);
-                $headerPad.hide();
-            }
-         }
+        setHeaderFixed();
       });
   }
   
