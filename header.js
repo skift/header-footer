@@ -8,6 +8,8 @@ $(function() {
   var scrollOffset;
   var headerTop = 0;
   
+  var noFix = $header.hasClass("no-fix");
+  
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
     scrollOffset = $(window).scrollTop();
@@ -16,15 +18,18 @@ $(function() {
   setHeaderOffset();
   
   var setHeaderFixed = function(force) {
-    if (scrollOffset >= headerOffset) {
-        if (!$header.hasClass("fixed") || force) {
-            $header.addClass("fixed").css("top",headerTop);
-            $headerPad.show();
-        }
-    } else {
-        if ($header.hasClass("fixed") || force) {
-            $header.removeClass("fixed").css("top",0);
-            $headerPad.hide();
+      
+    if (!noFix) {
+        if (scrollOffset >= headerOffset) {
+            if (!$header.hasClass("fixed") || force) {
+                $header.addClass("fixed").css("top",headerTop);
+                $headerPad.show();
+            }
+        } else {
+            if ($header.hasClass("fixed") || force) {
+                $header.removeClass("fixed").css("top",0);
+                $headerPad.hide();
+            }
         }
     }
   };

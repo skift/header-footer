@@ -12,7 +12,7 @@ $skiftHomeUrl = home_url();
     </div><!-- #top-banner -->
     <?php } ?>
     
-    <header id="header"<?php if ($dontShowBannerAd) { echo ' class="fixed no-banner"'; } ?>>
+    <header id="header" class="<?php if ($dontShowBannerAd) { echo 'fixed no-banner'; } if ($dontFix) { echo 'no-fix'; } ?>">
         <div id="header-left">
             <div id="logo">
                 <a href="<?php echo $skiftHomeUrl; ?>">
