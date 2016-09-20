@@ -68,15 +68,16 @@ $skiftHomeUrl = home_url();
         </div><!-- #header-menus -->
         
         <div id="header-right">
+            <?php if ($showSignIn) { ?>
+            <div id="header-sign-in"><a href="#">Sign In</a></div>
+            
+            <?php } else { ?>
             <div id="header-social">
                 <div class="header-social-btn facebook" title="Facebook"><a href="javascript:"><i class="fa fa-facebook"></i></a></div>
                 <div class="header-social-btn twitter" title="Twitter"><a href="javascript:"><i class="fa fa-twitter"></i></a></div>
                 <div class="header-social-btn linkedIn" title="LinkedIn"><a href="javascript:"><i class="fa fa-linkedin"></i></a></div>
                 <div class="header-social-btn email" title="Email"><a href="javascript:"><i class="fa fa-envelope"></i></a></div>
             </div>
-            
-            <?php if ($showSignIn) { ?>
-            <div id="header-sign-in"><a href="#">Sign In</a></div>
             <?php } ?>
             
             <div id="search">
