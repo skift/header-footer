@@ -69,8 +69,27 @@ $skiftHomeUrl = home_url();
         
         <div id="header-right">
             <?php if ($showSignIn) { ?>
-            <div id="header-sign-in"><a href="#">Sign In</a></div>
+            <div id="header-sign-in">
+                <?php
+				$whitelistCheck = skp_ip_whitelist();
+									
+				// var_dump($whitelistCheck);
+				if(!empty($whitelistCheck)) {
+					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
+				} elseif (!empty($_COOKIE['__ut'])) {
+				?>
+<!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
+				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
+    
+				<?php
+				} else {
+				?>
+						<a href="#" onclick="tp.user.showLogin({loginSuccess:function(){location.reload();}});">Sign In</a>
+				<?php
+				}
+				?>
             
+            </div>
             <?php } else { ?>
             <div id="header-social">
                 <div class="header-social-btn facebook" title="Facebook"><a href="javascript:"><i class="fa fa-facebook"></i></a></div>

@@ -232,6 +232,12 @@ body {
                 a {
                     @include header-link();
                 }
+                
+                .header-text {
+                    padding:28px 0;
+                    color:#000;
+                    font-size:15px;
+                }
             }
             
             #search {
