@@ -51,8 +51,8 @@ function getTweets($num) {
         $data_context = stream_context_create( array( 'http' => array( 'header' => 'Authorization: Bearer '.$auth_token."\r\n", ) ) );
         
         
-        $json = file_get_contents($data_url.'?count='.$data_count.'&screen_name='.urlencode($data_username), 0, $data_context), true;
-        $tweets = json_decode($json);
+        $json = file_get_contents($data_url.'?count='.$data_count.'&screen_name='.urlencode($data_username), 0, $data_context);
+        $tweets = json_decode($json, true);
     
          //save response to the cache file
         $cache_file = fopen($cache_file_path, "w") or die("Unable to open cache file!");
@@ -61,7 +61,7 @@ function getTweets($num) {
         
         return $tweets;
     } else {
-        return json_decode($cached_resource);
+        return json_decode($cached_resource, true);
     }
 }   
 ?>
