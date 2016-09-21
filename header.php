@@ -1,7 +1,7 @@
 <?php
 $hasSubNav = !empty($sub_nav);  
 
-$skiftHomeUrl = home_url();
+$skiftHomeUrl = "https://www.skift.com";
 
 ?>
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
