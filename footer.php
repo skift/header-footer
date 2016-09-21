@@ -13,7 +13,8 @@ function getLatestTweet() {
     return $latestTweet[0];
 }
 function getTweets($num) {
-    $cache_file_path = "wp-content/themes/skift/inc/resource-cache/latest-tweet.json";
+    $cache_file_path = get_template_directory() . "/inc/resource-cache/latest-tweet.json";
+    
     $cached_resource = check_for_cached_tweet($cache_file_path);
     
     if (empty($cached_resource)) {
