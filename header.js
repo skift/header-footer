@@ -12,6 +12,8 @@ $(function() {
   
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
+    headerOffset -= headerTop;
+
     scrollOffset = $(window).scrollTop();
   };
   
@@ -49,6 +51,16 @@ $(function() {
       }
   }
   
+    var lookForBouncexNanoBar = setInterval(function() {
+        if ($(".bxc.bx-type-nanobar").length) {
+            headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
+            setHeaderFixed(true);
+            setHeaderOffset();
+            clearInterval(lookForBouncexNanoBar);
+        }
+    }, 50);
+    
+  
   var checkForNanoBar = function() {
       bouncex.bcxReady = function() {
         var bouncexcampaigns = bouncex.campaigns;
@@ -57,19 +69,24 @@ $(function() {
             if (bouncexcampaigns.hasOwnProperty(campaign)) {
                 if (bouncexcampaigns[campaign].type === "nanobar") {
                                     
-                    var lookForBouncexNanoBar = setInterval(function() {
-                        if ($(".bxc.bx-type-nanobar").length) {
-                            headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
-                            setHeaderFixed(true);
-                            clearInterval(lookForBouncexNanoBar);
-                        }
-                    }, 50);
+                   lookForBouncexNanoBar(); 
                     
                 }
             }
         }
       };
   };
+  
+  if ($(".mtsnb").length) {
+    headerTop = $(".mtsnb").height();
+    setHeaderOffset();
+    setHeaderFixed(true);
+  }
+  
+  $(".mtsnb-hide").click(function() {
+     headerTop = 0; 
+     setHeaderFixed(true);
+  });
   
     var checkForBouncex = setInterval(function() {
         if (typeof bouncex !== "undefined") {
@@ -198,62 +215,6 @@ $(function() {
 
     e.stopPropagation();
   });
-
-/*
-  $("#primary-nav .sub-menu").each(function() {
-    $("<div><i class='fa fa-chevron-down'></i></div>").addClass("ddCarrot").appendTo($(this).prev());
-  });
-*/
-
-/*
-  function supportsSvg() {
-     return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1");
-  }
-
-  if (!supportsSvg()) {
-    var nonSVGlogo = homeUrl + "/img/skift_text_logo_gray.png";
-    $("#logo img").attr("src",nonSVGlogo);
-  }
-*/
-
-  function setUpMenus() {
-    
-    $("#primary-nav .sub-menu:eq(0)").width($("#primary-nav .menu-item-has-children:eq(0)").outerWidth());
-
-  }
-
-//   setUpMenus();
-
-/*
-  var windowResizeOccured = false;
-
-  $(window).resize(function() {
-    windowResizeOccured = true;
-  });
-
-  setInterval(function() {
-    if (windowResizeOccured) {
-      setUpMenus();
-
-      windowResizeOccured = false;
-    }
-  }, 1000);
-*/
-
-
-  // if(document.cookie.indexOf('no-letter') > 0){
-  //   // jQuery('#top-signup').slideToggle();
-  //   if (jQuery('#top-signup').is(':visible')) jQuery('#top-signup').css('display','none');
-  // }
-
-/*
-  $("#top-signup .close-btn").click(function() {
-    $("#top-signup").slideUp();
-    var expires = 15*24*60*60 ; //15 days
-    // expires = 15; // 15 seconds
-    document.cookie = "sk_no_signup=hide; max-age="+expires+";path=/";
-  });
-*/
 
 
 });
