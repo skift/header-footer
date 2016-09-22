@@ -1,5 +1,5 @@
-$headerHeight: 80px;
-$headerVPadding: 25px;
+$headerHeight: 70px;
+$headerVPadding: 20px;
 $headerHPadding: 30px;
 $headerInnerHeight: $headerHeight - (2 * $headerVPadding);
 
@@ -12,7 +12,7 @@ $mobileBP: 730px;
     font-weight:200;
     color:$charcoal;
     
-    padding:28px 15px;
+    padding:23px 15px;
 
     display: inline-block;
     
@@ -40,9 +40,9 @@ body {
     }
     
     #top-banner {
-        min-height: 155px;
+        min-height: 120px;
         background-color: $darkGray;
-        padding: 35px 0;
+        padding: 15px 0;
 
         .headerAd {
             margin: 0 auto;
@@ -203,7 +203,7 @@ body {
                 display: inline-block;
                 vertical-align: top;
 
-                padding:28px 0 25px 0;
+                padding:23px 0 20px 0;
 
                 .header-social-btn {
                     display: inline-block;
