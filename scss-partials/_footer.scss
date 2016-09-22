@@ -46,7 +46,7 @@
 
 
             &.first {
-                
+
                 .footer-item {
                     padding-left:0;
                 }
@@ -63,11 +63,11 @@
             width: 20%;
             white-space: normal;
             padding-right: 20px;
-            
+
             #footer-nav{
                 padding:20px;
                 background-color: $gray;
-                
+
                 li{
                     padding: 5px;
                 }
@@ -189,13 +189,13 @@
                 }
             }
         }
-        
+
 /*
         @media screen and (max-width:890px) {
             padding:0 15px 20px 15px;
         }
 */
-        
+
         @media screen and (max-width:840px) {
 
             .footer-column {
@@ -209,10 +209,10 @@
                     }
                 }
             }
-            
+
             .first {
                 padding-right:0;
-                
+
                 #footer-nav{
                     padding:0;
                     background:none;
@@ -329,22 +329,26 @@
         width: 100%;
         height: auto;
 
+        @media screen and (max-width: $mobileBP){
+            display: none;
+        }
+        
         #footer-content{
             vertical-align: top;
             padding: 5px 5px 0 5px;
             bottom: 0;
             top: 0;
-            
+
             .footer-column{
                 padding: 0;
-                
+
                 .footer-item{
-                    
+
                     background:none !important;
                     padding:0 !important;
-                    
+
                     margin-top: 10px;
-                    
+
                     @media screen and (max-width: 440px){
                         margin-top: 0;
                         padding-left:20px;
@@ -355,7 +359,7 @@
             .first{
                 width: auto;
                 float: right;
-                
+
                 &.footer-item{
                     @media screen and (max-width: 440px){
                         padding-left:20px;
