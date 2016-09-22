@@ -64,7 +64,7 @@ $skiftHomeUrl = "https://www.skift.com";
                         	<li class="all-sectors menu-item"><a href="<?php echo $skiftHomeUrl; ?>/all-categories/">All Sectors</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item"><a href="http://trends.skift.com/"<?php if ($select_tab === "research") { echo ' class="selected"'; } ?>>Research</a></li>
+                    <li class="menu-item"><a href="https://trends.skift.com/"<?php if ($select_tab === "research") { echo ' class="selected"'; } ?>>Research</a></li>
                     <li class="menu-item"><a href="http://forum.skift.com/"<?php if ($select_tab === "conferences") { echo ' class="selected"'; } ?>>Conferences</a></li>
                     <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/newsletters"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <ul class="sub-menu">
