@@ -79,7 +79,7 @@ $(function() {
       };
   };
   
-  if ($(".mtsnb").length) {
+  if ($(".mtsnb").length && $(".mtsnb").is(":visible")) {
     headerTop = $(".mtsnb").height();
     setHeaderOffset();
     setHeaderFixed(true);
