@@ -167,24 +167,25 @@ $(function() {
     window.open(link, title, "width=" + width + ", height=" + height + ", menubar=no, resizable=no, scrollbars=no, status=no, toolbar=no, titlebar=no");
   };
 
-  var getGAtag = function(isHeader) {
-    var gaTag = "new social share button";
-    if (isHeader) {
-      gaTag += " - header";
-    } else {
-      gaTag += " - article";
+  var getGAtag = function(isTop) {
+    var location = "bottom";
+    
+    if (isTop) {
+        location = "top";
     }
+    
+    var gaTag = "article share button - " + location;
 
     return gaTag;
   };
 
-  $(document).on("click",".header-social-btn.facebook",function() {
-    ga('send', 'event', getGAtag($(this).hasClass("headerShareBtn")), 'Facebook', location.href);
+  $(document).on("click",".article-social-btn.facebook,.header-social-btn.facebook",function() {
+    ga('send', 'event', getGAtag($(this).hasClass("top")), 'Facebook', location.href);
     socialPop("http://www.facebook.com/share.php?u=" + encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title), "Share on Facebook", 555, 350);
   });
 
-  $(document).on("click",".header-social-btn.twitter",function() {
-    ga('send', 'event', getGAtag($(this).hasClass("headerShareBtn")), 'Twitter', location.href);
+  $(document).on("click",".article-social-btn.twitter,.header-social-btn.twitter",function() {
+    ga('send', 'event', getGAtag($(this).hasClass("top")), 'Twitter', location.href);
     
     var articleTitle = document.title.replace(" – Skift","");
         
@@ -194,13 +195,13 @@ $(function() {
     socialPop("http://twitter.com/share?url=" + encodeURIComponent(location.href) + "&via=Skift&text=" + encodeURIComponent(articleTitle), "Tweet", 555, 275);
   });
 
-  $(document).on("click",".header-social-btn.linkedIn",function() {
-    ga('send', 'event', getGAtag($(this).hasClass("headerShareBtn")), 'LinkedIn', location.href);
+  $(document).on("click",".article-social-btn.linkedIn,.header-social-btn.linkedIn",function() {
+    ga('send', 'event', getGAtag($(this).hasClass("top")), 'LinkedIn', location.href);
     socialPop("http://www.linkedin.com/shareArticle?mini=true&url=" + encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title) + "&source=skift.com", "Share on LinkedIn", 555, 450);
   });
 
-  $(document).on("click",".header-social-btn.email",function() {
-    ga('send', 'event', getGAtag($(this).hasClass("headerShareBtn")), 'Email', location.href);
+  $(document).on("click",".article-social-btn.email,.header-social-btn.email",function() {
+    ga('send', 'event', getGAtag($(this).hasClass("top")), 'Email', location.href);
 
     location.href = "mailto:?subject=" + encodeURIComponent(document.title) + "&body=" + encodeURIComponent(document.title) + " " + encodeURIComponent(location.href);
   });
