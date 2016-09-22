@@ -9,6 +9,7 @@ $(function() {
   var headerTop = 0;
   
   var noFix = $header.hasClass("no-fix");
+  console.log("no fix", noFix);
   
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
@@ -20,6 +21,7 @@ $(function() {
   var setHeaderFixed = function(force) {
       
     if (!noFix) {
+        
         if (scrollOffset >= headerOffset) {
             if (!$header.hasClass("fixed") || force) {
                 $header.addClass("fixed").css("top",headerTop);
@@ -80,7 +82,7 @@ $(function() {
 
 
   
-  if (!$header.hasClass("no-banner")) {
+  if (!$header.hasClass("no-banner") && !noFix) {
       $(window).scroll(function() {
         scrollOffset = $(window).scrollTop();
     

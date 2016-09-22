@@ -35,7 +35,7 @@ body {
         display: none;
     }
     
-    #header.no-banner + #header-pad {
+    #header.no-banner.fixed + #header-pad {
         display: block;
     }
     
