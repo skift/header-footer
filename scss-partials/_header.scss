@@ -28,6 +28,16 @@ body {
     background-color:$darkGray;
 }
 
+@media screen and (max-width:$mobileBP) {
+    // remove notificaiton bar on mobile
+    body {
+        padding-top:0 !important;
+    }
+    .mtsnb {
+        display: none;
+    }
+}
+
 #header-container {
     #header-pad {
         width:100%;
