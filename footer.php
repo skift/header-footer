@@ -1,4 +1,6 @@
 <?php
+$skiftHomeUrl = "https://www.skift.com";
+
 function check_for_cached_tweet($cache_file_path) {
     $cached_time = filemtime($cache_file_path);
   
@@ -81,10 +83,10 @@ function getTweets($num) {
 */
                         ?>
                     <ul>
-						<li class="menu-item"><a href="<?php echo home_url(); ?>/about">About Skift</a></li>
+						<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/about">About Skift</a></li>
 						<li class="menu-item"><a href="http://www.skiftx.com">Advertising</a></li>
-                        <li class="menu-item"><a href="<?php echo home_url(); ?>/terms">Terms of Use</a></li>
-                        <li class="menu-item"><a href="<?php echo home_url(); ?>/privacy">Privacy Policy</a></li>
+                        <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/terms">Terms of Use</a></li>
+                        <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/privacy">Privacy Policy</a></li>
 					</ul>
 				</div>
 			</div><!-- first -->
@@ -109,7 +111,7 @@ function getTweets($num) {
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo home_url(); ?>/newsletters/" class="icon">
+							<a href="<?php echo $skiftHomeUrl; ?>/newsletters/" class="icon">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</a>
 						</li>
@@ -173,7 +175,7 @@ function getTweets($num) {
 		<!--<div id="footer-info">
 
 
-			<p class="copyright">&copy;<?php echo date('Y'); ?> <a href="<?php echo home_url(); ?>">Skift</a> All Rights Reserved</p>
+			<p class="copyright">&copy;<?php echo date('Y'); ?> <a href="<?php echo $skiftHomeUrl; ?>">Skift</a> All Rights Reserved</p>
 		</div><!-- #footer-info -->
 
 	</div><!-- #footer-content -->
