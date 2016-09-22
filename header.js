@@ -9,7 +9,6 @@ $(function() {
   var headerTop = 0;
   
   var noFix = $header.hasClass("no-fix");
-  console.log("no fix", noFix);
   
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
