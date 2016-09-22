@@ -160,6 +160,20 @@ $skiftHomeUrl = "https://www.skift.com";
                         'container' => false,
                         'items_wrap' => '%3$s'
                     ));
+                
+                    if ($showSignIn) {
+        									
+        				// var_dump($whitelistCheck);
+        				if (!empty($_COOKIE['__ut'])) {
+        				?>
+                            <li class="menu-item"><a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a></li>            
+        				<?php
+        				} else {
+        				?>
+						    <li class="menu-item"><a href="#" onclick="tp.user.showLogin({loginSuccess:function(){location.reload();}});">Sign In</a></li>
+                        <?php
+                        }
+    				}
                 } ?>
             </ul>
         </nav>
