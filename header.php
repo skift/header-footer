@@ -57,7 +57,7 @@ $skiftHomeUrl = "https://www.skift.com";
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/digital/">Digital</a></li>
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/digital/startups/">Startups</a></li>
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/transport/airlines/">Airlines</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/meetings-conventions/">Meetings</a></li>
+                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/meetings-and-events/">Meetings</a></li>
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/travel-agents/">Travel Agents</a></li>
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/transport/cruises/">Cruises</a></li>
                         	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/corporate-travel/">Corporate Travel</a></li>
