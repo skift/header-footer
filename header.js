@@ -52,6 +52,7 @@ $(function() {
       }
   }
   
+/*
     var lookForBouncexNanoBar = setInterval(function() {
         if ($(".bxc.bx-type-nanobar").length) {
             headerTop = $(".bxc.bx-type-nanobar .bx-slab").height();
@@ -77,6 +78,7 @@ $(function() {
         }
       };
   };
+*/
   
   if ($(".mtsnb").length && $(".mtsnb").is(":visible")) {
     headerTop = $(".mtsnb").height();
@@ -89,12 +91,14 @@ $(function() {
      setHeaderFixed(true);
   });
   
+/*
     var checkForBouncex = setInterval(function() {
         if (typeof bouncex !== "undefined") {
             checkForNanoBar();
             clearInterval(checkForBouncex);
         }
     }, 50);
+*/
 
 
   
