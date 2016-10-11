@@ -50,7 +50,7 @@ function getTweets($num) {
         $auth_token = $auth_response['access_token'];
     
         // get tweets
-        $data_context = stream_context_create( array( 'https' => array( 'header' => 'Authorization: Bearer '.$auth_token."\r\n", ) ) );
+        $data_context = stream_context_create( array( 'http' => array( 'header' => 'Authorization: Bearer '.$auth_token."\r\n", ) ) );
         
         
         $json = file_get_contents($data_url.'?count='.$data_count.'&screen_name='.urlencode($data_username), 0, $data_context);
