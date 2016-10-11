@@ -164,7 +164,7 @@ function getTweets($num) {
                                 
                                 foreach ($podcasts as $podcast) {
                                     $link = esc_url($podcast->get_permalink());
-                                    $title = esc_html($item->get_title());
+                                    $title = esc_html($podcast->get_title());
                                     
                                     $thisPodcast = array(
                                         "link" => $link,
