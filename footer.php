@@ -153,26 +153,61 @@ function getTweets($num) {
 					<ul>
 						<?php
                         function get_recent_podcasts_footer( $num ){
-                            $url = "http://podcast.skift.com/rss";
+                            $url = "http://podcast.skift.com/feed/";
                             $rss = fetch_feed ($url);
 
-                            if(!is_wp_error($rss)){
+                            if (!is_wp_error($rss)) {
                                 $first_group = $rss->get_item_quantity($num);
-                                return $rss->get_items(0, $first_group);
-                            } else{
-                                $rss = array();
-                                return $rss;
+                                $podcasts = $rss->get_items(0, $first_group);
+                                
+                                $return = array();
+                                
+                                foreach ($podcasts as $podcast) {
+                                    $link = esc_url($podcast->get_permalink());
+                                    $title = esc_html($item->get_title());
+                                    
+                                    $thisPodcast = array(
+                                        "link" => $link,
+                                        "title" => $title
+                                    );
+                                    
+                                    array_push($return, $thisPodcast);
+                                }
+                                
+                                return $return;
+                            } else {
+                                $rss = file_get_contents($url);
+                                $rss = simplexml_load_string($rss);
+                                
+                                $podcasts = $rss->channel;
+                                
+                                $return = array();
+                                
+                                for ($i = 0; $i < 3; $i++) {
+                                    $link = esc_url($podcasts->item[$i]->link);
+                                    $title = esc_html($podcasts->item[$i]->title);
+                                    
+                                    $thisPodcast = array(
+                                        "link" => $link,
+                                        "title" => $title
+                                    );
+                                    
+                                    array_push($return, $thisPodcast);
+                                }
+                                
+                                return $return;
                             }
                             
                         }
-                        
-						$rss_items = get_recent_podcasts_footer(3);
-						foreach ($rss_items as $item) : ?>
-							<li><a target="_blank" href="<?php echo esc_url( $item->get_permalink() ); ?>">
-								<?php echo esc_html( $item->get_title() ); ?>&nbsp;<i class="fa fa-chevron-right"></i>
+                                                
+						$podcasts = get_recent_podcasts_footer(3);
+
+						foreach ($podcasts as $podcast) { ?>
+							<li><a target="_blank" href="<?php echo $podcast["link"]; ?>">
+								<?php echo $podcast["title"]; ?>&nbsp;<i class="fa fa-chevron-right"></i>
 								</a>
 							</li>
-						<?php endforeach; ?>
+						<?php } ?>
 					</ul>
 				</div><!-- #footer-podcast -->
 			</div><!-- last -->
