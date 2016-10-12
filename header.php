@@ -8,6 +8,7 @@ $url_paths = array(
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com" 
 );
+
 if ($_SERVER['HTTP_HOST'] === "localhost") {
     $url_paths = array(
         "main"      => "http://localhost/skift",
