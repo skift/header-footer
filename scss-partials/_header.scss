@@ -136,10 +136,10 @@ body {
                         border-bottom:4px solid $darkYellow;
                         
                         @include transition(border-bottom 0.3s);
-                        
-                        &:hover {
-                            border-bottom:4px solid $black;
-                        }
+                    }
+                    
+                    & > a:hover, &.current_page_item > a {
+                        border-bottom:4px solid $black;
                     }
                     
                     &.all-sectors {
