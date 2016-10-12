@@ -18,8 +18,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "skiftx"    => "http://localhost/skiftx" 
     );
 }
-
 ?>
+
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
     
     <?php if (!$dontShowBannerAd) { ?>
