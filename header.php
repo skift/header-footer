@@ -1,7 +1,23 @@
 <?php
 $hasSubNav = !empty($sub_nav);  
 
-$skiftHomeUrl = "https://www.skift.com";
+$url_paths = array(
+    "main"      => "https://www.skift.com",
+    "trends"    => "https://trends.skift.com",
+    "edu"       => "http://edu.skift.com",
+    "forum"     => "http://forum.skift.com",
+    "skiftx"    => "http://www.skiftx.com" 
+);
+
+if ($_SERVER['HTTP_HOST'] === "localhost") {
+    $url_paths = array(
+        "main"      => "http://localhost/skift",
+        "trends"    => "http://localhost/trends",
+        "edu"       => "http://localhost/edu",
+        "forum"     => "http://localhost/forum",
+        "skiftx"    => "http://localhost/skiftx" 
+    );
+}
 
 ?>
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
@@ -31,7 +47,7 @@ $skiftHomeUrl = "https://www.skift.com";
     <header id="header" class="<?php echo $header_classes; ?>">
         <div id="header-left">
             <div id="logo">
-                <a href="<?php echo $skiftHomeUrl; ?>">
+                <a href="<?php echo $url_paths["main"]; ?>">
                     <img src="<?php bloginfo('template_directory') ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div><!-- #logo -->
@@ -49,34 +65,34 @@ $skiftHomeUrl = "https://www.skift.com";
                     </ul>
                 <?php } ?>
                 <ul id="navigation-menu">
-                    <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/2016"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <ul class="sub-menu">
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/2016">Latest News</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/rooms/hotels/">Hotels</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/destinations/">Destinations</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/digital/">Digital</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/digital/startups/">Startups</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/transport/airlines/">Airlines</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/meetings-and-events/">Meetings</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/travel-agents/">Travel Agents</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/transport/cruises/">Cruises</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/travel-services/corporate-travel/">Corporate Travel</a></li>
-                        	<li class="all-sectors menu-item"><a href="<?php echo $skiftHomeUrl; ?>/all-categories/">All Sectors</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016">Latest News</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/rooms/hotels/">Hotels</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/destinations/">Destinations</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/digital/">Digital</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/digital/startups/">Startups</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/transport/airlines/">Airlines</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/travel-services/meetings-and-events/">Meetings</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/travel-services/travel-agents/">Travel Agents</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/transport/cruises/">Cruises</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/travel-services/corporate-travel/">Corporate Travel</a></li>
+                        	<li class="all-sectors menu-item"><a href="<?php echo $url_paths["main"]; ?>/all-categories/">All Sectors</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item"><a href="https://trends.skift.com/"<?php if ($select_tab === "research") { echo ' class="selected"'; } ?>>Research</a></li>
-                    <li class="menu-item"><a href="http://forum.skift.com/"<?php if ($select_tab === "conferences") { echo ' class="selected"'; } ?>>Conferences</a></li>
-                    <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/newsletters"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+                    <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>"<?php if ($select_tab === "research") { echo ' class="selected"'; } ?>>Research</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>"<?php if ($select_tab === "conferences") { echo ' class="selected"'; } ?>>Conferences</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <ul class="sub-menu">
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/daily/">Daily</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/business-traveler/">Business Traveler</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/corporate-travel/">Corporate Travel</a></li>
-                        	<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/meetings/">Meetings</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/daily/">Daily</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/business-traveler/">Business Traveler</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/corporate-travel/">Corporate Travel</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/meetings/">Meetings</a></li>
                         	<li class="menu-item"><a href="http://chefstech.co/subscribe">Chefs+Tech</a></li>
                         </ul>
                     </li>
-<!--                     <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/advertise"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li> -->
-                    <li class="menu-item"><a href="https://edu.skift.com/"<?php if ($select_tab === "education") { echo ' class="selected"'; } ?>>Education</a></li>
+<!--                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertise"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li> -->
+                    <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>"<?php if ($select_tab === "education") { echo ' class="selected"'; } ?>>Education</a></li>
                 </ul>
             </nav>
             
@@ -120,7 +136,7 @@ $skiftHomeUrl = "https://www.skift.com";
                     <div id="search-trigger"><i class="fa fa-search"></i></div>
                     
                     <div id="search-form">
-                        <form method="get" action="<?php echo $skiftHomeUrl; ?>">
+                        <form method="get" action="<?php echo $url_paths["main"]; ?>">
                             <input type="search" name="s" id="search-box" class="text" />
                             <input type="button" value="&times;" id="search-clear" name="clear" />
                         </form>
@@ -144,15 +160,15 @@ $skiftHomeUrl = "https://www.skift.com";
         <nav id="mobile-menu">
             <ul>
                 <?php
-                echo '<li class="menu-item"><a href="' . $skiftHomeUrl . '">Home</a></li>';
+                echo '<li class="menu-item"><a href="' . $url_paths["main"] . '">Home</a></li>';
                 
                 if (!$hasSubNav || $useMainMobileMenu) {
                 ?>
-                    <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/2016">News</a></li>
-                    <li class="menu-item"><a href="http://trends.skift.com/">Research</a></li>
-                    <li class="menu-item"><a href="http://forum.skift.com/">Conferences</a></li>
-                    <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/newsletters">Newsletters</a></li>
-                    <li class="menu-item"><a href="https://edu.skift.com/">Education</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016">News</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>">Research</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>">Education</a></li>
                 <?
                 } else {
                     wp_nav_menu(array(

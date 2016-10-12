@@ -1,5 +1,21 @@
 <?php
-$skiftHomeUrl = "https://www.skift.com";
+$url_paths = array(
+    "main"      => "https://www.skift.com",
+    "trends"    => "https://trends.skift.com",
+    "edu"       => "http://edu.skift.com",
+    "forum"     => "http://forum.skift.com",
+    "skiftx"    => "http://www.skiftx.com" 
+);
+
+if ($_SERVER['HTTP_HOST'] === "localhost") {
+    $url_paths = array(
+        "main"      => "http://localhost/skift",
+        "trends"    => "http://localhost/trends",
+        "edu"       => "http://localhost/edu",
+        "forum"     => "http://localhost/forum",
+        "skiftx"    => "http://localhost/skiftx" 
+    );
+}
 
 function check_for_cached_tweet($cache_file_path) {
     $cached_time = filemtime($cache_file_path);
@@ -73,20 +89,12 @@ function getTweets($num) {
 			<div class="footer-column first">
 				<div class="footer-item" id="footer-nav">
 					<div class="footer-title">Skift Corporate</div>
-						<?php
-/*
-							wp_nav_menu(array(
-								'theme_location' => 'footer-menu',
-								'container' => false,
-								'items_wrap' => '%3$s',
-							));
-*/
-                        ?>
+
                     <ul>
-						<li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/about">About Skift</a></li>
-						<li class="menu-item"><a href="http://www.skiftx.com">Advertising</a></li>
-                        <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/terms">Terms of Use</a></li>
-                        <li class="menu-item"><a href="<?php echo $skiftHomeUrl; ?>/privacy">Privacy Policy</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/about">About Skift</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths["skiftx"]; ?>">Advertising</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/terms">Terms of Use</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/privacy">Privacy Policy</a></li>
 					</ul>
 				</div>
 			</div><!-- first -->
@@ -111,7 +119,7 @@ function getTweets($num) {
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo $skiftHomeUrl; ?>/newsletters/" class="icon">
+							<a href="<?php echo $url_paths["main"]; ?>/newsletters/" class="icon">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</a>
 						</li>
@@ -216,7 +224,7 @@ function getTweets($num) {
 		<!--<div id="footer-info">
 
 
-			<p class="copyright">&copy;<?php echo date('Y'); ?> <a href="<?php echo $skiftHomeUrl; ?>">Skift</a> All Rights Reserved</p>
+			<p class="copyright">&copy;<?php echo date('Y'); ?> <a href="<?php echo $url_paths["main"]; ?>">Skift</a> All Rights Reserved</p>
 		</div><!-- #footer-info -->
 
 	</div><!-- #footer-content -->
