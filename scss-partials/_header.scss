@@ -4,7 +4,6 @@ $headerHPadding: 30px;
 $headerInnerHeight: $headerHeight - (2 * $headerVPadding);
 
 $subNavHeight:55px;
-
 $mobileBP: 730px;
 
 @mixin header-link() {
