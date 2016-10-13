@@ -1,5 +1,5 @@
 var headerOffset;
-//test
+
 $(function() {
   'use strict';
 
