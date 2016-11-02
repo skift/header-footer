@@ -208,8 +208,11 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
   function queueHubspotForm(form) {
     form.css = form.css || '';
     form.submitButtonClass = form.submitButtonClass || 'btn btn-primary';
-    form.inlineMessage = form.inlineMessage || 'Thank you!'
     
+    if (!form.redirectUrl) {
+        form.inlineMessage = form.inlineMessage || 'Thank you!'
+    }
+
     form.onBeforeFormInit= function(ctx) {
       var prevOnReady = ctx.onFormReady;
       var formContainer = ctx.formContainer;
