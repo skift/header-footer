@@ -270,6 +270,12 @@ $(function() {
         $(".sign-in-btn").click(function() {
             $(".sign-in").toggleClass("isOpen");
             clearLoginState(); 
+            
+            $("#sign-in-popover input").each(function() {
+                if ($(this).val() !== "") {
+                    $(this).parent().addClass("has-text");
+                }
+            });
         });
         
         $("#header-sign-in-with-popover #overlay").click(function() {
