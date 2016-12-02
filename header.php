@@ -101,7 +101,38 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         </div><!-- #header-menus -->
         
         <div id="header-right">
-            <?php if ($showSignIn) { ?>
+            <?php if ($showLoginForm) { ?>
+            <div id="header-sign-in-with-popover">
+                <div class="sign-in">
+                    <a href="javascript:" class="sign-in-btn">Sign In</a>
+                
+                    <div id="sign-in-popover" class="popover">
+                        
+                        <form class="login-form">
+                            <div class="alert alert-danger error-text"></div>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control username-field" name="username" />
+                                <label for="username" class="floating-form-label">Email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="password" class="form-control password-field" name="password" />
+                                <label for="password" class="floating-form-label">Password</label>
+                                <a href="#" class="forgot-password-btn">Forgot?</a>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
+                                <a href="#" class="create-account-btn">Create an Account</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="overlay"></div>
+            </div>
+            
+            <?php } else if ($showSignIn) { ?>
             <div id="header-sign-in">
                 <?php
 				$whitelistCheck = skp_ip_whitelist();
