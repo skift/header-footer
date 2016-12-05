@@ -1,5 +1,6 @@
 <?php
 $hasSubNav = !empty($sub_nav);  
+session_start();
 
 $url_paths = array(
     "main"      => "https://www.skift.com",
@@ -100,67 +101,135 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             <div class="clearfix"></div>
         </div><!-- #header-menus -->
         
-        <div id="header-right">
-            <?php if ($showLoginForm) { ?>
-            <div id="header-sign-in-with-popover">
-                <div class="sign-in">
-                    <a href="javascript:" class="sign-in-btn">Sign In</a>
+        
+        <?php
+        // user authentication 
+        $user_token = $_COOKIE['usr'];  
+        $user_token_present = !empty($user_token);
+        $user_info_session_present = !empty($_SESSION['user_info']);
+        $signed_in = false;
+        
+        if ($user_token_present) {
+            if (!$user_info_session_present) {
                 
-                    <div id="sign-in-popover" class="popover">
+                // curl to wallkit to authenticate the user
+                $ch = curl_init();
+                
+                curl_setopt($ch, CURLOPT_URL, "https://wallkit.herokuapp.com/api/v1/user?token=$user_token"); 
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+                
+                $user_info = json_decode(curl_exec($ch));
+                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                
+                if ($httpcode === 200 || $httpcode === 208) {
+                    // user info returned from Wallkit
+                    $_SESSION['user_info'] = $user_info;
+                    
+                    $signed_in = true;
+                } else {
+                    // bad token sent to Wallkit
+                    unset($user_info);
+                    $signed_in = false; // <- redundant
+                }
+        
+                // close curl resource to free up system resources 
+                curl_close($ch);
+            } else {
+                // load user_info from session
+                $signed_in = true;
+                $user_info = $_SESSION['user_info'];
+            }
+        } else {
+            // not signed in
+            $signed_in = false; // <- redundant
+        }
+        
+        ?>
+
+        <div id="header-right">
+            
+            <?php if ($showLoginForm) { ?>
+            
+                <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
+                    <div class="sign-in">
                         
-                        <form class="login-form">
-                            <div class="alert alert-danger error-text"></div>
+                        <?php if (!$signed_in) { ?>
+                            <a href="javascript:" class="sign-in-btn">Sign In</a>
+                        <?php } else { ?>
+                            <a href="javascript:" class="sign-in-btn my-account-btn">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-user fa-stack-1x"></i>
+                                </span>
+                            </a>
+                        <?php } ?>
+                        
+                        <div id="sign-in-popover" class="popover">
+                            <?php if (!$signed_in) { ?>
+                                <form class="login-form">
+                                    <div class="alert alert-danger error-text"></div>
+                                    
+                                    <div class="form-group">
+                                        <input type="text" class="form-control username-field" name="username" />
+                                        <label for="username" class="floating-form-label">Email</label>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="password" class="form-control password-field" name="password" />
+                                        <label for="password" class="floating-form-label">Password</label>
+                                        <a href="<?php echo home_url(); ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
+                                        <a href="<?php echo home_url(); ?>/create-account" class="create-account-btn">Create an Account</a>
+                                    </div>
+                                </form>
+                            <?php } else { ?>
                             
-                            <div class="form-group">
-                                <input type="text" class="form-control username-field" name="username" />
-                                <label for="username" class="floating-form-label">Email</label>
-                            </div>
+                                <ul id="my-account-menu">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">My Purchases</a></li>
+                                    <li><a href="javascript:" class="logout-btn">Logout</a></li>
+                                </ul>
+                                
+                                <p>Welcome, <?php echo $user_info -> first_name . ' ' . $user_info -> last_name; ?>!</p>
                             
-                            <div class="form-group">
-                                <input type="password" class="form-control password-field" name="password" />
-                                <label for="password" class="floating-form-label">Password</label>
-                                <a href="#" class="forgot-password-btn">Forgot?</a>
-                            </div>
-                            
-                            <div class="text-center">
-                                <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
-                                <a href="#" class="create-account-btn">Create an Account</a>
-                            </div>
-                        </form>
+                            <?php } ?>
+                        </div>
                     </div>
+                    <div id="overlay"></div>
                 </div>
-                <div id="overlay"></div>
-            </div>
             
             <?php } else if ($showSignIn) { ?>
-            <div id="header-sign-in">
-                <?php
-				$whitelistCheck = skp_ip_whitelist();
-									
-				// var_dump($whitelistCheck);
-				if(!empty($whitelistCheck)) {
-					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
-				} elseif (!empty($_COOKIE['__ut'])) {
-				?>
-<!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
-				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
-    
-				<?php
-				} else {
-				?>
-						<a href="#" onclick="tp.user.showLogin({loginSuccess:function(){location.reload();}});">Sign In</a>
-				<?php
-				}
-				?>
-            
-            </div>
+                <div id="header-sign-in">
+                    <?php
+    				$whitelistCheck = skp_ip_whitelist();
+    									
+    				// var_dump($whitelistCheck);
+    				if(!empty($whitelistCheck)) {
+    					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
+    				} elseif (!empty($_COOKIE['__ut'])) {
+    				?>
+    <!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
+    				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
+        
+    				<?php
+    				} else {
+    				?>
+    						<a href="#" onclick="tp.user.showLogin({loginSuccess:function(){location.reload();}});">Sign In</a>
+    				<?php
+    				}
+    				?>
+                
+                </div>
             <?php } else { ?>
-            <div id="header-social">
-                <div class="social-btn" title="Facebook"><a href="https://www.facebook.com/Skiftnews/" target="_blank"><i class="fa fa-facebook"></i></a></div>
-                <div class="social-btn" title="Twitter"><a href="https://twitter.com/skift" target="_blank"><i class="fa fa-twitter"></i></a></div>
-                <div class="social-btn" title="LinkedIn"><a href="https://www.linkedin.com/company/2641998" target="_blank"><i class="fa fa-linkedin"></i></a></div>
-<!--                 <div class="header-social-btn email" title="Email"><a href="javascript:"><i class="fa fa-envelope"></i></a></div> -->
-            </div>
+                <div id="header-social">
+                    <div class="social-btn" title="Facebook"><a href="https://www.facebook.com/Skiftnews/" target="_blank"><i class="fa fa-facebook"></i></a></div>
+                    <div class="social-btn" title="Twitter"><a href="https://twitter.com/skift" target="_blank"><i class="fa fa-twitter"></i></a></div>
+                    <div class="social-btn" title="LinkedIn"><a href="https://www.linkedin.com/company/2641998" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+    <!--                 <div class="header-social-btn email" title="Email"><a href="javascript:"><i class="fa fa-envelope"></i></a></div> -->
+                </div>
             <?php } ?>
             
             <div id="search">

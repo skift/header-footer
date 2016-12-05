@@ -240,6 +240,12 @@ $(function() {
             });
         });
         
+        $("#my-account-menu li:first-child a").hover(function() {
+           $("#sign-in-popover").addClass("green-arrow"); 
+        }, function() {
+           $("#sign-in-popover").removeClass("green-arrow"); 
+        });
+        
         $("#header-sign-in-with-popover #overlay").click(function() {
             $(".sign-in").removeClass("isOpen"); 
             clearLoginState(); 
@@ -263,6 +269,11 @@ $(function() {
                 } 
             });
         };
+        
+        $(".logout-btn").click(function() {
+           document.cookie = "usr=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+           location.reload();
+        });
         
         $("#sign-in-popover input").keyup(function() {
             if ($(this).val() !== "") {
@@ -304,7 +315,13 @@ $(function() {
                         console.log("returned!", response);
                         //location.reload();
                         
+                        document.cookie = "usr=" + response.data.token + "; path=/";
+                        
                         showLoginError("You are now logged in",true);
+                        
+                        setTimeout(function() {
+                            location.reload();
+                        },500);
                     },
                     error: function(e) {
                         console.log("Error",e);

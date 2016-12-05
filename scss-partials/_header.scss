@@ -255,7 +255,7 @@ body {
                 
                 position: relative;
 
-                margin:0 20px;
+                margin:0 0 0 20px;
                 
                 #overlay {
                     position: fixed;
@@ -288,13 +288,17 @@ body {
                             text-decoration: none;
                         }
                     }
+                    
+                    .my-account-btn {
+                        color:rgba(0, 0, 0, 0.65);
+                    }
                         
                     #sign-in-popover {
                         position: absolute;
                         width: 250px;
                         right: -30px;
                         margin-top: 15px;
-                        padding: 15px;
+                        padding: 20px 15px 15px;
                         background-color: #58585a;
                         
                         visibility: hidden;
@@ -389,6 +393,10 @@ body {
                             border-bottom-color: #58585a;
                             border-width: 10px;
                         }
+                        
+                        &.green-arrow:after {
+                            border-bottom-color: $deepGreen;
+                        }
                     }
 
                     &.isOpen {
@@ -407,6 +415,53 @@ body {
                             -webkit-backdrop-filter: blur(4px);
                             backdrop-filter: blur(4px);
                         }
+                    }
+                }
+                
+                &.my-account {
+                    margin:0 0 0 20px;
+                    
+                    #sign-in-popover {
+                        padding:0;
+                        width:200px;
+                        
+                        p {
+                            color:#fff;
+                            text-align:center;
+                            font-size:12px;
+                            margin-top:5px;
+                        }
+                        
+                        &:after {
+                            right: 40px;
+                        }
+                        
+                        #my-account-menu { 
+                            list-style: none;
+                            padding: 0;
+                            text-align: center;
+                            margin-bottom:0;
+                            
+                            li {
+                                a {
+                                    color:#fff;
+//                                     font-family: 'tradegothic',sans-serif;
+                                    font-size:16px;
+                                    display: block;
+                                    padding:12px 0 10px 0;
+//                                     text-transform: uppercase;
+                                    
+                                    &:hover {
+                                        background-color:$deepGreen;
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .sign-in {
+                        padding:15px 0;
                     }
                 }
             }
