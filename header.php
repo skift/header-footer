@@ -1,6 +1,13 @@
 <?php
 $hasSubNav = !empty($sub_nav);  
 session_start();
+    
+if (is_page("login")) {
+    //logout!
+    setcookie("usr","", time()-3600, "/");
+    unset($_COOKIE['usr']);
+    unset($_SESSION['user_info']);
+}
 
 $url_paths = array(
     "main"      => "https://www.skift.com",
@@ -106,34 +113,36 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         // user authentication 
         $user_token = $_COOKIE['usr'];  
         $user_token_present = !empty($user_token);
-        $user_info_session_present = !empty($_SESSION['user_info']);
+        $user_info_session_present = !empty($_SESSION['user_info']) && false;
         $signed_in = false;
         
         if ($user_token_present) {
             if (!$user_info_session_present) {
                 
-                // curl to wallkit to authenticate the user
-                $ch = curl_init();
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/trends/wp-content/themes/products/inc/ajax/wallkit/wallkit_request.php");
                 
-                curl_setopt($ch, CURLOPT_URL, "https://wallkit.herokuapp.com/api/v1/user?token=$user_token"); 
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-                
-                $user_info = json_decode(curl_exec($ch));
-                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                $user_response = wallkit_request("user", array(), "GET", "token: $user_token");
+               
+                $httpcode = $user_response["httpcode"];
                 
                 if ($httpcode === 200 || $httpcode === 208) {
                     // user info returned from Wallkit
+                    $user_info = $user_response["data"];
+                    
                     $_SESSION['user_info'] = $user_info;
                     
                     $signed_in = true;
                 } else {
                     // bad token sent to Wallkit
-                    unset($user_info);
+                    unset($user_response);
                     $signed_in = false; // <- redundant
+                    
+                    // remove token cookie since it is no longer valid
+                    setcookie("usr","", time()-3600, "/");
+                    unset($_COOKIE['usr']);
                 }
         
                 // close curl resource to free up system resources 
-                curl_close($ch);
             } else {
                 // load user_info from session
                 $signed_in = true;
@@ -166,31 +175,33 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         
                         <div id="sign-in-popover" class="popover">
                             <?php if (!$signed_in) { ?>
-                                <form class="login-form">
+                            
+                                <form class="login-form dark-bg account-form">
                                     <div class="alert alert-danger error-text"></div>
                                     
                                     <div class="form-group">
-                                        <input type="text" class="form-control username-field" name="username" />
+                                        <input type="text" class="form-control has-floating-label username-field" name="email" />
                                         <label for="username" class="floating-form-label">Email</label>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="password" class="form-control password-field" name="password" />
+                                        <input type="password" class="form-control has-floating-label password-field" name="password" />
                                         <label for="password" class="floating-form-label">Password</label>
                                         <a href="<?php echo home_url(); ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
                                     </div>
                                     
                                     <div class="text-center">
                                         <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
-                                        <a href="<?php echo home_url(); ?>/create-account" class="create-account-btn">Create an Account</a>
+                                        <a href="<?php echo home_url(); ?>/create-account" class="under-btn-link">Create an Account</a>
                                     </div>
                                 </form>
+                                
                             <?php } else { ?>
                             
                                 <ul id="my-account-menu">
                                     <li><a href="#">My Account</a></li>
                                     <li><a href="#">My Purchases</a></li>
-                                    <li><a href="javascript:" class="logout-btn">Logout</a></li>
+                                    <li><a href="<?php echo home_url();?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
                                 
                                 <p>Welcome, <?php echo $user_info -> first_name . ' ' . $user_info -> last_name; ?>!</p>
