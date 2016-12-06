@@ -75,12 +75,7 @@
         .form-control:focus + .floating-form-label, &.has-text .form-control + .floating-form-label {
             @include transform(translateY(-8px) scale(0.5));
         }
-        
-/*
-        .form-control[type=password]:focus + .floating-form-label, &.has-text .form-control[type=password] + .floating-form-label {
-            @include transform(translateY(-8px) translateX(-16px) scale(0.5));
-        }
-*/
+
     }
     
     .under-btn-link {
