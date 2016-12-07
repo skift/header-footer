@@ -5,9 +5,9 @@ $(function() {
         
         var clearLoginState = function() {
             var $form = $("#header-sign-in-with-popover");
-            var errorText = $form.find(".error-text");
+            var bannerText = $form.find(".error-text");
             
-            errorText.fadeOut(function() {
+            bannerText.fadeOut(function() {
                 $form.find(".form-group").removeClass("has-error");
             });
         };
@@ -44,22 +44,40 @@ $(function() {
         $(".sign-in").click(function(e) {
            e.stopPropagation();
         });
+        
+        var hideBannerTimer;
+        
+        var setBannerFadeoutTimer = function(bannerText) {
+            hideBannerTimer = setTimeout(function() {
+                bannerText.fadeOut(function() {
+                    $(this).removeClass("show");  
+                });
+            }, 6000);
+        };
+        
+        if ($(".error-text").is(":visible")) {
+            setBannerFadeoutTimer($(".error-text"));
+        }
                 
-        var showErrorMessage = function(message, $form, callback, success) {
-            var errorText = $form.find(".error-text");
+        var showBannerMessage = function(message, $form, callback, success) {
+            clearTimeout(hideBannerTimer);
             
-            errorText.fadeOut(function() {
-                errorText.text(message).fadeIn(function() {
+            var bannerText = $form.find(".error-text");
+            
+            bannerText.fadeOut(function() {
+                bannerText.text(message).fadeIn(function() {
                     if (typeof callback === "function") {
                         callback();
                     }
                 });
                
                 if (success) {
-                    errorText.addClass("success");
+                    bannerText.addClass("success");
                 } else {
-                    errorText.removeClass("success");
-                } 
+                    bannerText.removeClass("success");
+                }
+                
+                setBannerFadeoutTimer(bannerText);
             });
         };
         
@@ -131,16 +149,16 @@ $(function() {
                     $form.find("input,button").attr("disabled", false);
                         
                     if (response.success) {
-                        showErrorMessage("You are now logged in", $form, function() {
+                        showBannerMessage("You are now logged in", $form, function() {
                             location.href = homeUrl;
                         }, true);
                     } else {
-                        showErrorMessage(response.errorMessage, $form)
+                        showBannerMessage(response.errorMessage, $form)
                     }
                 });
                 
             } else {
-                showErrorMessage("Please enter both your email address and password.", $form)
+                showBannerMessage("Please enter both your email address and password.", $form)
             }
             
             
@@ -190,15 +208,15 @@ $(function() {
                     console.log("response",response);
                     
                     if (response.success) {
-                        showErrorMessage("Your account has been created!", $form, function() {
+                        showBannerMessage("Your account has been created!", $form, function() {
                             location.href = homeUrl;
                         }, true);
                     } else {
-                        showErrorMessage(response.errorMessage, $form)
+                        showBannerMessage(response.errorMessage, $form)
                     }
                 });
             } else {
-                showErrorMessage("Please correct the fields in red", $form)
+                showBannerMessage("Please correct the fields in red", $form)
             }
             
             

@@ -181,7 +181,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                                     
                                     <div class="form-group">
                                         <input type="text" class="form-control has-floating-label username-field" name="email" />
-                                        <label for="username" class="floating-form-label">Email</label>
+                                        <label for="username" class="floating-form-label">Email Address</label>
                                     </div>
                                     
                                     <div class="form-group">
