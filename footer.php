@@ -157,7 +157,7 @@ function getTweets($num) {
 
 			<div class="footer-column last">
 				<div class="footer-item" id="podcast">
-					<div class="footer-title">Listen to us</div>
+					<div class="footer-title">Latest Podcast Episodes</div>
 					<ul>
 						<?php
                         function get_recent_podcasts_footer( $num ){
