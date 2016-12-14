@@ -2,7 +2,7 @@
 $hasSubNav = !empty($sub_nav);  
 
 $url_paths = array(
-    "main"      => "https://www.skift.com",
+    "main"      => "https://skift.com",
     "trends"    => "https://trends.skift.com",
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
@@ -48,7 +48,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         <div id="header-left">
             <div id="logo">
                 <a href="<?php echo $url_paths["main"]; ?>">
-                    <img src="<?php bloginfo('template_directory') ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
+                    <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div><!-- #logo -->
                         
