@@ -65,9 +65,9 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     </ul>
                 <?php } ?>
                 <ul id="navigation-menu">
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <ul class="sub-menu">
-                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016">Latest News</a></li>
+                        	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/">Latest News</a></li>
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/rooms/hotels/">Hotels</a></li>
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/destinations/">Destinations</a></li>
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/digital/">Digital</a></li>
@@ -89,7 +89,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/business-traveler/">Business Traveler</a></li>
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/corporate-travel/">Corporate Travel</a></li>
                         	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/meetings/">Meetings</a></li>
-                        	<li class="menu-item"><a href="http://chefstech.co/subscribe">Chefs+Tech</a></li>
+                        	<li class="menu-item"><a href="http://chefstech.co/subscribe/">Chefs+Tech</a></li>
                         </ul>
                     </li>
 <!--                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertise"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li> -->
