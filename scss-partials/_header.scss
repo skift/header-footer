@@ -126,7 +126,7 @@ body {
             
                     margin:0 5px;
             
-                    & > a {
+                    &:not(.menu-btn) > a {
                         @include header-link();
                         
                         padding-top:15px;
@@ -137,7 +137,7 @@ body {
                         @include transition(border-bottom 0.3s);
                     }
                     
-                    & > a:hover, &.current_page_item > a, &.current-menu-item > a {
+                    &:not(.menu-btn) > a:hover, &.current_page_item > a, &.current-menu-item > a {
                         border-bottom:4px solid $black;
                     }
                     
