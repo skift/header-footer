@@ -171,6 +171,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>">Education</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising">Advertising</a></li>
                 <?
                 } else {
                     wp_nav_menu(array(
