@@ -336,7 +336,7 @@ body {
         }   
     } 
     
-    @media screen and (max-width:1080px) {
+    @media screen and (max-width:1110px) {
         // strink the spacing between logo and nav
         
         #header {
@@ -352,7 +352,7 @@ body {
         }
     }
     
-    @media screen and (max-width:1010px) {
+    @media screen and (max-width:1060px) {
         // strink the spacing between logo and nav more and shrink the space between the primary nav items
         
         #header {
@@ -373,7 +373,7 @@ body {
         }
     }
     
-    @media screen and (max-width:925px) {
+    @media screen and (max-width:950px) {
         #header #header-left #primary-nav > #navigation-menu > li > a {
 //             padding: 28px 10px;
             font-size:14px;
@@ -383,7 +383,7 @@ body {
         }
     }
     
-    @media screen and (max-width:880px) {
+    @media screen and (max-width:930px) {
         #header #header-right #header-social .social-btn {
             margin:0 5px;
         }
@@ -394,9 +394,12 @@ body {
         }
     }
     
-    @media screen and (max-width:820px) {
+    @media screen and (max-width:855px) {
         #header {
             #header-left {
+                #logo {
+                    padding-left:15px;
+                }
                 #primary-nav > #navigation-menu > li > a {
                     padding: 23px 10px;
                     font-size:13px;
@@ -406,24 +409,15 @@ body {
                 font-size:13px;
             }
         }
-/*
-        #header #header-right #header-social {
-            width: 80px;
-            text-align: center;
-            padding: 8px 0;
-        }
-*/
         
-    }/*
-
-    
+    }  
+      
     @media screen and (max-width:780px) {
-        #header #header-right #search {
-            margin-left:0;
-            margin-right: -190px;
+        #header #header-left #primary-nav > #navigation-menu > li > a {
+            font-size:12px;
         }
     }
-*/
+
     
     @media screen and (max-width:$mobileBP) {
         #header-right, #primary-nav {

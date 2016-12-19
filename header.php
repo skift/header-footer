@@ -93,7 +93,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         </ul>
                     </li>
 <!--                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertise"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li> -->
-                    <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>"<?php if ($select_tab === "education") { echo ' class="selected"'; } ?>>Education</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>"<?php if ($select_tab === "education") { echo ' class="selected"'; } ?>>Edu</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li>
                 </ul>
             </nav>
             
