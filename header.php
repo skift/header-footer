@@ -54,7 +54,13 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         
             <nav id="primary-nav">
                 <?php if ($hasSubNav) { ?>
-                    <ul class="sub-menu">
+                    <div class="sub-menu<?php if (!empty($sub_nav_logo)) { echo ' has-sub-nav-logo'; } ?>">
+                        <?php
+                        if (!empty($sub_nav_logo)) {
+                            echo "<img src='$sub_nav_logo' alt='Skift Research' class='sub-nav-logo' />";
+                        }
+                        ?>
+                        <ul>
                         <?php 
                         wp_nav_menu(array(
                             'theme_location' => $sub_nav,
@@ -62,7 +68,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                             'items_wrap' => '%3$s'
                         ));
                         ?>
-                    </ul>
+                        </ul>
+                    </div>
                 <?php } ?>
                 <ul id="navigation-menu">
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
