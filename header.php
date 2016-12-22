@@ -3,7 +3,7 @@ $hasSubNav = !empty($sub_nav);
 
 $url_paths = array(
     "main"      => "https://skift.com",
-    "trends"    => "https://trends.skift.com",
+    "trends"    => "https://research.skift.com",
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com" 
