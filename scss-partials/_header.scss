@@ -118,6 +118,8 @@ body {
                 background-color:$darkYellow;
                 
                 white-space: nowrap;
+                overflow: hidden;
+                overflow-y: hidden;
                 overflow-x: auto;
                 
                 &.has-sub-nav-logo {
