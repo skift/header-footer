@@ -72,7 +72,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     </div>
                 <?php } ?>
                 <ul id="navigation-menu">
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <div class="sub-menu">
                             <ul>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/">Latest News</a></li>
