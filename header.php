@@ -1,12 +1,12 @@
 <?php
-$hasSubNav = !empty($sub_nav);  
+$hasSubNav = !empty($sub_nav);
 
 $url_paths = array(
     "main"      => "https://skift.com",
     "trends"    => "https://research.skift.com",
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
-    "skiftx"    => "http://www.skiftx.com" 
+    "skiftx"    => "http://www.skiftx.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -15,35 +15,35 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "trends"    => "http://localhost/trends",
         "edu"       => "http://localhost/edu",
         "forum"     => "http://localhost/forum",
-        "skiftx"    => "http://localhost/skiftx" 
+        "skiftx"    => "http://localhost/skiftx"
     );
 }
 ?>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
-    
+
     <?php if (!$dontShowBannerAd) { ?>
     <div id="top-banner">
         <!-- header banner loads into this -->
     </div><!-- #top-banner -->
     <?php } ?>
-    
+
     <?php
     $header_classes = '';
-    
+
     if ($dontShowBannerAd) {
         $header_classes = 'fixed no-banner';
     }
-    
+
     if ($dontFix) {
         $header_classes = 'no-fix';
     }
-    
+
     if ($dontShowBannerAd && $dontFix) {
         $header_classes = 'no-banner no-fix';
     }
     ?>
-    
+
     <header id="header" class="<?php echo $header_classes; ?>">
         <div id="header-left">
             <div id="logo">
@@ -51,7 +51,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div><!-- #logo -->
-                        
+
             <nav id="primary-nav">
                 <?php if ($hasSubNav) { ?>
                     <div class="sub-menu<?php if (!empty($sub_nav_logo)) { echo ' has-sub-nav-logo'; } ?>">
@@ -61,7 +61,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         }
                         ?>
                         <ul>
-                        <?php 
+                        <?php
                         wp_nav_menu(array(
                             'theme_location' => $sub_nav,
                             'container' => false,
@@ -75,7 +75,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <div class="sub-menu">
                             <ul>
-                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016/">Latest News</a></li>
+                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/">Latest News</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/rooms/hotels/">Hotels</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/destinations/">Destinations</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/digital/">Digital</a></li>
@@ -108,16 +108,16 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     <li class="menu-item"><a href="<?php echo $url_paths["skiftx"]; ?>"<?php if ($select_tab === "advertising") { echo ' class="selected"'; } ?>>Advertising</a></li>
                 </ul>
             </nav>
-            
+
             <div class="clearfix"></div>
         </div><!-- #header-menus -->
-        
+
         <div id="header-right">
             <?php if ($showSignIn) { ?>
             <div id="header-sign-in">
                 <?php
 				$whitelistCheck = skp_ip_whitelist();
-									
+
 				// var_dump($whitelistCheck);
 				if(!empty($whitelistCheck)) {
 					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
@@ -125,7 +125,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 				?>
 <!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
 				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
-    
+
 				<?php
 				} else {
 				?>
@@ -133,7 +133,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 				<?php
 				}
 				?>
-            
+
             </div>
             <?php } else { ?>
             <div id="header-social">
@@ -143,11 +143,11 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 <!--                 <div class="header-social-btn email" title="Email"><a href="javascript:"><i class="fa fa-envelope"></i></a></div> -->
             </div>
             <?php } ?>
-            
+
             <div id="search">
                 <div id="search-container">
                     <div id="search-trigger"><i class="fa fa-search"></i></div>
-                    
+
                     <div id="search-form">
                         <form method="get" action="<?php echo $url_paths["main"]; ?>">
                             <input type="search" name="s" id="search-box" class="text" />
@@ -157,10 +157,10 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                 </div>
             </div><!-- #search -->
         </div><!-- #header-right -->
-        
+
         <div class="clearfix"></div>
-        
-        
+
+
         <div id="mobileMenuBtn">
             <div class="top-line"></div>
             <div class="middle">
@@ -169,12 +169,12 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             </div>
             <div class="bottom-line"></div>
         </div>
-        
+
         <nav id="mobile-menu">
             <ul>
                 <?php
                 echo '<li class="menu-item"><a href="' . $url_paths["main"] . '">Home</a></li>';
-                
+
                 if (!$hasSubNav || $useMainMobileMenu) {
                 ?>
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016">News</a></li>
@@ -190,13 +190,13 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         'container' => false,
                         'items_wrap' => '%3$s'
                     ));
-                
+
                     if ($showSignIn) {
-        									
+
         				// var_dump($whitelistCheck);
         				if (!empty($_COOKIE['__ut'])) {
         				?>
-                            <li class="menu-item"><a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a></li>            
+                            <li class="menu-item"><a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a></li>
         				<?php
         				} else {
         				?>
@@ -208,7 +208,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             </ul>
         </nav>
     </header>
-    
+
 	<div id="header-pad"></div>
 </div>
 
