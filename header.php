@@ -177,7 +177,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 
                 if (!$hasSubNav || $useMainMobileMenu) {
                 ?>
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/2016">News</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/">News</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>">Research</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
