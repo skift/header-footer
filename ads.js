@@ -113,8 +113,6 @@ function createAd(ad,callback) {
   }
 
   googletag.cmd.push(function() {
-      var url = window.location.href;
-      googletag.pubads().setTargeting("url", url);
     var slot = googletag.defineSlot(ad.slot, ad.size, ad.slotName).addService(googletag.pubads());
     googletag.display(ad.slotName);
 
