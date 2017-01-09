@@ -2,14 +2,13 @@ var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 
 (function() {
-  var gads = document.createElement('script');
-  gads.async = true;
-  gads.type = 'text/javascript';
-  var useSSL = 'https:' === document.location.protocol;
-  gads.src = (useSSL ? 'https:' : 'http:') + 
-  '//www.googletagservices.com/tag/js/gpt.js';
-  var node = document.getElementsByTagName('script')[0];
-  node.parentNode.insertBefore(gads, node);
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' === document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
 })();
 
 googletag.cmd.push(function() {
@@ -34,7 +33,7 @@ function parseBool(bool) {
 
 function lookForActualHeight(e) {
   var eHeight = e.height();
-  
+
   if (eHeight === 0) {
     return lookForActualHeight(e.parent());
   } else {
@@ -50,7 +49,7 @@ function removeIncompatibleAdSizes(ad) {
   if (typeof sizes[0] === "number") {
     sizes = [sizes];
   }
-  
+
   var containerHeight = lookForActualHeight(ad.container);
 
   for (var i = sizes.length - 1; i >= 0; i--) {
@@ -93,7 +92,7 @@ function createAd(ad,callback) {
 
   ad.size = removeIncompatibleAdSizes(ad);
 
-  if (!ad.size.length || (exists(ad.minScreenSize) && (screenWidth() < ad.minScreenSize)) || (exists(ad.maxScreenSize) && (screenWidth() >= ad.maxScreenSize))) { 
+  if (!ad.size.length || (exists(ad.minScreenSize) && (screenWidth() < ad.minScreenSize)) || (exists(ad.maxScreenSize) && (screenWidth() >= ad.maxScreenSize))) {
     return false;
   }
 
@@ -112,8 +111,10 @@ function createAd(ad,callback) {
       adContainer.appendTo(ad.appendTo);
     }
   }
-    
+
   googletag.cmd.push(function() {
+      var url = window.location.href;
+      googletag.pubads().setTargeting("url", url);
     var slot = googletag.defineSlot(ad.slot, ad.size, ad.slotName).addService(googletag.pubads());
     googletag.display(ad.slotName);
 
@@ -121,9 +122,12 @@ function createAd(ad,callback) {
       slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
     } else {
       slot.clearTargeting();
+      var url = window.location.href;
+      slot.setTargeting("url", url);
     }
 
     googletag.pubads().refresh([slot]);
+
 
     if (typeof callback === "function") {
       googletag.pubads().addEventListener('slotRenderEnded', function(event) {
