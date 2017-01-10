@@ -120,8 +120,7 @@ function createAd(ad,callback) {
       slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
     } else {
       slot.clearTargeting();
-      var url = window.location.href;
-      slot.setTargeting("url", url);
+      slot.setTargeting("postID", postID);
     }
 
     googletag.pubads().refresh([slot]);

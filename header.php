@@ -18,7 +18,14 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "skiftx"    => "http://localhost/skiftx"
     );
 }
+
+//for ads.js
+global $post;
+$postID = $post->ID;
 ?>
+<script type="text/javascript">
+    var postID = <?php echo $post->ID; ?> 
+</script>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
 
