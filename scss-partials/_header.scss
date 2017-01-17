@@ -230,7 +230,7 @@ body {
             width:auto;
             height:auto;
             
-            overflow: hidden;
+//             overflow: hidden;
             
             background-color:$yellow; // for when search overlaps
             
@@ -272,6 +272,149 @@ body {
                     padding:23px 0;
                     color:#000;
                     font-size:15px;
+                }
+            }
+            
+            #header-sign-in-with-popover {
+                vertical-align: top;
+                display: inline-block;
+                
+                position: relative;
+
+                margin:0 0 0 20px;
+                
+                #overlay {
+                    position: fixed;
+                    top:0;
+                    left:0;
+                    width: 100%;
+                    height:100%;
+                    background-color:rgba($white,0);
+                    
+                    @include transition(0.3s);
+                    
+                    pointer-events: none;
+                }
+                
+
+                .sign-in {
+                    display: inline-block;
+                    padding: 23px 15px;
+                    
+                    position: relative;
+                    z-index: 10;
+                    
+                    .sign-in-btn {
+                        font-size: 15px;
+                        font-weight: 200;
+                        color: #252525;
+                    
+                        &:hover {
+                            color:#252525;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    .my-account-btn {
+                        color:rgba(0, 0, 0, 0.65);
+                    }
+                        
+                    #sign-in-popover {
+                        position: absolute;
+                        width: 250px;
+                        right: -30px;
+                        margin-top: 15px;
+                        padding: 20px 15px 15px;
+                        background-color: #58585a;
+                        
+                        visibility: hidden;
+                        
+                        @include opacity(0);
+                        @include transition(0.3s);
+
+                        
+                        &:after {
+                        	bottom: 100%;
+                            right: 60px;
+                            border: solid transparent;
+                            content: " ";
+                            height: 0;
+                            width: 0;
+                            position: absolute;
+                            pointer-events: none;
+                            border-bottom-color: #58585a;
+                            border-width: 10px;
+                        }
+                        
+                        &.green-arrow:after {
+                            border-bottom-color: $deepGreen;
+                        }
+                    }
+
+                    &.isOpen {
+                        background:none;
+                        
+                        #sign-in-popover {
+                            @include opacity(1);
+                            visibility: visible;
+                        }
+                        
+                        & + #overlay {
+                            background-color:rgba($white,0.4);
+                            
+                            pointer-events: auto;
+                    
+                            -webkit-backdrop-filter: blur(4px);
+                            backdrop-filter: blur(4px);
+                        }
+                    }
+                }
+                
+                &.my-account {
+                    margin:0 0 0 20px;
+                    
+                    #sign-in-popover {
+                        padding:0;
+                        width:200px;
+                        
+                        p {
+                            color:#fff;
+                            text-align:center;
+                            font-size:12px;
+                            margin-top:5px;
+                        }
+                        
+                        &:after {
+                            right: 40px;
+                        }
+                        
+                        #my-account-menu { 
+                            list-style: none;
+                            padding: 0;
+                            text-align: center;
+                            margin-bottom:0;
+                            
+                            li {
+                                a {
+                                    color:#fff;
+//                                     font-family: 'tradegothic',sans-serif;
+                                    font-size:16px;
+                                    display: block;
+                                    padding:12px 0 10px 0;
+//                                     text-transform: uppercase;
+                                    
+                                    &:hover {
+                                        background-color:$deepGreen;
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .sign-in {
+                        padding:15px 0;
+                    }
                 }
             }
             
