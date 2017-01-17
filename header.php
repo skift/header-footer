@@ -125,17 +125,10 @@ $postID = $post->ID;
             </nav>
 
             <div class="clearfix"></div>
-<<<<<<< HEAD
         </div>
         <!-- #header-menus -->
 
         <!-- WALLKIT -->
-=======
-        </div><!-- #header-menus -->
-<<<<<<< HEAD
-
-
->>>>>>> 3e0eb5d9453a03ffac8fd74478817c0d5dc2652c
         <?php
         // user authentication
         $user_token = $_COOKIE['usr'];
