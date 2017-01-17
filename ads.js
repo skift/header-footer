@@ -116,7 +116,10 @@ function createAd(ad,callback) {
     var slot = googletag.defineSlot(ad.slot, ad.size, ad.slotName).addService(googletag.pubads());
     googletag.display(ad.slotName);
     slot.setTargeting("postID", postID);
-    slot.setTargeting("categories", categories);
+
+    if (typeof categories !== 'undefined' && categories) {
+        slot.setTargeting("categories", categories);
+    }
 
     if (exists(ad.targeted) && exists(ad.targeted.targetType) && exists(ad.targeted.target) ) {
       slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
