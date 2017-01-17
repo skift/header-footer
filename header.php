@@ -22,9 +22,12 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 //for ads.js
 global $post;
 $postID = $post->ID;
+$post_categories = wp_get_post_categories($postID);
+$categories = json_encode($post_categories);
 ?>
 <script type="text/javascript">
-    var postID = <?php echo $post->ID; ?> 
+    var postID = <?php echo $post->ID; ?>;
+    var categories = <?php echo $categories; ?>;
 </script>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
