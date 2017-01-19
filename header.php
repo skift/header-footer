@@ -26,17 +26,19 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 //for ads.js
 global $post;
 $postID = $post->ID;
-$post_categories = wp_get_post_categories($postID);
+
+/*$post_categories = wp_get_post_categories($postID);
 if ($post_categories) {
     $categories = json_encode($post_categories);
 } else {
     $categories = "";
 }
 // $categories = json_encode($post_categories);
+*/
 ?>
 <script type="text/javascript">
     var postID = <?php echo $postID; ?>;
-    var categories = <?php echo $categories; ?>;
+    // var categories = <?php echo $categories; ?>;
 </script>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
