@@ -117,9 +117,9 @@ function createAd(ad,callback) {
     googletag.display(ad.slotName);
     slot.setTargeting("postID", postID);
 
-    if (typeof categories !== 'undefined' && categories) {
+    /*if (typeof categories !== 'undefined' && categories) {
         slot.setTargeting("categories", categories);
-    }
+    }*/
 
     if (exists(ad.targeted) && exists(ad.targeted.targetType) && exists(ad.targeted.target) ) {
       slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
