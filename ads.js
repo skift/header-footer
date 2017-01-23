@@ -119,6 +119,10 @@ function createAd(ad,callback) {
         if (exists(postID)) {
             slot.setTargeting("postID", postID);
         }
+        
+        if (exists(categories)) {
+            slot.setTargeting("categories", categories);
+        }
     
         if (exists(ad.targeted) && exists(ad.targeted.targetType) && exists(ad.targeted.target) ) {
             slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
