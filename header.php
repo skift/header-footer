@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-$hasSubNav = !empty($sub_nav);  
-=======
 $hasSubNav = !empty($sub_nav);
->>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
+
 session_start();
 
 if (is_page("login")) {
@@ -33,12 +30,6 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 
 
 ?>
-<<<<<<< HEAD
-=======
-<script type="text/javascript">
-    var postID = <?php echo $post->ID; ?>
-</script>
->>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
 
@@ -130,15 +121,11 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             </nav>
 
             <div class="clearfix"></div>
-<<<<<<< HEAD
-        </div><!-- #header-menus -->        
-        
-=======
+
         </div>
         <!-- #header-menus -->
 
         <!-- WALLKIT -->
->>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
         <?php
         // user authentication
         $user_token = $_COOKIE['usr'];
@@ -262,14 +249,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
     				<?php
     				}
     				?>
-<<<<<<< HEAD
                 
                 </div>
-
-=======
-
-                </div>
->>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
             <?php } else { ?>
                 <div id="header-social">
                     <div class="social-btn" title="Facebook"><a href="https://www.facebook.com/Skiftnews/" target="_blank"><i class="fa fa-facebook"></i></a></div>
