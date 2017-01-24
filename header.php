@@ -1,7 +1,11 @@
 <?php
+<<<<<<< HEAD
 $hasSubNav = !empty($sub_nav);  
+=======
+$hasSubNav = !empty($sub_nav);
+>>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
 session_start();
-    
+
 if (is_page("login")) {
     //logout!
     setcookie("usr","", time()-3600, "/");
@@ -29,6 +33,12 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 
 
 ?>
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+    var postID = <?php echo $post->ID; ?>
+</script>
+>>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
 
@@ -120,42 +130,49 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             </nav>
 
             <div class="clearfix"></div>
+<<<<<<< HEAD
         </div><!-- #header-menus -->        
         
+=======
+        </div>
+        <!-- #header-menus -->
+
+        <!-- WALLKIT -->
+>>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
         <?php
-        // user authentication 
-        $user_token = $_COOKIE['usr'];  
+        // user authentication
+        $user_token = $_COOKIE['usr'];
         $user_token_present = !empty($user_token);
         $user_info_session_present = !empty($_SESSION['user_info']) && false;
         $signed_in = false;
-        
+
         if ($user_token_present) {
             if (!$user_info_session_present) {
-                
+
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/trends/wp-content/themes/products/inc/ajax/wallkit/wallkit_request.php");
-                
+
                 $user_response = wallkit_request("user", array(), "GET", "token: $user_token");
-               
+
                 $httpcode = $user_response["httpcode"];
-                
+
                 if ($httpcode === 200 || $httpcode === 208) {
                     // user info returned from Wallkit
                     $user_info = $user_response["data"];
-                    
+
                     $_SESSION['user_info'] = $user_info;
-                    
+
                     $signed_in = true;
                 } else {
                     // bad token sent to Wallkit
                     unset($user_response);
                     $signed_in = false; // <- redundant
-                    
+
                     // remove token cookie since it is no longer valid
                     setcookie("usr","", time()-3600, "/");
                     unset($_COOKIE['usr']);
                 }
-        
-                // close curl resource to free up system resources 
+
+                // close curl resource to free up system resources
             } else {
                 // load user_info from session
                 $signed_in = true;
@@ -165,16 +182,16 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
             // not signed in
             $signed_in = false; // <- redundant
         }
-        
+
         ?>
 
         <div id="header-right">
-            
+
             <?php if ($showLoginForm) { ?>
-            
+
                 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
                     <div class="sign-in">
-                        
+
                         <?php if (!$signed_in) { ?>
                             <a href="javascript:" class="sign-in-btn">Sign In</a>
                         <?php } else { ?>
@@ -185,51 +202,51 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                                 </span>
                             </a>
                         <?php } ?>
-                        
+
                         <div id="sign-in-popover" class="popover">
                             <?php if (!$signed_in) { ?>
-                            
+
                                 <form class="login-form dark-bg account-form">
                                     <div class="alert alert-danger error-text"></div>
-                                    
+
                                     <div class="form-group">
                                         <input type="text" class="form-control has-floating-label username-field" name="email" />
                                         <label for="username" class="floating-form-label">Email Address</label>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <input type="password" class="form-control has-floating-label password-field" name="password" />
                                         <label for="password" class="floating-form-label">Password</label>
                                         <a href="<?php echo home_url(); ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
                                     </div>
-                                    
+
                                     <div class="text-center">
                                         <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
                                         <a href="<?php echo home_url(); ?>/create-account" class="under-btn-link">Create an Account</a>
                                     </div>
                                 </form>
-                                
+
                             <?php } else { ?>
-                            
+
                                 <ul id="my-account-menu">
                                     <li><a href="#">My Account</a></li>
                                     <li><a href="#">My Purchases</a></li>
                                     <li><a href="<?php echo home_url();?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
-                                
+
                                 <p>Welcome, <?php echo $user_info -> first_name . ' ' . $user_info -> last_name; ?>!</p>
-                            
+
                             <?php } ?>
                         </div>
                     </div>
                     <div id="overlay"></div>
                 </div>
-            
+
             <?php } else if ($showSignIn) { ?>
                 <div id="header-sign-in">
                     <?php
     				$whitelistCheck = skp_ip_whitelist();
-    									
+
     				// var_dump($whitelistCheck);
     				if(!empty($whitelistCheck)) {
     					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
@@ -237,7 +254,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
     				?>
     <!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
     				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
-        
+
     				<?php
     				} else {
     				?>
@@ -245,9 +262,14 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
     				<?php
     				}
     				?>
+<<<<<<< HEAD
                 
                 </div>
 
+=======
+
+                </div>
+>>>>>>> 05154c7877ba04b3b00f8f27735f875f06fdd3e0
             <?php } else { ?>
                 <div id="header-social">
                     <div class="social-btn" title="Facebook"><a href="https://www.facebook.com/Skiftnews/" target="_blank"><i class="fa fa-facebook"></i></a></div>
@@ -268,8 +290,10 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                         </form>
                     </div>
                 </div>
-            </div><!-- #search -->
-        </div><!-- #header-right -->
+            </div>
+            <!-- #search -->
+        </div>
+        <!-- #header-right -->
 
         <div class="clearfix"></div>
 
