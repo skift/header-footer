@@ -1,3 +1,39 @@
+var hideBannerTimer;
+
+function setBannerFadeoutTimer(bannerText) {
+    hideBannerTimer = setTimeout(function() {
+        bannerText.fadeOut(function() {
+            $(this).removeClass("show");
+        });
+    }, 6000);
+}
+
+if ($(".error-text").is(":visible")) {
+    setBannerFadeoutTimer($(".error-text"));
+}
+
+function showBannerMessage(message, $form, callback, success) {
+    clearTimeout(hideBannerTimer);
+
+    var bannerText = $form.find(".error-text");
+
+    bannerText.fadeOut(function() {
+        bannerText.text(message).fadeIn(function() {
+            if (typeof callback === "function") {
+                callback();
+            }
+        });
+
+        if (success) {
+            bannerText.addClass("success");
+        } else {
+            bannerText.removeClass("success");
+        }
+
+        setBannerFadeoutTimer(bannerText);
+    });
+}
+
 $(function() {
     if ($("#header-sign-in-with-popover").length) {
 
@@ -44,42 +80,6 @@ $(function() {
         $(".sign-in").click(function(e) {
            e.stopPropagation();
         });
-
-        var hideBannerTimer;
-
-        var setBannerFadeoutTimer = function(bannerText) {
-            hideBannerTimer = setTimeout(function() {
-                bannerText.fadeOut(function() {
-                    $(this).removeClass("show");
-                });
-            }, 6000);
-        };
-
-        if ($(".error-text").is(":visible")) {
-            setBannerFadeoutTimer($(".error-text"));
-        }
-
-        var showBannerMessage = function(message, $form, callback, success) {
-            clearTimeout(hideBannerTimer);
-
-            var bannerText = $form.find(".error-text");
-
-            bannerText.fadeOut(function() {
-                bannerText.text(message).fadeIn(function() {
-                    if (typeof callback === "function") {
-                        callback();
-                    }
-                });
-
-                if (success) {
-                    bannerText.addClass("success");
-                } else {
-                    bannerText.removeClass("success");
-                }
-
-                setBannerFadeoutTimer(bannerText);
-            });
-        };
 
         $(".has-floating-label").keyup(function() {
             if ($(this).val() !== "") {
@@ -165,64 +165,7 @@ $(function() {
             e.preventDefault();
             return false;
         });
-
-
-        $(".create-account-btn").click(function(e) {
-
-            var $form = $(this).closest(".create-account-form");
-
-            var goodToGo = true;
-
-            $form.find("input.required").each(function() {
-//                 $(this).parent().removeClass("has-error");
-
-                if ($(this).val() === "") {
-                    goodToGo = false;
-
-                    $(this).parent().addClass("has-error");
-                }
-            });
-
-            if (goodToGo) {
-                $(this).html('<i class="fa fa-cog fa-spin"></i> Create Account');
-
-                $form.find("input,button").attr("disabled", true);
-
-                var accountData = {
-                    first_name: $form.find(".first-name-field").val(),
-                    last_name: $form.find(".last-name-field").val(),
-                    company: $form.find(".company-field").val(),
-                    job: $form.find(".position-field").val(),
-                    email: $form.find(".email-field").val(),
-                    password: $form.find(".password-field").val()
-                };
-
-                console.log("data",accountData);
-
-                $.post(homeUrl + "/wp-content/themes/products/inc/ajax/wallkit/create_account.php", accountData, function(response) {
-                    response = $.parseJSON(response);
-
-                    $form.find("button").html("Create Account");
-                    $form.find("input,button").attr("disabled", false);
-
-                    console.log("response",response);
-
-                    if (response.success) {
-                        showBannerMessage("Your account has been created!", $form, function() {
-                            location.href = homeUrl;
-                        }, true);
-                    } else {
-                        showBannerMessage(response.errorMessage, $form)
-                    }
-                });
-            } else {
-                showBannerMessage("Please correct the fields in red", $form)
-            }
-
-
-            e.preventDefault();
-            return false;
-        });
+        
     }
     
     

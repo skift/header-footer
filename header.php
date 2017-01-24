@@ -15,7 +15,8 @@ $url_paths = array(
     "trends"    => "https://research.skift.com",
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
-    "skiftx"    => "http://www.skiftx.com"
+    "skiftx"    => "http://www.skiftx.com",
+    "myskift"    => "http://my.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -24,7 +25,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "trends"    => "http://localhost/trends",
         "edu"       => "http://localhost/edu",
         "forum"     => "http://localhost/forum",
-        "skiftx"    => "http://localhost/skiftx"
+        "skiftx"    => "http://localhost/skiftx",
+        "myskift"    => "http://localhost/myskift"
     );
 }
 
@@ -128,48 +130,13 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         <!-- WALLKIT -->
         <?php
         // user authentication
-        $user_token = empty($_COOKIE['usr']) ? '' : $_COOKIE['usr'];
-        $user_token_present = !empty($user_token);
-        $user_info_session_present = !empty($_SESSION['user_info']) && false;
-        $signed_in = false;
-
-        if ($user_token_present) {
-            if (!$user_info_session_present) {
-
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/trends/wp-content/themes/products/inc/ajax/wallkit/wallkit_request.php");
-
-                $user_response = wallkit_request("user", array(), "GET", "token: $user_token");
-
-                $httpcode = $user_response["httpcode"];
-
-                if ($httpcode === 200 || $httpcode === 208) {
-                    // user info returned from Wallkit
-                    $user_info = $user_response["data"];
-
-                    $_SESSION['user_info'] = $user_info;
-
-                    $signed_in = true;
-                } else {
-                    // bad token sent to Wallkit
-                    unset($user_response);
-                    $signed_in = false; // <- redundant
-
-                    // remove token cookie since it is no longer valid
-                    setcookie("usr","", time()-3600, "/");
-                    unset($_COOKIE['usr']);
-                }
-
-                // close curl resource to free up system resources
-            } else {
-                // load user_info from session
-                $signed_in = true;
-                $user_info = $_SESSION['user_info'];
-            }
+        $user_info = user_auth();
+        
+        if ($user_info) {
+            $signed_in = true;
         } else {
-            // not signed in
-            $signed_in = false; // <- redundant
+            $signed_in = false;
         }
-
         ?>
 
         <div id="header-right">
@@ -204,12 +171,12 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                                     <div class="form-group">
                                         <input type="password" class="form-control has-floating-label password-field" name="password" />
                                         <label for="password" class="floating-form-label">Password</label>
-                                        <a href="<?php echo home_url(); ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
+                                        <a href="<?php echo $url_paths["myskift"]; ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
                                     </div>
 
                                     <div class="text-center">
                                         <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
-                                        <a href="<?php echo home_url(); ?>/create-account" class="under-btn-link">Create an Account</a>
+                                        <a href="<?php echo $url_paths["myskift"]; ?>/create-account" class="under-btn-link">Create an Account</a>
                                     </div>
                                 </form>
 
@@ -218,7 +185,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                                 <ul id="my-account-menu">
                                     <li><a href="#">My Account</a></li>
                                     <li><a href="#">My Purchases</a></li>
-                                    <li><a href="<?php echo home_url();?>/login?logout=true" class="logout-btn">Logout</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
 
                                 <p>Welcome, <?php echo $user_info -> first_name . ' ' . $user_info -> last_name; ?>!</p>
@@ -229,28 +196,6 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                     <div id="overlay"></div>
                 </div>
 
-            <?php } else if ($showSignIn) { ?>
-                <div id="header-sign-in">
-                    <?php
-    				$whitelistCheck = skp_ip_whitelist();
-
-    				// var_dump($whitelistCheck);
-    				if(!empty($whitelistCheck)) {
-    					echo '<div class="header-text">Welcome, '.$whitelistCheck.'</div>';
-    				} elseif (!empty($_COOKIE['__ut'])) {
-    				?>
-    <!-- 				  <a href="<?php echo home_url(); ?>/my-account">My Account</a> -->
-    				  <a href="#" onclick="tp.user.logout(function(){document.cookie = '__ut' + '=; Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';location.reload();});">Sign Out</a>
-
-    				<?php
-    				} else {
-    				?>
-    						<a href="#" onclick="tp.user.showLogin({loginSuccess:function(){location.reload();}});">Sign In</a>
-    				<?php
-    				}
-    				?>
-                
-                </div>
             <?php } else { ?>
                 <div id="header-social">
                     <div class="social-btn" title="Facebook"><a href="https://www.facebook.com/Skiftnews/" target="_blank"><i class="fa fa-facebook"></i></a></div>
