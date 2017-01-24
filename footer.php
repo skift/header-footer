@@ -162,7 +162,7 @@ function getTweets($num) {
 						<?php
                         function get_recent_podcasts_footer( $num ){
                             $url = "http://podcast.skift.com/feed/";
-                            $rss = fetch_feed ($url);
+                            $rss = fetch_feed($url);
 
                             if (!is_wp_error($rss)) {
                                 $first_group = $rss->get_item_quantity($num);

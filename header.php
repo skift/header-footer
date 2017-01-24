@@ -128,7 +128,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         <!-- WALLKIT -->
         <?php
         // user authentication
-        $user_token = $_COOKIE['usr'];
+        $user_token = empty($_COOKIE['usr']) ? '' : $_COOKIE['usr'];
         $user_token_present = !empty($user_token);
         $user_info_session_present = !empty($_SESSION['user_info']) && false;
         $signed_in = false;
