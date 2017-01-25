@@ -26,8 +26,10 @@ function user_auth_curl() {
  
     $response = curl_exec($ch);
     
-    if (!empty($response)) {
+    if (!empty($response) && $response !== "false") {
         $response = (array)json_decode($response);
+    } else {
+        $response = false;
     }
 /*
     
