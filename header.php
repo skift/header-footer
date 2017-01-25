@@ -188,7 +188,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                                     <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
 
-                                <p>Welcome, <?php echo $user_info -> first_name . ' ' . $user_info -> last_name; ?>!</p>
+                                <p>Welcome, <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>!</p>
 
                             <?php } ?>
                         </div>
