@@ -27,7 +27,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 require_once("user_auth_curl.php");
 
 $user_info = user_auth_curl();
-$signed_in = !$user_info ? false : true;
+$signed_in = !$user_info || !$user_info[0] ? false : true;
 
 
 ?>
