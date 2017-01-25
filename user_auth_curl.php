@@ -24,7 +24,11 @@ function user_auth_curl() {
         CURLOPT_POST => true
     ));
  
-   $response = (array)json_decode(curl_exec($ch));
+    $response = curl_exec($ch);
+    
+    if (!empty($response)) {
+        $response = (array)json_decode($response);
+    }
 /*
     
     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);

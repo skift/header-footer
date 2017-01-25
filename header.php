@@ -27,9 +27,11 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 require_once("user_auth_curl.php");
 
 $user_info = user_auth_curl();
-$signed_in = !$user_info || !$user_info[0] ? false : true;
-
-
+/*
+echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+var_dump($user_info);
+*/
+$signed_in = !empty($user_info);
 ?>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
