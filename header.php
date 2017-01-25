@@ -23,6 +23,11 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
     );
 }
 
+// user authentication
+$user_info = user_auth();
+
+$signed_in = !$user_info ? false : true;
+
 
 ?>
 
@@ -121,16 +126,6 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         <!-- #header-menus -->
 
         <!-- WALLKIT -->
-        <?php
-        // user authentication
-        $user_info = user_auth();
-        
-        if ($user_info) {
-            $signed_in = true;
-        } else {
-            $signed_in = false;
-        }
-        ?>
 
         <div id="header-right">
 
@@ -176,7 +171,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                             <?php } else { ?>
 
                                 <ul id="my-account-menu">
-                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/account">My Account</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>">My Account</a></li>
                                     <li><a href="<?php echo $url_paths["myskift"]; ?>/purchases">My Purchases</a></li>
                                     <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
