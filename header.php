@@ -3,13 +3,6 @@ $hasSubNav = !empty($sub_nav);
 
 session_start();
 
-if (is_page("login")) {
-    //logout!
-    setcookie("usr","", time()-3600, "/");
-    unset($_COOKIE['usr']);
-    unset($_SESSION['user_info']);
-}
-
 $url_paths = array(
     "main"      => "https://skift.com",
     "trends"    => "https://research.skift.com",
@@ -183,8 +176,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
                             <?php } else { ?>
 
                                 <ul id="my-account-menu">
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">My Purchases</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/account">My Account</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/purchases">My Purchases</a></li>
                                     <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
 
