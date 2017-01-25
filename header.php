@@ -24,8 +24,9 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 }
 
 // user authentication
-$user_info = user_auth();
+require_once("user_auth_curl.php");
 
+$user_info = user_auth_curl();
 $signed_in = !$user_info ? false : true;
 
 
