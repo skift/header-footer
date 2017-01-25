@@ -26,6 +26,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 // user authentication
 require_once("user_auth_curl.php");
 
+global $user_info;
 $user_info = user_auth_curl();
 /*
 echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';

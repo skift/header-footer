@@ -91,4 +91,86 @@ $(function() {
         
     }
     
+    $(".login-btn").click(function(e) {
+        var $form = $(this).closest(".login-form");
+
+        var goodToGo = true;
+
+        $form.find("input").each(function() {
+//                 $(this).parent().removeClass("has-error");
+
+            if ($(this).val() === "") {
+                goodToGo = false;
+
+//                     $(this).parent().addClass("has-error");
+            }
+        });
+
+        var shakeLen = 65;
+        var travelDist = 15;
+
+        var shake = function(c, times) {
+            c.css("position","relative");
+
+            c.animate({
+                left: "-"  + travelDist + "px"
+            }, shakeLen, function() {
+                c.animate({
+                    left: travelDist + "px"
+                }, shakeLen, function() {
+                    if (times === 0) {
+                        c.animate({
+                            left: 0
+                        }, shakeLen);
+                    } else {
+                        shake(c, --times);
+                    }
+                });
+            });
+        };
+
+        //a397868864c1ff5b5271927d2dff4b482e8cb121
+
+        if (goodToGo) {
+            $(this).html('<i class="fa fa-cog fa-spin"></i> Sign In');
+
+            $form.find("input,button").attr("disabled", true);
+
+            var loginData = {
+                login_email: $form.find(".username-field").val(),
+                login_password: $form.find(".password-field").val()
+            };
+
+            var loginUrl = "http://my.skift.com/ajax/login.php";
+            if (homeUrl.indexOf("localhost") !== false) {
+                loginUrl = "http://localhost/myskift/ajax/login.php";
+            }
+            
+            console.log(loginUrl);
+            
+            $.post(loginUrl, loginData, function(response) {
+                response = $.parseJSON(response);
+                console.log("response", response);
+
+                $form.find("button").html("Sign In");
+                $form.find("input,button").attr("disabled", false);
+
+                if (response.success) {
+                    showBannerMessage("You are now logged in", $form, function() {
+                        location.href = homeUrl;
+                    }, true);
+                } else {
+                    showBannerMessage(response.errorMessage, $form)
+                }
+            });
+
+        } else {
+            showBannerMessage("Please enter both your email address and password.", $form)
+        }
+
+
+        e.preventDefault();
+        return false;
+    });
+    
 });
