@@ -167,8 +167,6 @@ $(function() {
             getCartContents();
             
             $(".shopping-cart").toggleClass("isOpen");
-            
-            // TODO: refresh cart contents from myskift
         });
         
         $(".sign-in-btn").click(function() {
