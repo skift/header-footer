@@ -144,6 +144,7 @@ $signed_in = !empty($user_info);
                         <div id="cart-popover" class="popover">
                             <div class="items">
                                 <?
+/*
                                 $num_of_cart_items = empty($_COOKIE['numItems']) ? 0 : $_COOKIE['numItems'];
                                 $total_price = 0;
                                 $has_items = $num_of_cart_items > 0;
@@ -189,6 +190,7 @@ $signed_in = !empty($user_info);
                                     echo "<div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>";
                                     echo '<div class="clearfix"></div></div></div>';
                                 }
+*/
                                 
                                 echo "<div class='no-items'";
                                 if ($has_items) echo " style='display:none;'";
