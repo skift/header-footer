@@ -37,6 +37,10 @@ body {
     }
 }
 
+.template {
+    display: none;
+}
+
 #header-container {
     #header-pad {
         width:100%;
@@ -382,6 +386,10 @@ body {
                             max-height: 50vh;
                             overflow-y:auto;
                             border:3px solid #58585a;
+                            
+                            .no-items {
+                                display: none;
+                            }
                             
                             .cart-item {
                                 

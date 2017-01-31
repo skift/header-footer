@@ -203,6 +203,7 @@ $signed_in = !empty($user_info);
                                 echo "<div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>";
 
                                 ?>
+                                <div class="spinner">Loading</div>
                             </div>
                             <div class="chin">
                                 <div class="total">

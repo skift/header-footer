@@ -47,35 +47,60 @@ function getQSParameterByName(name) {
 $(function() {
     // add-to-cart-btn
     
+    var mySkiftAjaxPath = "http://my.skift.com/ajax/";
+    if (homeUrl.indexOf("localhost") !== false) {
+        mySkiftAjaxPath = "http://localhost/myskift/ajax/";
+    }
+    
+    var currentCartContents;
+    
+    var cartCloser;
+    
     var refreshCart = function(cartContents) {
-        $cart = $(".shopping-cart");
+        console.log("cart contents", cartContents);
         
-        $cart.find(".spinner").remove();
-        
-        $cart.find(".cart-item").fadeOut("fast",function() {
-           $(this).remove(); 
-        });
-        
-        $cart.find(".total-price").html(cartContents.total);
-        
-        var items = cartContents.items;
-        
-        if (items.length > 0) {
-            $cart.find(".no-items").fadeOut("fast");
-        } else {
-            $cart.find(".no-items").fadeIn("fast");
-        }
-        
-        for (var i = 0; i < items.length; i++) {
-            var thisItem = items[i];
-            console.log(thisItem);
+        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
+            console.log("refresh", currentCartContents, cartContents);
             
-            $( $cart.find(".cart-item.template").clone() )
-                .find(".photo img").attr("src", thisItem.image).end() 
-                .find(".item-name").html(thisItem.title).end() 
-                .find(".item-price span").html(thisItem.price).end()
-                .appendTo($cart.find(".items"));
+            currentCartContents = cartContents;
+            
+            $cart = $(".shopping-cart .popover");
+            
+            $cart.find(".spinner").hide();
+            
+            $cart.find(".cart-item:not(.template)").remove();
+            
+            $cart.find(".total-price").html(cartContents.total);
+            
+            var items = cartContents.items;
+            
+            if (items.length > 0) {
+                $cart.find(".no-items").fadeOut("fast");
+            } else {
+                $cart.find(".no-items").fadeIn("fast");
+            }
+            
+            for (var i = 0; i < items.length; i++) {
+                var thisItem = items[i];
+                console.log(thisItem);
+                
+                $( $cart.find(".cart-item.template").clone() )
+                    .find(".photo img").attr("src", thisItem.image).end() 
+                    .find(".item-name h3").html(thisItem.title).end() 
+                    .find(".item-price span").html(thisItem.price).end()
+                    .insertBefore($cart.find(".items .cart-item.template")).removeClass("template").fadeIn();
+            }
         }
+    };
+    
+    var getCartContents = function() {
+        clearTimeout(cartCloser);
+
+        $.post(mySkiftAjaxPath + "get-cart-contents.php", function(cartContents) {
+            cartContents = $.parseJSON(cartContents);
+                        
+            refreshCart(cartContents);
+        });
     };
     
     $(document).on("click",".add-to-cart-btn",function() {
@@ -91,12 +116,9 @@ $(function() {
         
         console.log("add to cart", contentId, resourceId);
         
-        var addToCartUrl = "http://my.skift.com/ajax/add-to-cart.php";
-        if (homeUrl.indexOf("localhost") !== false) {
-            addToCartUrl = "http://localhost/myskift/ajax/add-to-cart.php";
-        }
-        
-        $.post(addToCartUrl, itemInfo, function(response) {
+        clearTimeout(cartCloser);
+
+        $.post(mySkiftAjaxPath + "add-to-cart.php", itemInfo, function(response) {
             response = $.parseJSON(response);
             
             var cartContents = response.cartContents;
@@ -109,7 +131,8 @@ $(function() {
             
             $(".shopping-cart").addClass("isOpen");
             
-            setTimeout(function() {
+            
+            cartCloser = setTimeout(function() {
                 $(".shopping-cart").removeClass("isOpen");
             }, 5000);
         });
@@ -140,6 +163,8 @@ $(function() {
             if ($(".sign-in").hasClass("isOpen")) {
                 $(".sign-in").removeClass("isOpen");
             }
+            
+            getCartContents();
             
             $(".shopping-cart").toggleClass("isOpen");
             
@@ -236,13 +261,8 @@ $(function() {
                 login_email: $form.find(".username-field").val(),
                 login_password: $form.find(".password-field").val()
             };
-
-            var loginUrl = "http://my.skift.com/ajax/login.php";
-            if (homeUrl.indexOf("localhost") !== false) {
-                loginUrl = "http://localhost/myskift/ajax/login.php";
-            }
             
-            $.post(loginUrl, loginData, function(response) {
+            $.post(mySkiftAjaxPath + "login.php", loginData, function(response) {
                 response = $.parseJSON(response);
                 console.log("response", response);
 
