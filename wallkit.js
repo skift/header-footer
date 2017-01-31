@@ -139,6 +139,7 @@ $(function() {
     });
     
     
+    
     if ($("#header-sign-in-with-popover").length) {
 
         // Header sign in popover
