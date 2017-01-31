@@ -191,17 +191,23 @@ $signed_in = !empty($user_info);
                                     echo '<div class="clearfix"></div></div></div>';
                                 }
 */
+                                echo "<div class='cart-item template'>";
+                                echo "<div class='photo'><img src='#' /></div>";
+                                echo "<div class='item-details'>";
+                                echo "<div class='item-name'><h3></h3></div>";
+                                echo "<div class='item-price'>$<span></span></div>";
+                                echo "<div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>";
                                 
-                                echo "<div class='no-items'";
-                                if ($has_items) echo " style='display:none;'";
-                                echo "><p><small><i>There's nothing in your cart!</i></small></p></div>";
-*/
+                                echo '<div class="clearfix"></div></div></div>';
+                                    
+                                echo "<div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>";
+
                                 ?>
                             </div>
                             <div class="chin">
                                 <div class="total">
                                     <strong>Total</strong>
-                                    <div class="pull-right">$<?=$total_price;?></div>
+                                    <div class="pull-right">$<span class="total-price"><?=$total_price;?></span></div>
                                 </div>
                                 
                                 <div class="buttons">

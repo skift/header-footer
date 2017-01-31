@@ -47,6 +47,37 @@ function getQSParameterByName(name) {
 $(function() {
     // add-to-cart-btn
     
+    var refreshCart = function(cartContents) {
+        $cart = $(".shopping-cart");
+        
+        $cart.find(".spinner").remove();
+        
+        $cart.find(".cart-item").fadeOut("fast",function() {
+           $(this).remove(); 
+        });
+        
+        $cart.find(".total-price").html(cartContents.total);
+        
+        var items = cartContents.items;
+        
+        if (items.length > 0) {
+            $cart.find(".no-items").fadeOut("fast");
+        } else {
+            $cart.find(".no-items").fadeIn("fast");
+        }
+        
+        for (var i = 0; i < items.length; i++) {
+            var thisItem = items[i];
+            console.log(thisItem);
+            
+            $( $cart.find(".cart-item.template").clone() )
+                .find(".photo img").attr("src", thisItem.image).end() 
+                .find(".item-name").html(thisItem.title).end() 
+                .find(".item-price span").html(thisItem.price).end()
+                .appendTo($cart.find(".items"));
+        }
+    };
+    
     $(document).on("click",".add-to-cart-btn",function() {
         var $button = $(this);
         
@@ -70,7 +101,17 @@ $(function() {
             
             var cartContents = response.cartContents;
             
-            // TODO: create function to "refresh" cart contents with returned cartContents
+            refreshCart(cartContents);
+            
+            if ($(".sign-in").hasClass("isOpen")) {
+                $(".sign-in").removeClass("isOpen");
+            }
+            
+            $(".shopping-cart").addClass("isOpen");
+            
+            setTimeout(function() {
+                $(".shopping-cart").removeClass("isOpen");
+            }, 5000);
         });
     });
     
