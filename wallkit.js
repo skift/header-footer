@@ -105,8 +105,21 @@ $(function() {
            }
         });
 
+        $(".cart-btn").click(function() {
+            if ($(".sign-in").hasClass("isOpen")) {
+                $(".sign-in").removeClass("isOpen");
+            }
+            
+            $(".shopping-cart").toggleClass("isOpen");
+        });
+        
         $(".sign-in-btn").click(function() {
+            if ($(".shopping-cart").hasClass("isOpen")) {
+                $(".shopping-cart").removeClass("isOpen");
+            }
+            
             $(".sign-in").toggleClass("isOpen");
+            
             clearLoginState();
 
             $("#sign-in-popover input").each(function() {
@@ -206,7 +219,8 @@ $(function() {
                 if (response.success) {
                     showBannerMessage("You are now logged in", $form, function() {
                         var redirect = getQSParameterByName("redirect");
-                        if (redirect !== "") {
+                        
+                        if (redirect === "") {
                             location.href = homeUrl;
                         } else {
                             location.href = homeUrl + redirect;

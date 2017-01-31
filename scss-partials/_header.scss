@@ -296,7 +296,151 @@ body {
                     pointer-events: none;
                 }
                 
+                .popover {
+                    position: absolute;
+                    width: 250px;
+                    right: -30px;
+                    margin-top: 15px;
+                    padding: 20px 15px 15px;
+                    background-color: #58585a;
+                    
+                    visibility: hidden;
+                    
+                    @include opacity(0);
+                    @include transition(0.3s);
 
+                    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+                    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+                    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+    
+                    &:after {
+                    	bottom: 100%;
+                        right: 60px;
+                        border: solid transparent;
+                        content: " ";
+                        height: 0;
+                        width: 0;
+                        position: absolute;
+                        pointer-events: none;
+                        border-bottom-color: #58585a;
+                        border-width: 10px;
+                    }
+                    
+                    &.green-arrow:after {
+                        border-bottom-color: $deepGreen;
+                    }
+                }
+                
+                .shopping-cart.isOpen, .sign-in.isOpen {
+                    background:none;
+                    
+                    .popover {
+                        @include opacity(1);
+                        visibility: visible;
+                    }
+                    
+                    & + #overlay {
+                        background-color:rgba($white,0.4);
+                        
+                        pointer-events: auto;
+                
+                        -webkit-backdrop-filter: blur(4px);
+                        backdrop-filter: blur(4px);
+                    }
+                }
+                
+                .shopping-cart {
+                    display: inline-block;
+                    padding: 23px 15px;
+                    
+                    position: relative;
+                    z-index: 10;
+                    vertical-align: middle;
+                    
+                    .cart-btn {
+                        font-size:22px;
+                        font-weight: 200;
+                        color:rgba(0, 0, 0, 0.65);   
+                                         
+                        &:hover {
+                            color:#252525;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    .popover {
+                        width:300px;
+                        margin-top:24px;
+                        right:-42px;
+                        
+                        background-color:$white;
+                        
+                        padding:0;
+                        
+                        .items {
+                            padding:15px;
+                            max-height: 50vh;
+                            overflow-y:auto;
+                            border:3px solid #58585a;
+                            
+                            .cart-item {
+                                
+                                margin-top:10px;
+                                padding-top:10px;
+                                border-top:1px solid $lightGray;
+                                
+                                &:first-child {
+                                    margin-top:0;
+                                    padding-top:0;
+                                    border-top:none;
+                                }
+                                
+                                .photo {
+                                    width:100px;
+                                    height:100px;
+                                    overflow: hidden;
+                                    
+                                    float:left;
+                                    margin-right:15px;
+                                    
+                                    img {
+                                        height:100%;
+                                    }
+                                }
+                                
+                                .item-name h3 {
+                                    font-size:12px;
+                                    line-height: normal;
+                                    margin:0;
+                                }
+                                
+                                .item-price {
+                                    margin:5px 0;
+                                    font-size:12px;
+                                }
+                            }
+                        }
+                        
+                        .chin {
+                            background-color:#58585a;
+                            color:#fff;
+                            
+                            .total {
+                                padding:8px 15px;
+                            }
+                            
+                            .buttons {
+                                font-size:0;
+                                
+                                .btn {
+                                    font-size: 12px;
+                                    width:50%;
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 .sign-in {
                     display: inline-block;
                     padding: 23px 15px;
@@ -317,56 +461,6 @@ body {
                     
                     .my-account-btn {
                         color:rgba(0, 0, 0, 0.65);
-                    }
-                        
-                    #sign-in-popover {
-                        position: absolute;
-                        width: 250px;
-                        right: -30px;
-                        margin-top: 15px;
-                        padding: 20px 15px 15px;
-                        background-color: #58585a;
-                        
-                        visibility: hidden;
-                        
-                        @include opacity(0);
-                        @include transition(0.3s);
-
-                        
-                        &:after {
-                        	bottom: 100%;
-                            right: 60px;
-                            border: solid transparent;
-                            content: " ";
-                            height: 0;
-                            width: 0;
-                            position: absolute;
-                            pointer-events: none;
-                            border-bottom-color: #58585a;
-                            border-width: 10px;
-                        }
-                        
-                        &.green-arrow:after {
-                            border-bottom-color: $deepGreen;
-                        }
-                    }
-
-                    &.isOpen {
-                        background:none;
-                        
-                        #sign-in-popover {
-                            @include opacity(1);
-                            visibility: visible;
-                        }
-                        
-                        & + #overlay {
-                            background-color:rgba($white,0.4);
-                            
-                            pointer-events: auto;
-                    
-                            -webkit-backdrop-filter: blur(4px);
-                            backdrop-filter: blur(4px);
-                        }
                     }
                 }
                 
