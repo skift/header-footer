@@ -7,22 +7,22 @@ $(function() {
   var $headerPad = $("#header-pad");
   var scrollOffset;
   var headerTop = 0;
-  
+
   var noFix = $header.hasClass("no-fix");
-  
+
   var setHeaderOffset = function() {
     headerOffset = $header.offset().top;
     headerOffset -= headerTop;
 
     scrollOffset = $(window).scrollTop();
   };
-  
+
   setHeaderOffset();
-  
+
   var setHeaderFixed = function(force) {
-      
+
     if (!noFix) {
-        
+
         if (scrollOffset >= headerOffset) {
             if (!$header.hasClass("fixed") || force) {
                 $header.addClass("fixed").css("top",headerTop);
@@ -36,22 +36,22 @@ $(function() {
         }
     }
   };
-  
+
   // replace svgs with pngs if svg isn't supported
   if (typeof Modernizr !== "undefinded" && Modernizr) {
       if (!Modernizr.svg) {
           $(".svg").each(function() {
              var image = $(this).attr("src");
-             
+
              if (typeof image !== "undefined" && image) {
                  image = image.replace(".svg",".png");
-                 
-                 $(this).attr("src",image); 
+
+                 $(this).attr("src",image);
              }
           });
       }
   }
-  
+
 /*
     var lookForBouncexNanoBar = setInterval(function() {
         if ($(".bxc.bx-type-nanobar").length) {
@@ -61,36 +61,36 @@ $(function() {
             clearInterval(lookForBouncexNanoBar);
         }
     }, 50);
-    
-  
+
+
   var checkForNanoBar = function() {
       bouncex.bcxReady = function() {
         var bouncexcampaigns = bouncex.campaigns;
-            
+
         for (var campaign in bouncexcampaigns) {
             if (bouncexcampaigns.hasOwnProperty(campaign)) {
                 if (bouncexcampaigns[campaign].type === "nanobar") {
-                                    
-                   lookForBouncexNanoBar(); 
-                    
+
+                   lookForBouncexNanoBar();
+
                 }
             }
         }
       };
   };
 */
-  
+
   if ($(".mtsnb").length && $(".mtsnb").is(":visible")) {
     headerTop = $(".mtsnb").height();
     setHeaderOffset();
     setHeaderFixed(true);
   }
-  
+
   $(".mtsnb-hide").click(function() {
-     headerTop = 0; 
+     headerTop = 0;
      setHeaderFixed(true);
   });
-  
+
 /*
     var checkForBouncex = setInterval(function() {
         if (typeof bouncex !== "undefined") {
@@ -101,19 +101,19 @@ $(function() {
 */
 
 
-  
+
   if (!$header.hasClass("no-banner") && !noFix) {
       $(window).scroll(function() {
         scrollOffset = $(window).scrollTop();
-    
+
         setHeaderFixed();
       });
   }
-  
+
   $("#mobileMenuBtn").click(function() {
     if ($(this).hasClass("open")) {
         $("#mobile-menu").fadeOut();
-        
+
         //unlock scroll
         $("body").css({"overflow":"visible", "position":"relative"});
     } else {
@@ -126,22 +126,22 @@ $(function() {
         } else {
             lockScroll();
         }
-        
+
         $("#mobile-menu").fadeIn();
      }
      $(this).toggleClass("open");
   });
-  
+
   $("#search-trigger").click(function() {
     var headerRight = $("#header-right");
-    
+
     if (headerRight.hasClass("open")) {
         $("#search-form form").submit();
     } else {
         $("#header-right").addClass("open");
     }
   });
-  
+
   $("#search-box").click(function() {
     $("#header-right").addClass("open");
   });
@@ -150,7 +150,7 @@ $(function() {
     $("#header-right").removeClass("open");
     $("#search-box").val('');
   });
-  
+
 
   //article pages generate their own header ad bacause sometimes the first story is sponsored and we wanted a targeted ad
   if (!$("#articleContainer").length && $("#top-banner").length && typeof createAd === "function") {
@@ -162,19 +162,19 @@ $(function() {
       ignoreContainerHeight: true,
       appendTo: $("#top-banner")
     };
-    
+
     var useAirlinesAd = false;
-    
+
     if ($("#archive-tag").length) {
         //tag page eg: airlines
-    
+
         var pageName = $("#archive-header-container h1").text();
-        
+
         if (pageName === "Airlines") {
             useAirlinesAd = true;
         }
     }
-    
+
     if (useAirlinesAd) {
         console.log("use airlines ad");
         headerAd = {
@@ -185,11 +185,11 @@ $(function() {
             appendTo: $("#top-banner")
         };
     }
-        
+
 
     createAd(headerAd, setHeaderOffset);
   }
-  
+
   //social share buttons
   var socialPop = function(link,title,width,height) {
     window.open(link, title, "width=" + width + ", height=" + height + ", menubar=no, resizable=no, scrollbars=no, status=no, toolbar=no, titlebar=no");
@@ -197,11 +197,11 @@ $(function() {
 
   var getGAtag = function(isTop) {
     var location = "bottom";
-    
+
     if (isTop) {
         location = "top";
     }
-    
+
     var gaTag = "article share button - " + location;
 
     return gaTag;
@@ -214,9 +214,9 @@ $(function() {
 
   $(document).on("click",".article-social-btn.twitter,.header-social-btn.twitter",function() {
     ga('send', 'event', getGAtag($(this).hasClass("top")), 'Twitter', location.href);
-    
+
     var articleTitle = document.title.replace(" – Skift","");
-        
+
     if (articleTitle.length > 101) {
       articleTitle = articleTitle.substring(0,70) + "[...]";
     }

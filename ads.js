@@ -33,7 +33,7 @@ function parseBool(bool) {
 
 function lookForActualHeight(e) {
     var eHeight = e.height();
-    
+
     if (eHeight === 0) {
         return lookForActualHeight(e.parent());
     } else {
@@ -45,7 +45,7 @@ var screenWidth = function() { return $(window).width(); };
 
 function removeIncompatibleAdSizes(ad) {
     var sizes = ad.size;
-    
+
     if (typeof sizes[0] === "number") {
         sizes = [sizes];
     }
@@ -91,19 +91,19 @@ function createAd(ad,callback) {
     }
 
     ad.size = removeIncompatibleAdSizes(ad);
-    
+
     if (!ad.size.length || (exists(ad.minScreenSize) && (screenWidth() < ad.minScreenSize)) || (exists(ad.maxScreenSize) && (screenWidth() >= ad.maxScreenSize))) {
         return false;
     }
 
     ad.slotName = generateAdSlotID();
-    
+
     var adContainer = $("<div />").attr("id",ad.slotName);
-    
+
     if (exists(ad.adClass)) {
         adContainer.addClass(ad.adClass);
     }
-    
+
     if (exists(ad.insertAfter)) {
         adContainer.insertAfter(ad.insertAfter);
     } else {
@@ -115,15 +115,15 @@ function createAd(ad,callback) {
     googletag.cmd.push(function() {
         var slot = googletag.defineSlot(ad.slot, ad.size, ad.slotName).addService(googletag.pubads());
         googletag.display(ad.slotName);
-    
+
         if (exists(postID)) {
             slot.setTargeting("postID", postID);
         }
-        
+
         if (exists(categories)) {
             slot.setTargeting("categories", categories);
         }
-    
+
         if (exists(ad.targeted) && exists(ad.targeted.targetType) && exists(ad.targeted.target) ) {
             slot.setTargeting(ad.targeted.targetType, ad.targeted.target);
         } else {
