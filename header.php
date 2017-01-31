@@ -195,6 +195,7 @@ $signed_in = !empty($user_info);
                                 echo "<div class='no-items'";
                                 if ($has_items) echo " style='display:none;'";
                                 echo "><p><small><i>There's nothing in your cart!</i></small></p></div>";
+*/
                                 ?>
                             </div>
                             <div class="chin">
