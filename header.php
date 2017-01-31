@@ -143,72 +143,23 @@ $signed_in = !empty($user_info);
                         
                         <div id="cart-popover" class="popover">
                             <div class="items">
-                                <?
-/*
-                                $num_of_cart_items = empty($_COOKIE['numItems']) ? 0 : $_COOKIE['numItems'];
-                                $total_price = 0;
-                                $has_items = $num_of_cart_items > 0;
-                                                    
-                                for ($i = $num_of_cart_items - 1; $i >= 0; $i--) {
-                                    $item_cookie = $_COOKIE["cartItem$i"];
+                                <div class='cart-item template'>
+                                    <div class='photo'><img src='#' /></div>
+                                    <div class='item-details'>
+                                        <div class='item-name'><h3></h3></div>
+                                        <div class='item-price'>$<span></span></div>
+                                        <div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
                                     
-                                    parse_str($item_cookie, $item);
-                                    
-                                    $resource_id = $item["resource_id"];
-                                    $content_id = $item["content_id"];
-                                    
-                                    $item_info_raw = get_content_detail($resource_id, $content_id);
-                                    
-                                    if (!array_key_exists("error", $item_info_raw)) {
-                                        $item_info = (array)$item_info_raw["data"][0];
-                                        
-                                        $item_title = $item_info["title"];
-                                        $item_price = $item_info["price"] / 100;
-                                        
-                                        $resource_host = get_resource_host($resource_id);
-                                        $resource_image_path = get_resource_image_path($resource_host);
-                                        
-                                        $image = "$resource_image_path/content_image.php?id=$content_id";
-                                    } else {
-                                        $item_title = "Unknown item";
-                                        $item_price = 0;
-                                        
-                                        $image = "";
-                    //                     continue;
-                                        
-                                        // TODO: remove unknown item from cart (remove cookie, update numItems --)
-                                    }
-                                    
-                                    $total_price += $item_price;
-                                    
-                                                                    
-                                    echo "<div class='cart-item'>";
-                                    echo "<div class='photo'><img src='$image' /></div>";
-                                    echo "<div class='item-details'>";
-                                    echo "<div class='item-name'><h3>$item_title</h3></div>";
-                                    echo "<div class='item-price'>$<span>$item_price</span></div>";
-                                    echo "<div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>";
-                                    echo '<div class="clearfix"></div></div></div>';
-                                }
-*/
-                                echo "<div class='cart-item template'>";
-                                echo "<div class='photo'><img src='#' /></div>";
-                                echo "<div class='item-details'>";
-                                echo "<div class='item-name'><h3></h3></div>";
-                                echo "<div class='item-price'>$<span></span></div>";
-                                echo "<div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>";
-                                
-                                echo '<div class="clearfix"></div></div></div>';
-                                    
-                                echo "<div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>";
-
-                                ?>
+                                <div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>
                                 <div class="spinner">Loading</div>
                             </div>
                             <div class="chin">
                                 <div class="total">
                                     <strong>Total</strong>
-                                    <div class="pull-right">$<span class="total-price"><?=$total_price;?></span></div>
+                                    <div class="pull-right">$<span class="total-price">0</span></div>
                                 </div>
                                 
                                 <div class="buttons">
