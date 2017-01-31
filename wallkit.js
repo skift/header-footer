@@ -34,7 +34,57 @@ function showBannerMessage(message, $form, callback, success) {
     });
 }
 
+function getQSParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 $(function() {
+    // add-to-cart-btn
+    
+    $(document).on("click",".add-to-cart-btn",function() {
+        var $button = $(this);
+        
+        var contentId = $button.data("contentid"); 
+        var resourceId = $button.data("resourceid"); 
+        
+        var itemInfo = {
+            contentId: contentId,
+            resourceId: resourceId  
+        };
+        
+        console.log("add to cart", contentId, resourceId);
+        
+        var addToCartUrl = "http://my.skift.com/ajax/add-to-cart.php";
+        if (homeUrl.indexOf("localhost") !== false) {
+            addToCartUrl = "http://localhost/myskift/ajax/add-to-cart.php";
+        }
+        
+        $.post(addToCartUrl, itemInfo, function(response) {
+            response = $.parseJSON(response);
+            console.log("add to cart response", response);
+            
+            var item = response.item;
+            
+            var addedToCartModal = '<div class="added-to-cart-modal"> \
+                <h2>The research report has been added to your cart</h2> \
+                <h3>' + item.title + '</h3> \
+                <div class="text-center"> \
+                <a href="http://localhost/myskift/cart" class="btn btn-green btn-sm">Edit Cart</a> \
+                <a href="http://localhost/myskift/checkout" class="btn btn-yellow btn-sm">Checkout</a> \
+                </div> \
+                </div>';
+                
+            $(addedToCartModal).appendTo("body");
+        });
+    });
+    
+    
     if ($("#header-sign-in-with-popover").length) {
 
         // Header sign in popover
@@ -146,8 +196,6 @@ $(function() {
                 loginUrl = "http://localhost/myskift/ajax/login.php";
             }
             
-            console.log(loginUrl);
-            
             $.post(loginUrl, loginData, function(response) {
                 response = $.parseJSON(response);
                 console.log("response", response);
@@ -157,7 +205,12 @@ $(function() {
 
                 if (response.success) {
                     showBannerMessage("You are now logged in", $form, function() {
-                        location.href = homeUrl;
+                        var redirect = getQSParameterByName("redirect");
+                        if (redirect !== "") {
+                            location.href = homeUrl;
+                        } else {
+                            location.href = homeUrl + redirect;
+                        }
                     }, true);
                 } else {
                     showBannerMessage(response.errorMessage, $form)
