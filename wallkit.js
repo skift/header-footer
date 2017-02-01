@@ -86,7 +86,7 @@ $(function() {
             
             for (var i = 0; i < items.length; i++) {
                 var thisItem = items[i];
-                console.log(thisItem);
+                console.log("cart item", thisItem);
                 
                 $( $cart.find(".cart-item.template").clone() )
                     .find(".photo img").attr("src", thisItem.image).end() 
@@ -143,7 +143,7 @@ $(function() {
             
             cartCloser = setTimeout(function() {
                 $(".shopping-cart").removeClass("isOpen");
-            }, 5000);
+            }, 3000);
         });
     });
     
@@ -171,6 +171,17 @@ $(function() {
         $.post(mySkiftAjaxPath + "remove-from-cart.php", {index:index}, function(response) {
             console.log("response",response);
             $button.html('<i class="fa fa-trash"></i> Remove');
+            
+            $cartItem.fadeOut(function() {
+               $(this).remove();
+               
+               if (!$cart.find(".cartItem").length) {
+                   $cart.fadeOut();
+                   $(".shopping-cart-page .totals-area").fadeOut(function() {
+                       $(".shopping-cart-page .no-items").fadeIn();
+                   });
+               }
+            });
             
             getCartContents();
    
@@ -311,7 +322,7 @@ $(function() {
                     showBannerMessage("You are now logged in", $form, function() {
                         var redirect = getQSParameterByName("redirect");
                         
-                        if (redirect === "") {
+                        if (!redirect || redirect === "") {
                             location.href = homeUrl;
                         } else {
                             location.href = homeUrl + redirect;

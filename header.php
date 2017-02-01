@@ -154,7 +154,7 @@ $signed_in = !empty($user_info);
                                     <div class="clearfix"></div>
                                 </div>
                                     
-                                <div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>
+                                <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
                                 <div class="spinner">Loading</div>
                             </div>
                             <div class="chin">
