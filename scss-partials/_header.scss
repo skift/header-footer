@@ -417,6 +417,11 @@ body {
                                     }
                                 }
                                 
+                                .item-details {
+                                    width:calc(100% - 115px);
+                                    float:right;
+                                }
+                                
                                 .item-name h3 {
                                     font-size:12px;
                                     line-height: normal;

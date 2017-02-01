@@ -148,9 +148,9 @@ $signed_in = !empty($user_info);
                                     <div class='item-details'>
                                         <div class='item-name'><h3></h3></div>
                                         <div class='item-price'>$<span></span></div>
-                                        <div class='remove-item'><button class='btn btn-green btn-xs remove-cart-item-btn'><i class='fa fa-trash'></i>  Remove</button></div>
-                                        <div class="clearfix"></div>
+                                        <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
                                     </div>
+                                    <div class="clearfix"></div>
                                 </div>
                                     
                                 <div class='no-items'><p><small><i>There's nothing in your cart!</i></small></p></div>

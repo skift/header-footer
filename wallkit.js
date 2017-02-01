@@ -88,6 +88,7 @@ $(function() {
                     .find(".photo img").attr("src", thisItem.image).end() 
                     .find(".item-name h3").html(thisItem.title).end() 
                     .find(".item-price span").html(thisItem.price).end()
+                    .find(".remove-from-cart-btn").data("index", thisItem.index).end()
                     .insertBefore($cart.find(".items .cart-item.template")).removeClass("template").fadeIn();
             }
         }
@@ -137,6 +138,48 @@ $(function() {
             cartCloser = setTimeout(function() {
                 $(".shopping-cart").removeClass("isOpen");
             }, 5000);
+        });
+    });
+    
+    var updateCartTotal = function($cart) {
+        var total = 0;
+        
+        $cart.find(".cart-item").each(function() {
+            total += parseFloat($(this).find(".item-price span").html());    
+        });
+        
+        $cart.find(".total-price").html(total);
+    };
+    
+    $(document).on("click", ".remove-from-cart-btn", function() {
+        var $button = $(this);
+        var $cartItem = $button.closest(".cart-item");
+        var $cart = $cartItem.closest(".cart-items");
+        var index = $button.data("index");
+        
+        console.log("index", index);
+        
+        $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
+        $button.prop("disabled", true);
+                
+        $.post(mySkiftAjaxPath + "remove-from-cart.php", {index:index}, function(response) {
+            console.log("response",response);
+            $button.html('<i class="fa fa-trash"></i> Remove');
+
+            $cartItem.fadeOut(function() {
+               $cartItem.remove();
+            
+                if ($cart.find(".cart-item").length === 0) {
+                    $cart.find(".no-items").fadeIn();
+                } else {
+                    updateCartTotal($cart);
+                }
+                
+            }); 
+            
+            if ($(".cart-item").length === 1) {
+                $(".totals-area, .cart-items").fadeOut();
+            }           
         });
     });
     
