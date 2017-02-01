@@ -59,9 +59,7 @@ $(function() {
     var refreshCart = function(cartContents) {
         console.log("cart contents", cartContents);
         
-        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
-            console.log("refresh", currentCartContents, cartContents);
-            
+        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {            
             currentCartContents = cartContents;
             
             $cart = $(".shopping-cart .popover");
@@ -298,8 +296,6 @@ $(function() {
                 });
             });
         };
-
-        //a397868864c1ff5b5271927d2dff4b482e8cb121
 
         if (goodToGo) {
             $(this).html('<i class="fa fa-cog fa-spin"></i> Sign In');
