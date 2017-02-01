@@ -119,7 +119,9 @@ $(function() {
         clearTimeout(cartCloser);
 
         $.post(mySkiftAjaxPath + "add-to-cart.php", itemInfo, function(response) {
+            console.log("response non-json",response);
             response = $.parseJSON(response);
+            console.log("response",response);
             
             var cartContents = response.cartContents;
             
@@ -192,8 +194,8 @@ $(function() {
            $("#sign-in-popover").removeClass("green-arrow");
         });
 
-        $("#header-sign-in-with-popover #overlay").click(function() {
-            $(".sign-in").removeClass("isOpen");
+        $("#header-sign-in-with-popover .overlay").click(function() {
+            $(".sign-in, .shopping-cart").removeClass("isOpen");
             clearLoginState();
         });
 

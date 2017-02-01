@@ -169,7 +169,8 @@ $signed_in = !empty($user_info);
                             </div>
                         </div>
                     </div>
-                    <div id="overlay"></div>
+                    
+                    <div class="overlay"></div>
                     
                     <div class="sign-in hasPopover">
 
@@ -220,7 +221,8 @@ $signed_in = !empty($user_info);
                             <?php } ?>
                         </div>
                     </div>
-                    <div id="overlay"></div>
+                    
+                    <div class="overlay"></div>
                 </div>
 
             <?php } else { ?>
