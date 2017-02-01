@@ -74,10 +74,14 @@ $(function() {
             
             var items = cartContents.items;
             
+            $(".shopping-cart .badge").html(items.length);
+            
             if (items.length > 0) {
                 $cart.find(".no-items").fadeOut("fast");
+                $(".shopping-cart .badge").show();
             } else {
                 $cart.find(".no-items").fadeIn("fast");
+                $(".shopping-cart .badge").hide();
             }
             
             for (var i = 0; i < items.length; i++) {
@@ -103,6 +107,8 @@ $(function() {
             refreshCart(cartContents);
         });
     };
+    
+    getCartContents();
     
     $(document).on("click",".add-to-cart-btn",function() {
         var $button = $(this);
@@ -165,21 +171,9 @@ $(function() {
         $.post(mySkiftAjaxPath + "remove-from-cart.php", {index:index}, function(response) {
             console.log("response",response);
             $button.html('<i class="fa fa-trash"></i> Remove');
-
-            $cartItem.fadeOut(function() {
-               $cartItem.remove();
             
-                if ($cart.find(".cart-item").length === 0) {
-                    $cart.find(".no-items").fadeIn();
-                } else {
-                    updateCartTotal($cart);
-                }
-                
-            }); 
-            
-            if ($(".cart-item").length === 1) {
-                $(".totals-area, .cart-items").fadeOut();
-            }           
+            getCartContents();
+   
         });
     });
     

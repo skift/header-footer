@@ -139,6 +139,7 @@ $signed_in = !empty($user_info);
                     <div class="shopping-cart hasPopover">
                         <a href="javascript:" class="cart-btn">
                             <i class="fa fa-shopping-cart fa-lg"></i>
+                            <div class="badge">0</div>
                         </a>
                         
                         <div id="cart-popover" class="popover">
