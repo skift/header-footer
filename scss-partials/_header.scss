@@ -240,7 +240,7 @@ body {
             
             #header-social {
                 display: inline-block;
-                vertical-align: top;
+                vertical-align: middle;
 
                 padding:23px 0 20px 0;
 
@@ -263,7 +263,7 @@ body {
             }
 
             #header-sign-in {
-                vertical-align: top;
+                vertical-align: middle;
                 display: inline-block;
 
                 margin:0 20px;
@@ -547,7 +547,7 @@ body {
                 height:$headerHeight;
     
                 display: inline-block;
-                vertical-align: top;
+                vertical-align: middle;
                 
                 margin-right:-170px;
                 margin-left:20px;
