@@ -46,36 +46,36 @@ function getQSParameterByName(name) {
 
 $(function() {
     // add-to-cart-btn
-    
+
     var mySkiftAjaxPath = "http://my.skift.com/ajax/";
     if (homeUrl.indexOf("localhost") !== false) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
     }
-    
+
     var currentCartContents;
-    
+
     var cartCloser;
-    
+
     var refreshCart = function(cartContents) {
         console.log("cart contents", cartContents);
-        
+
         if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
             console.log("refresh", currentCartContents, cartContents);
-            
+
             currentCartContents = cartContents;
-            
+
             $cart = $(".shopping-cart .popover");
-            
+
             $cart.find(".spinner").hide();
-            
+
             $cart.find(".cart-item:not(.template)").remove();
-            
+
             $cart.find(".total-price").html(cartContents.total);
-            
+
             var items = cartContents.items;
-            
+
             $(".shopping-cart .badge").html(items.length);
-            
+
             if (items.length > 0) {
                 $cart.find(".no-items").fadeOut("fast");
                 $(".shopping-cart .badge").show();
@@ -83,98 +83,98 @@ $(function() {
                 $cart.find(".no-items").fadeIn("fast");
                 $(".shopping-cart .badge").hide();
             }
-            
+
             for (var i = 0; i < items.length; i++) {
                 var thisItem = items[i];
                 console.log("cart item", thisItem);
-                
+
                 $( $cart.find(".cart-item.template").clone() )
-                    .find(".photo img").attr("src", thisItem.image).end() 
-                    .find(".item-name h3").html(thisItem.title).end() 
+                    .find(".photo img").attr("src", thisItem.image).end()
+                    .find(".item-name h3").html(thisItem.title).end()
                     .find(".item-price span").html(thisItem.price).end()
                     .find(".remove-from-cart-btn").data("index", thisItem.index).end()
                     .insertBefore($cart.find(".items .cart-item.template")).removeClass("template").fadeIn();
             }
         }
     };
-    
+
     var getCartContents = function() {
         clearTimeout(cartCloser);
 
         $.post(mySkiftAjaxPath + "get-cart-contents.php", function(cartContents) {
             cartContents = $.parseJSON(cartContents);
-                        
+
             refreshCart(cartContents);
         });
     };
-    
+
     getCartContents();
-    
+
     $(document).on("click",".add-to-cart-btn",function() {
         var $button = $(this);
-        
-        var contentId = $button.data("contentid"); 
-        var resourceId = $button.data("resourceid"); 
-        
+
+        var contentId = $button.data("contentid");
+        var resourceId = $button.data("resourceid");
+
         var itemInfo = {
             contentId: contentId,
-            resourceId: resourceId  
+            resourceId: resourceId
         };
-        
+
         console.log("add to cart", contentId, resourceId);
-        
+
         clearTimeout(cartCloser);
 
         $.post(mySkiftAjaxPath + "add-to-cart.php", itemInfo, function(response) {
             console.log("response non-json",response);
             response = $.parseJSON(response);
             console.log("response",response);
-            
+
             var cartContents = response.cartContents;
-            
+
             refreshCart(cartContents);
-            
+
             if ($(".sign-in").hasClass("isOpen")) {
                 $(".sign-in").removeClass("isOpen");
             }
-            
+
             $(".shopping-cart").addClass("isOpen");
-            
-            
+
+
             cartCloser = setTimeout(function() {
                 $(".shopping-cart").removeClass("isOpen");
             }, 3000);
         });
     });
-    
+
     var updateCartTotal = function($cart) {
         var total = 0;
-        
+
         $cart.find(".cart-item").each(function() {
-            total += parseFloat($(this).find(".item-price span").html());    
+            total += parseFloat($(this).find(".item-price span").html());
         });
-        
+
         $cart.find(".total-price").html(total);
     };
-    
+
     $(document).on("click", ".remove-from-cart-btn", function() {
         var $button = $(this);
         var $cartItem = $button.closest(".cart-item");
         var $cart = $cartItem.closest(".cart-items");
         var index = $button.data("index");
-        
+
         console.log("index", index);
-        
+
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
-                
+
         $.post(mySkiftAjaxPath + "remove-from-cart.php", {index:index}, function(response) {
             console.log("response",response);
             $button.html('<i class="fa fa-trash"></i> Remove');
-            
+
             $cartItem.fadeOut(function() {
                $(this).remove();
-               
+
                if (!$cart.find(".cartItem").length) {
                    $cart.fadeOut();
                    $(".shopping-cart-page .totals-area").fadeOut(function() {
@@ -182,14 +182,14 @@ $(function() {
                    });
                }
             });
-            
+
             getCartContents();
-   
+
         });
     });
-    
-    
-    
+
+
+
     if ($("#header-sign-in-with-popover").length) {
 
         // Header sign in popover
@@ -214,19 +214,19 @@ $(function() {
             if ($(".sign-in").hasClass("isOpen")) {
                 $(".sign-in").removeClass("isOpen");
             }
-            
+
             getCartContents();
-            
+
             $(".shopping-cart").toggleClass("isOpen");
         });
-        
+
         $(".sign-in-btn").click(function() {
             if ($(".shopping-cart").hasClass("isOpen")) {
                 $(".shopping-cart").removeClass("isOpen");
             }
-            
+
             $(".sign-in").toggleClass("isOpen");
-            
+
             clearLoginState();
 
             $("#sign-in-popover input").each(function() {
@@ -258,9 +258,9 @@ $(function() {
                 $(this).parent().removeClass("has-text");
             }
         });
-        
+
     }
-    
+
     $(".login-btn").click(function(e) {
         var $form = $(this).closest(".login-form");
 
@@ -310,7 +310,7 @@ $(function() {
                 login_email: $form.find(".username-field").val(),
                 login_password: $form.find(".password-field").val()
             };
-            
+
             $.post(mySkiftAjaxPath + "login.php", loginData, function(response) {
                 response = $.parseJSON(response);
                 console.log("response", response);
@@ -321,7 +321,7 @@ $(function() {
                 if (response.success) {
                     showBannerMessage("You are now logged in", $form, function() {
                         var redirect = getQSParameterByName("redirect");
-                        
+
                         if (!redirect || redirect === "") {
                             location.href = homeUrl;
                         } else {
@@ -341,5 +341,5 @@ $(function() {
         e.preventDefault();
         return false;
     });
-    
+
 });
