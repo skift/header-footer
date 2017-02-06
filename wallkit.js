@@ -58,15 +58,8 @@ $(function() {
 
     var refreshCart = function(cartContents) {
         console.log("cart contents", cartContents);
-<<<<<<< HEAD
-
-        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
-            console.log("refresh", currentCartContents, cartContents);
-
-=======
         
         if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {            
->>>>>>> 97a644954bdb77e76503448f073dde162adb6db3
             currentCartContents = cartContents;
 
             $cart = $(".shopping-cart .popover");
