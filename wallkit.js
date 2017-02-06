@@ -127,6 +127,8 @@ $(function() {
             console.log("response non-json",response);
             response = $.parseJSON(response);
             console.log("response",response);
+            
+            $button.html("<i class='fa fa-check'></i> Added to cart").prop("disabled", true);
 
             var cartContents = response.cartContents;
 
