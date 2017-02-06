@@ -113,10 +113,16 @@ $(function() {
 
         var contentId = $button.data("contentid");
         var resourceId = $button.data("resourceid");
+        var type = $button.data("type");
+        
+        if (typeof type === "undefined" || type === "") {
+            type = "content";
+        }
 
         var itemInfo = {
             contentId: contentId,
-            resourceId: resourceId
+            resourceId: resourceId,
+            type: type
         };
 
         console.log("add to cart", contentId, resourceId);
