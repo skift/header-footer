@@ -128,7 +128,7 @@ $(function() {
             response = $.parseJSON(response);
             console.log("response",response);
             
-            $button.html("<i class='fa fa-check'></i> Added to cart").prop("disabled", true);
+            $button.css({ "height": $button.outerHeight(), "lineHeight": $button.height() + "px" }).html("<i class='fa fa-check'></i> Added to cart").addClass("disabled").removeClass("add-to-cart-btn");
 
             var cartContents = response.cartContents;
 
