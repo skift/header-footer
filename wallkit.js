@@ -53,7 +53,7 @@ $(function() {
     if (host.indexOf("localhost") > -1) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
     }
-    
+
     if (host.indexOf("myskift.wpengine.com") > -1) {
         mySkiftAjaxPath = "http://myskift.wpengine.com/ajax/";
     }
@@ -64,8 +64,8 @@ $(function() {
 
     var refreshCart = function(cartContents) {
         console.log("cart contents", cartContents);
-        
-        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {            
+
+        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
             currentCartContents = cartContents;
 
             $cart = $(".shopping-cart .popover");
@@ -120,7 +120,7 @@ $(function() {
         var contentId = $button.data("contentid");
         var resourceId = $button.data("resourceid");
         var type = $button.data("type");
-        
+
         if (typeof type === "undefined" || type === "") {
             type = "content";
         }
@@ -139,7 +139,7 @@ $(function() {
             console.log("response non-json",response);
             response = $.parseJSON(response);
             console.log("response",response);
-            
+
             $button.css({ "height": $button.outerHeight(), "lineHeight": $button.height() + "px" }).html("<i class='fa fa-check'></i> Added to cart").addClass("disabled").removeClass("add-to-cart-btn");
 
             var cartContents = response.cartContents;
