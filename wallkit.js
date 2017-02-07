@@ -47,11 +47,15 @@ function getQSParameterByName(name) {
 $(function() {
     // add-to-cart-btn
 
-    var mySkiftAjaxPath = "http://my.skift.com/ajax/";
+    var mySkiftAjaxPath = "https://my.skift.com/ajax/";
     var host = document.location.host;
 
-    if (host.indexOf("localhost") !== false) {
+    if (host.indexOf("localhost") > -1) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
+    }
+
+    if (host.indexOf("myskift.wpengine.com") > -1) {
+        mySkiftAjaxPath = "http://myskift.wpengine.com/ajax/";
     }
 
     var currentCartContents;
@@ -60,8 +64,8 @@ $(function() {
 
     var refreshCart = function(cartContents) {
         console.log("cart contents", cartContents);
-        
-        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {            
+
+        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
             currentCartContents = cartContents;
 
             $cart = $(".shopping-cart .popover");
@@ -116,7 +120,7 @@ $(function() {
         var contentId = $button.data("contentid");
         var resourceId = $button.data("resourceid");
         var type = $button.data("type");
-        
+
         if (typeof type === "undefined" || type === "") {
             type = "content";
         }
@@ -141,7 +145,7 @@ $(function() {
             console.log("response non-json",response);
             response = $.parseJSON(response);
             console.log("response",response);
-            
+                        
             $button.html("<i class='fa fa-check'></i> In Cart");
 
             var cartContents = response.cartContents;
