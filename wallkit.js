@@ -49,11 +49,10 @@ $(function() {
 
     var mySkiftAjaxPath = "http://my.skift.com/ajax/";
     var host = document.location.host;
-    console.log("host",host,host.indexOf("localhost"));
-    if (host.indexOf("localhost") !== false) {
+
+    if (host.indexOf("localhost") > -1) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
     }
-    console.log("my skift path", mySkiftAjaxPath);
 
     var currentCartContents;
 
