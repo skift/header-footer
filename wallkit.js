@@ -126,6 +126,12 @@ $(function() {
             resourceId: resourceId,
             type: type
         };
+        
+        var buttonHeight = $button.height();
+        var buttonOuterHeight = $button.outerHeight();
+        
+        $button.css({ "height": buttonOuterHeight, "lineHeight": buttonHeight + "px" }).html("<i class='fa fa-cog fa-spin'></i> Adding to Cart").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn");
+
 
         console.log("add to cart", contentId, resourceId);
 
@@ -136,7 +142,7 @@ $(function() {
             response = $.parseJSON(response);
             console.log("response",response);
             
-            $button.css({ "height": $button.outerHeight(), "lineHeight": $button.height() + "px" }).html("<i class='fa fa-check'></i> Added to cart").addClass("disabled").removeClass("add-to-cart-btn");
+            $button.html("<i class='fa fa-check'></i> In Cart");
 
             var cartContents = response.cartContents;
 
