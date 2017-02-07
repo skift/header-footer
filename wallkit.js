@@ -48,7 +48,9 @@ $(function() {
     // add-to-cart-btn
 
     var mySkiftAjaxPath = "http://my.skift.com/ajax/";
-    if (homeUrl.indexOf("localhost") !== false) {
+    var host = document.location.host;
+
+    if (host.indexOf("localhost") !== false) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
     }
 
