@@ -47,11 +47,15 @@ function getQSParameterByName(name) {
 $(function() {
     // add-to-cart-btn
 
-    var mySkiftAjaxPath = "http://my.skift.com/ajax/";
+    var mySkiftAjaxPath = "https://my.skift.com/ajax/";
     var host = document.location.host;
 
     if (host.indexOf("localhost") > -1) {
         mySkiftAjaxPath = "http://localhost/myskift/ajax/";
+    }
+    
+    if (host.indexOf("myskift.wpengine.com") > -1) {
+        mySkiftAjaxPath = "http://myskift.wpengine.com/ajax/";
     }
 
     var currentCartContents;
