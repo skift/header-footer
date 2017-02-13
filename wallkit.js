@@ -332,12 +332,17 @@ $(function() {
 
                 if (response.success) {
                     showBannerMessage("You are now logged in", $form, function() {
-                        var redirect = getQSParameterByName("redirect");
+                        var redirect = $form.find(".login-redirect").val();
 
                         if (!redirect || redirect === "") {
-                            location.href = homeUrl;
+                            
+                            if ($form.hasClass("reload")) {
+                                location.reload();
+                            } else {
+                                location.href = homeUrl;
+                            }
                         } else {
-                            location.href = homeUrl + redirect;
+                            location.href = redirect;
                         }
                     }, true);
                 } else {

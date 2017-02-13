@@ -191,7 +191,7 @@ $signed_in = !empty($user_info);
                         <div id="sign-in-popover" class="popover">
                             <?php if (!$signed_in) { ?>
 
-                                <form class="login-form dark-bg account-form">
+                                <form class="login-form dark-bg account-form reload">
                                     <div class="alert alert-danger error-text"></div>
 
                                     <div class="form-group">
