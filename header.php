@@ -24,10 +24,15 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 }
 
 // user authentication
-$auth_user = new User();
+if (class_exists("User")) {
+    $auth_user = new User();
 
-global $user_info;
-$user_info = $auth_user->info;
+    global $user_info;
+    $user_info = $auth_user->info; 
+} else {
+    $user_info = false;
+}
+
 
 $signed_in = !empty($user_info);
 ?>
