@@ -24,13 +24,21 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 }
 
 // user authentication
+global $user_info;
+
 if (class_exists("User")) {
+    // check user auth using the wallkit plugin
     $auth_user = new User();
 
-    global $user_info;
     $user_info = $auth_user->info; 
 } else {
-    $user_info = false;
+    if (function_exists("user_auth")) {
+        // if here, we're on myskift, use the library
+        $user_info = user_auth();
+    } else {
+        // if here, there is no wallkit install
+        $user_info = false;
+    }
 }
 
 

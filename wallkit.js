@@ -47,16 +47,18 @@ function getQSParameterByName(name) {
 $(function() {
     // add-to-cart-btn
 
-    var mySkiftAjaxPath = "https://my.skift.com/ajax/";
+    var mySkiftPath = "https://my.skift.com/";
     var host = document.location.host;
 
     if (host.indexOf("localhost") > -1) {
-        mySkiftAjaxPath = "http://localhost/myskift/ajax/";
+        mySkiftPath = "http://localhost/myskift/";
     }
 
     if (host.indexOf("myskift.wpengine.com") > -1) {
-        mySkiftAjaxPath = "http://myskift.wpengine.com/ajax/";
+        mySkiftPath = "http://myskift.wpengine.com/";
     }
+    
+    var mySkiftAjaxPath = mySkiftPath + "ajax/";
 
     var currentCartContents;
 
@@ -339,7 +341,7 @@ $(function() {
                             if ($form.hasClass("reload")) {
                                 location.reload();
                             } else {
-                                location.href = homeUrl;
+                                location.href = mySkiftPath;
                             }
                         } else {
                             location.href = redirect;
