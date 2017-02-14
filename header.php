@@ -45,14 +45,12 @@ if (class_exists("User")) {
 } else {
     if (function_exists("user_auth")) {
         // if here, we're on myskift, use the library
-        var_dump("function exists");
         $user_info = user_auth();
     } else {
         // if here, there is no wallkit install
         $user_info = false;
     }
 }
-dump_debug($user_info);
 
 $signed_in = !empty($user_info);
 ?>
