@@ -51,7 +51,7 @@ if (class_exists("User")) {
         $user_info = false;
     }
 }
-
+dump_debug($user_info);
 
 $signed_in = !empty($user_info);
 ?>
