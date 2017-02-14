@@ -23,14 +23,14 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
     );
 }
 
-if (strpos($_SERVER['HTTP_HOST'],".staging.wpengine.com") !== false) {
+if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
     $url_paths = array(
         "main"      => "http://skiftish.staging.wpengine.com",
         "trends"    => "http://skiftproducts.staging.wpengine.com",
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "http://myskift.staging.wpengine.com"
+        "myskift"    => "http://myskift.wpengine.com"
     );
 }
 
