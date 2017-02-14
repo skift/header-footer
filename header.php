@@ -49,6 +49,7 @@ if (class_exists("User")) {
     } else {
         // if here, there is no wallkit install
         $user_info = false;
+        var_dump("no wk?");
     }
 }
 dump_debug($user_info);
