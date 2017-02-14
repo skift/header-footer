@@ -9,7 +9,7 @@ $url_paths = array(
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com",
-    "myskift"    => "http://my.skift.com"
+    "myskift"    => "https://my.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -20,6 +20,17 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "forum"     => "http://localhost/forum",
         "skiftx"    => "http://localhost/skiftx",
         "myskift"    => "http://localhost/myskift"
+    );
+}
+
+if (strpos($_SERVER['HTTP_HOST'],".staging.wpengine.com") !== false) {
+    $url_paths = array(
+        "main"      => "http://skiftish.staging.wpengine.com",
+        "trends"    => "http://skiftproducts.staging.wpengine.com",
+        "edu"       => "http://skiftedu.staging.wpengine.com",
+        "forum"     => "http://skforum.staging.wpengine.com",
+        "skiftx"    => "http://skiftx.staging.wpengine.com",
+        "myskift"    => "http://myskift.staging.wpengine.com"
     );
 }
 
