@@ -211,13 +211,7 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
-            complete: function() {
-                console.log("complete!");  
-            },
-            error: function(reason) {
-                console.error("remove from cart error", reason);
-            },
-            success: function(response) {
+            complete: function(response) {
                 console.log("response",response);
                 $button.html('<i class="fa fa-trash"></i> Remove');
     
