@@ -55,7 +55,7 @@ $(function() {
     }
 
     if (host.indexOf(".wpengine.com") > -1) {
-        mySkiftPath = "http://myskift.wpengine.com/";
+        mySkiftPath = "https://myskift.wpengine.com/";
     }
     
     var mySkiftAjaxPath = mySkiftPath + "ajax/";
