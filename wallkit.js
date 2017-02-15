@@ -159,7 +159,10 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
-            complete: function(response) {
+            error: function(reason) {
+                $button.html("error");  
+            },
+            success: function(response) {
                 console.log("response",response);
                             
                 $button.html("<i class='fa fa-check'></i> In Cart");
@@ -226,7 +229,7 @@ $(function() {
                    }
                 });
     
-             //   getCartContents();
+                getCartContents();
     
             }
         });
