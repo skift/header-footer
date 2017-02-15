@@ -111,11 +111,15 @@ $(function() {
 
     var getCartContents = function() {
         clearTimeout(cartCloser);
-
-        $.post(mySkiftAjaxPath + "get-cart-contents.php", function(cartContents) {
-            cartContents = $.parseJSON(cartContents);
-
-            refreshCart(cartContents);
+        
+        $.ajax({
+            url: mySkiftAjaxPath + "get-cart-contents.php",
+            method: "POST",
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: refreshCart
         });
     };
 
@@ -198,24 +202,33 @@ $(function() {
 
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
-
-        $.post(mySkiftAjaxPath + "remove-from-cart.php", {index:index}, function(response) {
-            console.log("response",response);
-            $button.html('<i class="fa fa-trash"></i> Remove');
-
-            $cartItem.fadeOut(function() {
-               $(this).remove();
-
-               if (!$cart.find(".cartItem").length) {
-                   $cart.fadeOut();
-                   $(".shopping-cart-page .totals-area").fadeOut(function() {
-                       $(".shopping-cart-page .no-items").fadeIn();
-                   });
-               }
-            });
-
-            getCartContents();
-
+        
+        $.ajax({
+            url: mySkiftAjaxPath + "remove-from-cart.php",
+            method: "POST",
+            data: {index:index},
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) {
+                console.log("response",response);
+                $button.html('<i class="fa fa-trash"></i> Remove');
+    
+                $cartItem.fadeOut(function() {
+                   $(this).remove();
+    
+                   if (!$cart.find(".cartItem").length) {
+                       $cart.fadeOut();
+                       $(".shopping-cart-page .totals-area").fadeOut(function() {
+                           $(".shopping-cart-page .no-items").fadeIn();
+                       });
+                   }
+                });
+    
+                getCartContents();
+    
+            }
         });
     });
 
@@ -339,31 +352,42 @@ $(function() {
                 login_email: $form.find(".username-field").val(),
                 login_password: $form.find(".password-field").val()
             };
-
-            $.post(mySkiftAjaxPath + "login.php", loginData, function(response) {
-                response = $.parseJSON(response);
-                console.log("response", response);
-
-                $form.find("button").html("Sign In");
-                $form.find("input,button").attr("disabled", false);
-
-                if (response.success) {
-                    showBannerMessage("You are now logged in", $form, function() {
-                        var redirect = $form.find(".login-redirect").val();
-
-                        if (!redirect || redirect === "") {
-                            
-                            if ($form.hasClass("reload")) {
-                                location.reload();
+            
+            $.ajax({
+                url: mySkiftAjaxPath + "login.php",
+                method: "POST",
+                dataType: "json",
+                data: loginData,
+                xhrFields: {
+                    withCredentials: true
+                },
+                error: function(reason) {
+                    showBannerMessage("An uexpected error occured.", $form)
+                },
+                success: function(response) {
+                    console.log("response", response);
+    
+                    $form.find("button").html("Sign In");
+                    $form.find("input,button").attr("disabled", false);
+    
+                    if (response.success) {
+                        showBannerMessage("You are now logged in", $form, function() {
+                            var redirect = $form.find(".login-redirect").val();
+    
+                            if (!redirect || redirect === "") {
+                                
+                                if ($form.hasClass("reload")) {
+                                    location.reload();
+                                } else {
+                                    location.href = mySkiftPath;
+                                }
                             } else {
-                                location.href = mySkiftPath;
+                                location.href = redirect;
                             }
-                        } else {
-                            location.href = redirect;
-                        }
-                    }, true);
-                } else {
-                    showBannerMessage(response.errorMessage, $form)
+                        }, true);
+                    } else {
+                        showBannerMessage(response.errorMessage, $form)
+                    }
                 }
             });
 
