@@ -333,6 +333,16 @@ $(function() {
                 $form.find("input,button").attr("disabled", false);
 
                 if (response.success) {
+                    var token = response.token;
+                    var cookieDomain = response.cookieDomain;
+                    
+                    var now = new Date();
+                    var time = now.getTime();
+                    time += 3600 * 1000 * 24 * 30;
+                    now.setTime(time);
+
+                    document.cookie = "usr=" + token + ";path=/;expires=" + now.toUTCString() + ";domain=" + cookieDomain;
+                    
                     showBannerMessage("You are now logged in", $form, function() {
                         var redirect = $form.find(".login-redirect").val();
 
