@@ -143,28 +143,38 @@ $(function() {
         console.log("add to cart", contentId, resourceId);
 
         clearTimeout(cartCloser);
-
-        $.post(mySkiftAjaxPath + "add-to-cart.php", itemInfo, function(response) {
-            console.log("response non-json",response);
-            response = $.parseJSON(response);
-            console.log("response",response);
-                        
-            $button.html("<i class='fa fa-check'></i> In Cart");
-
-            var cartContents = response.cartContents;
-
-            refreshCart(cartContents);
-
-            if ($(".sign-in").hasClass("isOpen")) {
-                $(".sign-in").removeClass("isOpen");
+        
+        $.ajax({
+            url: mySkiftAjaxPath + "add-to-cart.php",
+            method: "POST",
+            data: itemInfo,
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            error: function(reason) {
+                $button.html("error");  
+            },
+            success: function(response) {
+                console.log("response",response);
+                            
+                $button.html("<i class='fa fa-check'></i> In Cart");
+    
+                var cartContents = response.cartContents;
+    
+                refreshCart(cartContents);
+    
+                if ($(".sign-in").hasClass("isOpen")) {
+                    $(".sign-in").removeClass("isOpen");
+                }
+    
+                $(".shopping-cart").addClass("isOpen");
+    
+    
+                cartCloser = setTimeout(function() {
+                    $(".shopping-cart").removeClass("isOpen");
+                }, 3000);
             }
-
-            $(".shopping-cart").addClass("isOpen");
-
-
-            cartCloser = setTimeout(function() {
-                $(".shopping-cart").removeClass("isOpen");
-            }, 3000);
         });
     });
 
