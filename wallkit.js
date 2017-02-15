@@ -177,7 +177,6 @@ $(function() {
     
                 $(".shopping-cart").addClass("isOpen");
     
-    
                 cartCloser = setTimeout(function() {
                     $(".shopping-cart").removeClass("isOpen");
                 }, 3000);
