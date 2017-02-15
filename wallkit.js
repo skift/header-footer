@@ -112,9 +112,12 @@ $(function() {
     var getCartContents = function() {
         clearTimeout(cartCloser);
         
+        var rand = Math.random();
+        
         $.ajax({
             url: mySkiftAjaxPath + "get-cart-contents.php",
             method: "POST",
+            data: {rand:rand},
             dataType: "json",
             xhrFields: {
                 withCredentials: true
@@ -211,7 +214,7 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
-            success: function(response) {
+            complete: function(response) {
                 console.log("response",response);
                 $button.html('<i class="fa fa-trash"></i> Remove');
     
@@ -226,7 +229,7 @@ $(function() {
                    }
                 });
     
-                getCartContents();
+             //   getCartContents();
     
             }
         });
