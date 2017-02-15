@@ -30,7 +30,7 @@ if (strpos($_SERVER['HTTP_HOST'],".staging.wpengine.com") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "http://myskift.staging.wpengine.com"
+        "myskift"    => "http://myskift.wpengine.com"
     );
 }
 
