@@ -54,7 +54,7 @@ $(function() {
         mySkiftPath = "http://localhost/myskift/";
     }
 
-    if (host.indexOf("myskift.wpengine.com") > -1) {
+    if (host.indexOf(".wpengine.com") > -1) {
         mySkiftPath = "http://myskift.wpengine.com/";
     }
     
