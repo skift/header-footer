@@ -147,7 +147,7 @@ $(function() {
     
         $button.html("<i class='fa fa-cog fa-spin'></i> Adding to Cart").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn");
 
-        console.log("add to cart", contentId, resourceId);
+        console.log("add to cart", itemInfo);
 
         clearTimeout(cartCloser);
         
@@ -159,10 +159,7 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
-            error: function(reason) {
-                $button.html("error");  
-            },
-            success: function(response) {
+            complete: function(response) {
                 console.log("response",response);
                             
                 $button.html("<i class='fa fa-check'></i> In Cart");
