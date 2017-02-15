@@ -58,8 +58,13 @@ $(function() {
         mySkiftPath = "https://myskift.wpengine.com/";
     }
     
+    if (host.indexOf("myskift.wpengine.com") > -1 || host.indexOf("my.skift.com") > -1) {
+        mySkiftPath = "/";
+    }
+    
     var mySkiftAjaxPath = mySkiftPath + "ajax/";
-
+    console.log("ajax path", mySkiftAjaxPath);
+    
     var currentCartContents;
 
     var cartCloser;
