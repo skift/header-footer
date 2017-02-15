@@ -196,7 +196,7 @@ $signed_in = !empty($user_info);
                     <div class="sign-in hasPopover">
 
                         <?php if (!$signed_in) { ?>
-                            <a href="javascript:" class="sign-in-btn">Sign In</a>
+                            <a href="<?=$url_paths['myskift'];?>/login" class="sign-in-btn">Sign In</a>
                         <?php } else { ?>
                             <a href="javascript:" class="sign-in-btn my-account-btn">
                                 <span class="fa-stack fa-lg">
