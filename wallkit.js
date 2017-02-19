@@ -379,7 +379,13 @@ $(function() {
                             if (!redirect || redirect === "") {
                                 
                                 if ($form.hasClass("reload")) {
-                                    location.reload();
+                                    var path = location.pathname;
+                                    
+                                    if (path.indexOf("/login") !== false) {
+                                        location.href = mySkiftPath;
+                                    } else {
+                                        location.reload();
+                                    }
                                 } else {
                                     location.href = mySkiftPath;
                                 }
