@@ -3,6 +3,8 @@ $hasSubNav = !empty($sub_nav);
 
 session_start();
 
+global $url_paths;
+
 $url_paths = array(
     "main"      => "https://skift.com",
     "trends"    => "https://research.skift.com",
