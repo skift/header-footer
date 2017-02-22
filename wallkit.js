@@ -234,7 +234,16 @@ $(function() {
         });
     });
 
-
+    $(".mobile-acount-manager .top").click(function(e) {
+        $(".mobile-acount-manager").toggleClass("open");
+        e.stopPropagation();
+    });
+    
+    $("body").click(function() {
+        if ($(".mobile-acount-manager").hasClass("open")) {
+            $(".mobile-acount-manager").removeClass("open");
+        }
+    });
 
     if ($("#header-sign-in-with-popover").length) {
 

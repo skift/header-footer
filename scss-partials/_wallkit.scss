@@ -62,7 +62,7 @@
             }
         }
         
-        &:hover {
+        &.open {
             top:100px;
             
             @include border-radius(10px 10px 0 0);
