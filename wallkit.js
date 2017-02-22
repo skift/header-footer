@@ -75,7 +75,7 @@ $(function() {
         if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
             currentCartContents = cartContents;
 
-            $cart = $(".shopping-cart .popover");
+            $cart = $(".shopping-cart .cart-contents");
 
             $cart.find(".spinner").hide();
 
@@ -99,7 +99,7 @@ $(function() {
                 var thisItem = items[i];
                 console.log("cart item", thisItem);
 
-                $( $cart.find(".cart-item.template").clone() )
+                $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
                     .find(".photo img").attr("src", thisItem.image).end()
                     .find(".item-name h3").html(thisItem.title).end()
                     .find(".item-price span").html(thisItem.price).end()
