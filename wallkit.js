@@ -57,14 +57,14 @@ $(function() {
     if (host.indexOf(".wpengine.com") > -1) {
         mySkiftPath = "https://myskift.wpengine.com/";
     }
-    
+
     if (host.indexOf("myskift.wpengine.com") > -1 || host.indexOf("my.skift.com") > -1) {
         mySkiftPath = "/";
     }
-    
+
     var mySkiftAjaxPath = mySkiftPath + "ajax/";
     console.log("ajax path", mySkiftAjaxPath);
-    
+
     var currentCartContents;
 
     var cartCloser;
@@ -111,9 +111,9 @@ $(function() {
 
     var getCartContents = function() {
         clearTimeout(cartCloser);
-        
+
         var rand = Math.random();
-        
+
         $.ajax({
             url: mySkiftAjaxPath + "get-cart-contents.php",
             method: "POST",
@@ -144,13 +144,13 @@ $(function() {
             resourceId: resourceId,
             type: type
         };
-    
+
         $button.html("<i class='fa fa-cog fa-spin'></i> Adding to Cart").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn");
 
         console.log("add to cart", itemInfo);
 
         clearTimeout(cartCloser);
-        
+
         $.ajax({
             url: mySkiftAjaxPath + "add-to-cart.php",
             method: "POST",
@@ -160,23 +160,23 @@ $(function() {
                 withCredentials: true
             },
             error: function(reason) {
-                $button.html("error");  
+                $button.html("error");
             },
             success: function(response) {
                 console.log("response",response);
-                            
+
                 $button.html("<i class='fa fa-check'></i> In Cart");
-    
+
                 var cartContents = response.cartContents;
-    
+
                 refreshCart(cartContents);
-    
+
                 if ($(".sign-in").hasClass("isOpen")) {
                     $(".sign-in").removeClass("isOpen");
                 }
-    
+
                 $(".shopping-cart").addClass("isOpen");
-    
+
                 cartCloser = setTimeout(function() {
                     $(".shopping-cart").removeClass("isOpen");
                 }, 3000);
@@ -204,7 +204,7 @@ $(function() {
 
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
-        
+
         $.ajax({
             url: mySkiftAjaxPath + "remove-from-cart.php",
             method: "POST",
@@ -216,10 +216,10 @@ $(function() {
             complete: function(response) {
                 console.log("response",response);
                 $button.html('<i class="fa fa-trash"></i> Remove');
-    
+
                 $cartItem.fadeOut(function() {
                    $(this).remove();
-    
+
                    if (!$cart.find(".cartItem").length) {
                        $cart.fadeOut();
                        $(".shopping-cart-page .totals-area").fadeOut(function() {
@@ -227,9 +227,9 @@ $(function() {
                        });
                    }
                 });
-    
+
                 getCartContents();
-    
+
             }
         });
     });
@@ -354,7 +354,7 @@ $(function() {
                 login_email: $form.find(".username-field").val(),
                 login_password: $form.find(".password-field").val()
             };
-            
+
             $.ajax({
                 url: mySkiftAjaxPath + "login.php",
                 method: "POST",
@@ -368,19 +368,19 @@ $(function() {
                 },
                 success: function(response) {
                     console.log("response", response);
-    
+
                     $form.find("button").html("Sign In");
                     $form.find("input,button").attr("disabled", false);
-    
+
                     if (response.success) {
                         showBannerMessage("You are now logged in", $form, function() {
                             var redirect = $form.find(".login-redirect").val();
-    
+
                             if (!redirect || redirect === "") {
-                                
+
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
-                                    
+
                                     if (path.indexOf("/login") !== false) {
                                         location.href = mySkiftPath;
                                     } else {
