@@ -159,9 +159,6 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
-            error: function(reason) {
-                $button.html("error");  
-            },
             success: function(response) {
                 console.log("response",response);
                             
