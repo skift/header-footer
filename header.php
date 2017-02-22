@@ -332,11 +332,13 @@ $signed_in = !empty($user_info);
     <div class="top">
         <div class="user-info">
             <? if ($signed_in) { ?>
-                <span class="fa-stack">
-                    <i class="fa fa-circle-thin fa-stack-2x"></i>
-                    <i class="fa fa-user fa-stack-1x"></i>
-                </span>
-                <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>
+                <a href="<?=$url_paths['myskift'];?>/">
+                    <span class="fa-stack">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-user fa-stack-1x"></i>
+                    </span>
+                    <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>
+                </a>
             <? } else { ?>
             <a href="<?=$url_paths['myskift'];?>/login">Sign In</a>
             <? } ?>
