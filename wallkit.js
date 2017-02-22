@@ -390,7 +390,7 @@ $(function() {
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
 
-                                    if (path.indexOf("/login") !== false) {
+                                    if (path.indexOf("/login") > -1) {
                                         location.href = mySkiftPath;
                                     } else {
                                         location.reload();
