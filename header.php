@@ -305,20 +305,22 @@ $signed_in = !empty($user_info);
                         'container' => false,
                         'items_wrap' => '%3$s'
                     ));
+                } 
 
-                    if ($showLoginForm) {
+                if ($showLoginForm) {
 
-        				if ($signed_in) {
-        				?>
-                            <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
-        				<?php
-        				} else {
-        				?>
-                            <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login">Sign In</a></li>
-                        <?php
-                        }
-    				}
-                } ?>
+    				if ($signed_in) {
+    				?>
+                        <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
+    				<?php
+    				} else {
+    				?>
+                        <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login">Sign In</a></li>
+                    <?php
+                    }
+				}
+				?>
+                
             </ul>
         </nav>
     </header>
