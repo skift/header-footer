@@ -3,9 +3,6 @@
     
     @media screen and (max-width:$mobileBP) {
         position: fixed;
-        position: sticky;
-        position: -webkit-sticky;
-        
         top:calc(100% - 50px);
         left:0;
         z-index: 9999998;
