@@ -1,4 +1,4 @@
-.mobile-acount-manager {
+.mobile-account-manager {
     display:none;
     
     @media screen and (max-width:$mobileBP) {
@@ -25,6 +25,12 @@
         
         .no-items {
             display: none;
+        }
+        
+        .close-mobile-account-manager {
+            display: none;
+            float:right;
+            cursor: pointer;
         }
         
         .top {
@@ -66,6 +72,14 @@
             top:100px;
             
             @include border-radius(10px 10px 0 0);
+            
+            .close-mobile-account-manager {
+                display: block;
+            }
+            
+            .cart-btn {
+                display: none;
+            }
         }
         
         .mobile-cart-items {

@@ -328,7 +328,7 @@ $signed_in = !empty($user_info);
 
 
 <? if ($showLoginForm) { ?>
-<div class="mobile-acount-manager shopping-cart">
+<div class="mobile-account-manager shopping-cart">
     <div class="top">
         <div class="user-info">
             <? if ($signed_in) { ?>
@@ -346,6 +346,8 @@ $signed_in = !empty($user_info);
             <i class="fa fa-shopping-cart fa-lg"></i>
             <div class="badge">0</div>
         </div>
+        
+        <div class="close-mobile-account-manager"><i class="fa fa-close"></i></div>
     </div>
     
     <div class="mobile-cart-items cart-contents">

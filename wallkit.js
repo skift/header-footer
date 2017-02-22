@@ -234,8 +234,8 @@ $(function() {
         });
     });
 
-    $(".mobile-acount-manager .top").click(function(e) {
-        $(".mobile-acount-manager").toggleClass("open");
+    $(".mobile-account-manager .top").click(function(e) {
+        $(".mobile-account-manager").toggleClass("open");
         e.stopPropagation();
     });
     
