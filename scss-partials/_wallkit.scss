@@ -90,8 +90,9 @@
         
         .mobile-cart-items {
             .items {
-                height: calc(100% - 110px);
-                overflow-y: auto;
+                height: calc(100vh - 230px);
+                
+                overflow: auto;
             }
             
             .cart-item {
