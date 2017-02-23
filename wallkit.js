@@ -238,7 +238,7 @@ $(function() {
         $(".mobile-account-manager").toggleClass("open");
         e.stopPropagation();
     });
-    
+
     $("body").click(function() {
         if ($(".mobile-acount-manager").hasClass("open")) {
             $(".mobile-acount-manager").removeClass("open");
@@ -390,7 +390,7 @@ $(function() {
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
                                     console.log("path", path);
-                                    
+
                                     if (path.indexOf("/login") > -1) {
                                         location.href = mySkiftPath;
                                     } else {
