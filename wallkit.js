@@ -63,14 +63,12 @@ $(function() {
     }
 
     var mySkiftAjaxPath = mySkiftPath + "ajax/";
-    console.log("ajax path", mySkiftAjaxPath);
 
     var currentCartContents;
 
     var cartCloser;
 
     var refreshCart = function(cartContents) {
-        console.log("cart contents", cartContents);
 
         if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
             currentCartContents = cartContents;
@@ -97,7 +95,6 @@ $(function() {
 
             for (var i = 0; i < items.length; i++) {
                 var thisItem = items[i];
-                console.log("cart item", thisItem);
 
                 $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
                     .find(".photo img").attr("src", thisItem.image).end()
@@ -147,8 +144,6 @@ $(function() {
 
         $button.html("<i class='fa fa-cog fa-spin'></i> Adding to Cart").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn");
 
-        console.log("add to cart", itemInfo);
-
         clearTimeout(cartCloser);
 
         $.ajax({
@@ -163,8 +158,6 @@ $(function() {
                 $button.html("error");
             },
             success: function(response) {
-                console.log("response",response);
-
                 $button.html("<i class='fa fa-check'></i> In Cart");
 
                 var cartContents = response.cartContents;
@@ -200,8 +193,6 @@ $(function() {
         var $cart = $cartItem.closest(".cart-items");
         var index = $button.data("index");
 
-        console.log("index", index);
-
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
 
@@ -214,7 +205,6 @@ $(function() {
                 withCredentials: true
             },
             complete: function(response) {
-                console.log("response",response);
                 $button.html('<i class="fa fa-trash"></i> Remove');
 
                 $cartItem.fadeOut(function() {
@@ -376,7 +366,6 @@ $(function() {
                     showBannerMessage("An uexpected error occured.", $form)
                 },
                 success: function(response) {
-                    console.log("response", response);
 
                     $form.find("button").html("Sign In");
                     $form.find("input,button").attr("disabled", false);
@@ -389,7 +378,6 @@ $(function() {
 
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
-                                    console.log("path", path);
                                     
                                     if (path.indexOf("/login") > -1) {
                                         location.href = mySkiftPath;
