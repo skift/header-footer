@@ -119,6 +119,9 @@ $(function() {
             xhrFields: {
                 withCredentials: true
             },
+            error: function(reason) {
+                console.error("error getting cart contents", reason);
+            },
             success: refreshCart
         });
     };
@@ -150,7 +153,7 @@ $(function() {
             url: mySkiftAjaxPath + "add-to-cart.php",
             method: "POST",
             data: itemInfo,
-            dataType: "json",
+            dataType: 'json',
             xhrFields: {
                 withCredentials: true
             },
@@ -158,6 +161,7 @@ $(function() {
                 $button.html("error");
             },
             success: function(response) {
+                console.log("add to cart response", response);
                 $button.html("<i class='fa fa-check'></i> In Cart");
 
                 var cartContents = response.cartContents;
@@ -203,6 +207,9 @@ $(function() {
             dataType: "json",
             xhrFields: {
                 withCredentials: true
+            },
+            error: function(reason) {
+                $button.html("error");
             },
             complete: function(response) {
                 $button.html('<i class="fa fa-trash"></i> Remove');
