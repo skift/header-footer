@@ -302,7 +302,7 @@ $(function() {
         $(".sign-in").click(function(e) {
            e.stopPropagation();
         });
-
+                
         $(".has-floating-label").keyup(function() {
             if ($(this).val() !== "") {
                 $(this).parent().addClass("has-text");
