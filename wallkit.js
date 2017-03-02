@@ -111,7 +111,7 @@ $(function() {
     var getCartContents = function() {
         clearTimeout(cartCloser);
 
-        var rand = Math.random();
+        var rand = Math.random(); // add a random number to the ajax request to avoid caching issues
 
         $.ajax({
             url: mySkiftAjaxPath + "get-cart-contents.php",
@@ -321,7 +321,7 @@ $(function() {
             }
         });
 
-        var shakeLen = 65;
+        var shakeLen = 80;
         var travelDist = 15;
 
         var shake = function(c, times) {
@@ -393,6 +393,7 @@ $(function() {
                         }, true);
                     } else {
                         showBannerMessage(response.errorMessage, $form)
+                        shake($form,1);
                     }
                 }
             });
