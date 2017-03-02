@@ -145,13 +145,18 @@ $(function() {
                 
                 $cartItem.fadeOut(function() {
                    $(this).remove();
-
-                   if (!$cart.find(".cart-item").length) {
-                       $cart.fadeOut();
-                       $(".shopping-cart-page .totals-area").fadeOut(function() {
-                           $(".shopping-cart-page .no-items").fadeIn();
-                       });
-                   }
+                    
+                    if ($(".shopping-cart-page").length && $button.hasClass("floating-remove-from-cart-btn")) {
+                        // user is on the cart page but deleted the item in the floating cart
+                        location.reload();
+                    } else {
+                        if (!$cart.find(".cart-item").length) {
+                            $cart.fadeOut();
+                            $(".shopping-cart-page .totals-area").fadeOut(function() {
+                                $(".shopping-cart-page .no-items").fadeIn();
+                            });
+                        }
+                    }
                 });
 
                 getCartContents();
