@@ -79,7 +79,9 @@ $(function() {
 
             $cart.find(".cart-item:not(.template)").remove();
 
-            $cart.find(".total-price").html(cartContents.pricing.discounted_total_price);
+            $(".shopping-cart .total-price").html(cartContents.pricing.discounted_total_price);
+            $(".shopping-cart .pre-total-price").html(cartContents.pricing.total_price);
+            $(".shopping-cart .discount").html(cartContents.pricing.discount);
 
             var items = cartContents.items;
 
@@ -204,11 +206,11 @@ $(function() {
             },
             complete: function(response) {
                 $button.html('<i class="fa fa-trash"></i> Remove');
-
+                
                 $cartItem.fadeOut(function() {
                    $(this).remove();
 
-                   if (!$cart.find(".cartItem").length) {
+                   if (!$cart.find(".cart-item").length) {
                        $cart.fadeOut();
                        $(".shopping-cart-page .totals-area").fadeOut(function() {
                            $(".shopping-cart-page .no-items").fadeIn();
