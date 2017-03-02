@@ -13,4 +13,3 @@ function getQSParameterByName(name) {
 // @codekit-append "cart-functions.js"
 // @codekit-append "mobile-account-manager.js"
 // @codekit-append "login.js"
-
