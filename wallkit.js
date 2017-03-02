@@ -79,7 +79,7 @@ $(function() {
 
             $cart.find(".cart-item:not(.template)").remove();
 
-            $cart.find(".total-price").html(cartContents.total);
+            $cart.find(".total-price").html(cartContents.pricing.discounted_total_price);
 
             var items = cartContents.items;
 
@@ -159,6 +159,7 @@ $(function() {
             },
             error: function(reason) {
                 $button.html("error");
+                console.error("Error adding to cart", reason);
             },
             success: function(response) {
                 console.log("add to cart response", response);
@@ -180,16 +181,6 @@ $(function() {
             }
         });
     });
-
-    var updateCartTotal = function($cart) {
-        var total = 0;
-
-        $cart.find(".cart-item").each(function() {
-            total += parseFloat($(this).find(".item-price span").html());
-        });
-
-        $cart.find(".total-price").html(total);
-    };
 
     $(document).on("click", ".remove-from-cart-btn", function() {
         var $button = $(this);
