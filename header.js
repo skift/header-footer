@@ -209,4 +209,4 @@ $(function() {
     });
 });
 
-// @codekit-append "wallkit.js"
+// @codekit-append "wallkit-js/wallkit.js"
