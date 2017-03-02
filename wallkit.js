@@ -303,7 +303,7 @@ $(function() {
            e.stopPropagation();
         });
                 
-        $(".has-floating-label").keyup(function() {
+        $(".has-floating-label").on("change keyup blur input", function() {
             if ($(this).val() !== "") {
                 $(this).parent().addClass("has-text");
             } else {
