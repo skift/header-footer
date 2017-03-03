@@ -171,7 +171,7 @@ $signed_in = !empty($user_info);
                                     <div class='item-details'>
                                         <div class='item-name'><h3></h3></div>
                                         <div class='item-price'>$<span></span></div>
-                                        <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
+                                        <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn floating-remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
