@@ -51,6 +51,10 @@ $(function() {
           });
       }
   }
+  
+  $("#mobile-search-close, #mobile-search #search-trigger").click(function() {
+     $("#mobile-search-form").toggleClass("open"); 
+  });
 
 /*
     var lookForBouncexNanoBar = setInterval(function() {

@@ -341,11 +341,7 @@ body {
             }
         }
         
-        #mobileMenuBtn {
-            display: none;
-        }
-        
-        #mobile-menu {
+        #mobileMenuBtn, #mobile-menu, #mobile-search, #mobile-search-form {
             display: none;
         }
     }
@@ -484,6 +480,71 @@ body {
                         margin:20px 0;
                     }
                 }
+            }
+            
+            #mobile-search {
+                display: block;
+                
+                width:30px;
+                height:25px;
+                
+                position: absolute;
+                right:60px;
+                top:50%;
+                z-index: 999999999;
+                
+                transform:translate(0,-50%);
+                
+                cursor: pointer;
+                
+                color: #000;
+                font-size: 25px;
+            }
+            
+            #mobile-search-form {
+                background-color:$darkYellow;
+                width:100%;
+                position: absolute;
+                top:0;
+                z-index: -1;
+                padding:10px 15px;
+                
+                display: inline-block;
+                
+                @include transition(0.3s top);
+                
+                &.open {
+                    top:70px;
+                }
+                    
+                input[type=search] {
+                    border:0;
+                    background:none;
+                    -webkit-appearance: none;
+                    outline:none;
+                    color:$black;
+                    padding:0 5px;
+                    font-size: 14px;
+                    width:calc(100% - 50px);
+                    border-bottom:1px solid #000;
+                }
+                input[type=button], button[type=submit] {
+                    border:0;
+                    background:none;
+                    -webkit-appearance: none;
+                    outline:none;
+                    color:rgba(0, 0, 0, 0.65);
+                    padding: 0;
+                    font-size:30px;
+                    margin: 0;
+                    vertical-align: bottom;
+                    display: inline-block;
+                }
+                button[type=submit] {
+                    font-size:18px;
+                    padding-left:5px;
+                }
+
             }
             
             #mobileMenuBtn {

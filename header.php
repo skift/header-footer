@@ -162,7 +162,18 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
 
         <div class="clearfix"></div>
 
-
+        <div id="mobile-search">
+            <div id="search-trigger"><i class="fa fa-search"></i></div>
+        </div>
+        
+        <div id="mobile-search-form">
+            <form method="get" action="<?php echo $url_paths["main"]; ?>">
+                <input type="button" value="&times;" id="mobile-search-close" name="clear" />
+                <input type="search" value="<?php echo $_GET['s']; ?>" name="s" id="mobile-search-box" class="text" />
+                <button type="submit" id="mobile-search-go" name="go"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+            
         <div id="mobileMenuBtn">
             <div class="top-line"></div>
             <div class="middle">
