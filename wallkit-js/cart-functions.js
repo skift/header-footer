@@ -100,7 +100,7 @@ $(function() {
                 console.error("Error adding to cart", reason);
             },
             success: function(response) {
-                console.log("add to cart response", response);
+                //console.log("add to cart response", response);
                 $button.html("<i class='fa fa-check'></i> In Cart");
 
                 var cartContents = response.cartContents;
@@ -142,10 +142,10 @@ $(function() {
             },
             complete: function(response) {
                 $button.html('<i class="fa fa-trash"></i> Remove');
-                
+
                 $cartItem.fadeOut(function() {
                    $(this).remove();
-                    
+
                     if ($(".shopping-cart-page").length && $button.hasClass("floating-remove-from-cart-btn")) {
                         // user is on the cart page but deleted the item in the floating cart
                         location.reload();
@@ -164,7 +164,7 @@ $(function() {
             }
         });
     });
-    
+
     $(".cart-btn").click(function() {
         if ($(".sign-in").hasClass("isOpen")) {
             $(".sign-in").removeClass("isOpen");
@@ -174,5 +174,5 @@ $(function() {
 
         $(".shopping-cart").toggleClass("isOpen");
     });
-    
+
 });

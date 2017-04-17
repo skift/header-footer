@@ -138,7 +138,7 @@ $(function() {
         }
 
         if (useAirlinesAd) {
-            console.log("use airlines ad");
+//             console.log("use airlines ad");
             headerAd = {
                 adClass: 'landscapeAd headerAd',
                 slot: '/22809282/airlines',
