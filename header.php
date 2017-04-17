@@ -32,7 +32,7 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://myskift.wpengine.com"
+        "myskift"    => "https://my.skift.com"
     );
 }
 
@@ -43,7 +43,7 @@ if (class_exists("User")) {
     // check user auth using the wallkit plugin
     $auth_user = new User();
 
-    $user_info = $auth_user->info; 
+    $user_info = $auth_user->info;
 } else {
     if (function_exists("user_auth")) {
         // if here, we're on myskift, use the library
@@ -163,7 +163,7 @@ $signed_in = !empty($user_info);
                             <i class="fa fa-shopping-cart fa-lg"></i>
                             <div class="badge">0</div>
                         </a>
-                        
+
                         <div id="cart-popover" class="popover cart-contents">
                             <div class="items">
                                 <div class='cart-item template'>
@@ -175,7 +175,7 @@ $signed_in = !empty($user_info);
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                    
+
                                 <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
                                 <div class="spinner">Loading</div>
                             </div>
@@ -184,7 +184,7 @@ $signed_in = !empty($user_info);
                                     <strong>Total</strong>
                                     <div class="pull-right">$<span class="total-price">0</span></div>
                                 </div>
-                                
+
                                 <div class="buttons">
                                     <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
                                     <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
@@ -192,9 +192,9 @@ $signed_in = !empty($user_info);
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="overlay"></div>
-                    
+
                     <div class="sign-in hasPopover">
 
                         <?php if (!$signed_in) { ?>
@@ -244,7 +244,7 @@ $signed_in = !empty($user_info);
                             <?php } ?>
                         </div>
                     </div>
-                    
+
                     <div class="overlay"></div>
                 </div>
 
@@ -305,7 +305,7 @@ $signed_in = !empty($user_info);
                         'container' => false,
                         'items_wrap' => '%3$s'
                     ));
-                } 
+                }
 
                 if ($showLoginForm) {
 
@@ -320,7 +320,7 @@ $signed_in = !empty($user_info);
                     }
 				}
 				?>
-                
+
             </ul>
         </nav>
     </header>
@@ -345,15 +345,15 @@ $signed_in = !empty($user_info);
             <a href="<?=$url_paths['myskift'];?>/login">Sign In</a>
             <? } ?>
         </div>
-        
+
         <div class="cart-btn">
             <i class="fa fa-shopping-cart fa-lg"></i>
             <div class="badge">0</div>
         </div>
-        
+
         <div class="close-mobile-account-manager"><i class="fa fa-close"></i></div>
     </div>
-    
+
     <div class="mobile-cart-items cart-contents">
         <div class="items">
             <div class='cart-item template'>
@@ -365,24 +365,24 @@ $signed_in = !empty($user_info);
                 </div>
                 <div class="clearfix"></div>
             </div>
-                
+
             <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
             <div class="spinner">Loading</div>
         </div>
-        
+
         <div class="totals-area">
             <div class="total">
                 <strong>Total</strong>
                 <div class="pull-right">$<span class="total-price">0</span></div>
             </div>
-            
+
             <div class="buttons">
                 <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
                 <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
             </div>
         </div>
     </div>
-    
+
 </div>
 <? } ?>
 
