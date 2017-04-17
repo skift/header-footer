@@ -6,7 +6,7 @@ if (host.indexOf("localhost") > -1) {
 }
 
 if (host.indexOf(".wpengine.com") > -1) {
-//     mySkiftPath = "https://myskift.wpengine.com/";
+    mySkiftPath = "https://myskift.wpengine.com/";
 }
 
 if (host.indexOf("myskift.wpengine.com") > -1 || host.indexOf("my.skift.com") > -1) {
