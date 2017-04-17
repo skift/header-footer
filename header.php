@@ -36,6 +36,18 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
     );
 }
 
+if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
+    $url_paths = array(
+        "main"      => "https://skiftish.staging.wpengine.com",
+        "trends"    => "http://dev.research.skift.com",
+        "edu"       => "http://skiftedu.staging.wpengine.com",
+        "forum"     => "http://skforum.staging.wpengine.com",
+        "skiftx"    => "http://skiftx.staging.wpengine.com",
+        "myskift"    => "http://dev.my.skift.com"
+    );
+}
+
+
 // user authentication
 global $user_info;
 
