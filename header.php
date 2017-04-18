@@ -293,9 +293,12 @@ $signed_in = !empty($user_info);
         </div>
 
         <div id="mobile-search-form">
+            <?php
+            $search = (!empty($_GET['s'])) ? $_GET['s'] : '';
+            ?>
             <form method="get" action="<?php echo $url_paths["main"]; ?>">
                 <input type="button" value="&times;" id="mobile-search-close" name="clear" />
-                <input type="search" value="<?php echo $_GET['s']; ?>" name="s" id="mobile-search-box" class="text" />
+                <input type="search" value="<?php echo $search; ?>" name="s" id="mobile-search-box" class="text" />
                 <button type="submit" id="mobile-search-go" name="go"><i class="fa fa-search"></i></button>
             </form>
         </div>
