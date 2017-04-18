@@ -148,6 +148,7 @@ $signed_in = !empty($user_info);
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/business-traveler/">Business Traveler</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/corporate-travel/">Corporate Travel</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/meetings/">Meetings</a></li>
+                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/new-luxury/">New Luxury</a></li>
                             	<li class="menu-item"><a href="http://chefstech.co/subscribe/">Chefs+Tech</a></li>
                             </ul>
                         </div>
@@ -287,6 +288,17 @@ $signed_in = !empty($user_info);
 
         <div class="clearfix"></div>
 
+        <div id="mobile-search">
+            <div id="search-trigger"><i class="fa fa-search"></i></div>
+        </div>
+
+        <div id="mobile-search-form">
+            <form method="get" action="<?php echo $url_paths["main"]; ?>">
+                <input type="button" value="&times;" id="mobile-search-close" name="clear" />
+                <input type="search" value="<?php echo $_GET['s']; ?>" name="s" id="mobile-search-box" class="text" />
+                <button type="submit" id="mobile-search-go" name="go"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
 
         <div id="mobileMenuBtn">
             <div class="top-line"></div>
