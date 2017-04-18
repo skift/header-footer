@@ -8,6 +8,14 @@ function getQSParameterByName(name) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+function cookiesEnabled() {
+    return navigator.cookieEnabled;
+}
+
+function addCookieWarning(after) {
+    $("<div />").addClass("error-text stay").html("This site requires cookies to be enabled.").show().insertAfter(after);
+}
+
 // @codekit-append "wallkit-js/myskift-path.js"
 // @codekit-append "wallkit-js/banner-messages.js"
 // @codekit-append "wallkit-js/cart-functions.js"

@@ -1,13 +1,16 @@
 $(function() {
 
-
     if ($("#header-sign-in-with-popover").length) {
 
         // Header sign in popover
 
+        if (!cookiesEnabled()) {
+            addCookieWarning(".login-form .error-text");
+        }
+
         var clearLoginState = function() {
             var $form = $("#header-sign-in-with-popover");
-            var bannerText = $form.find(".error-text");
+            var bannerText = $form.find(".error-text:not(.stay)");
 
             bannerText.fadeOut(function() {
                 $form.find(".form-group").removeClass("has-error");
@@ -51,7 +54,7 @@ $(function() {
         $(".sign-in").click(function(e) {
            e.stopPropagation();
         });
-                
+
         $(".has-floating-label").on("change keyup blur input", function() {
             if ($(this).val() !== "") {
                 $(this).parent().addClass("has-text");
@@ -134,7 +137,7 @@ $(function() {
 
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
-                                    
+
                                     if (path.indexOf("/login") > -1) {
                                         location.href = mySkiftPath;
                                     } else {
