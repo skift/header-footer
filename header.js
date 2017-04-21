@@ -167,30 +167,6 @@ $(function() {
       appendTo: $("#top-banner")
     };
 
-    var useAirlinesAd = false;
-
-    if ($("#archive-tag").length) {
-        //tag page eg: airlines
-
-        var pageName = $("#archive-header-container h1").text();
-
-        if (pageName === "Airlines") {
-            useAirlinesAd = true;
-        }
-    }
-
-    if (useAirlinesAd) {
-        console.log("use airlines ad");
-        headerAd = {
-            adClass: 'landscapeAd headerAd',
-            slot: '/22809282/airlines',
-            size: [970,90],
-            ignoreContainerHeight: true,
-            appendTo: $("#top-banner")
-        };
-    }
-
-
     createAd(headerAd, setHeaderOffset);
   }
 
