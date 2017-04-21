@@ -1,68 +1,70 @@
+var currentCartContents;
+
+var cartCloser;
+
+var refreshCart = function(cartContents) {
+
+    if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
+        currentCartContents = cartContents;
+
+        $cart = $(".shopping-cart .cart-contents");
+
+        $cart.find(".spinner").hide();
+
+        $cart.find(".cart-item:not(.template)").remove();
+
+        $(".shopping-cart .total-price").html(cartContents.pricing.discounted_total_price);
+        $(".shopping-cart .pre-total-price").html(cartContents.pricing.total_price);
+        $(".shopping-cart .discount").html(cartContents.pricing.discount);
+
+        var items = cartContents.items;
+
+        $(".shopping-cart .badge").html(items.length);
+
+        if (items.length > 0) {
+            $cart.find(".no-items").fadeOut("fast");
+            $(".shopping-cart .badge").show();
+        } else {
+            $cart.find(".no-items").fadeIn("fast");
+            $(".shopping-cart .badge").hide();
+        }
+
+        for (var i = 0; i < items.length; i++) {
+            var thisItem = items[i];
+
+            $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
+                .find(".photo img").attr("src", thisItem.image).end()
+                .find(".item-name h3").html(thisItem.title).end()
+                .find(".item-price span").html(thisItem.price).end()
+                .find(".remove-from-cart-btn").data("index", thisItem.index).end()
+                .insertBefore($cart.find(".items .cart-item.template")).removeClass("template").fadeIn();
+        }
+    }
+};
+
+var getCartContents = function() {
+    clearTimeout(cartCloser);
+
+    var rand = Math.random(); // add a random number to the ajax request to avoid caching issues
+
+    $.ajax({
+        url: mySkiftAjaxPath + "get-cart-contents.php",
+        method: "POST",
+        data: {rand:rand},
+        dataType: "json",
+        xhrFields: {
+            withCredentials: true
+        },
+        error: function(reason) {
+            console.error("error getting cart contents", reason);
+        },
+        success: refreshCart
+    });
+};
+
 $(function() {
 
-    var currentCartContents;
 
-    var cartCloser;
-
-    var refreshCart = function(cartContents) {
-
-        if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
-            currentCartContents = cartContents;
-
-            $cart = $(".shopping-cart .cart-contents");
-
-            $cart.find(".spinner").hide();
-
-            $cart.find(".cart-item:not(.template)").remove();
-
-            $(".shopping-cart .total-price").html(cartContents.pricing.discounted_total_price);
-            $(".shopping-cart .pre-total-price").html(cartContents.pricing.total_price);
-            $(".shopping-cart .discount").html(cartContents.pricing.discount);
-
-            var items = cartContents.items;
-
-            $(".shopping-cart .badge").html(items.length);
-
-            if (items.length > 0) {
-                $cart.find(".no-items").fadeOut("fast");
-                $(".shopping-cart .badge").show();
-            } else {
-                $cart.find(".no-items").fadeIn("fast");
-                $(".shopping-cart .badge").hide();
-            }
-
-            for (var i = 0; i < items.length; i++) {
-                var thisItem = items[i];
-
-                $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
-                    .find(".photo img").attr("src", thisItem.image).end()
-                    .find(".item-name h3").html(thisItem.title).end()
-                    .find(".item-price span").html(thisItem.price).end()
-                    .find(".remove-from-cart-btn").data("index", thisItem.index).end()
-                    .insertBefore($cart.find(".items .cart-item.template")).removeClass("template").fadeIn();
-            }
-        }
-    };
-
-    var getCartContents = function() {
-        clearTimeout(cartCloser);
-
-        var rand = Math.random(); // add a random number to the ajax request to avoid caching issues
-
-        $.ajax({
-            url: mySkiftAjaxPath + "get-cart-contents.php",
-            method: "POST",
-            data: {rand:rand},
-            dataType: "json",
-            xhrFields: {
-                withCredentials: true
-            },
-            error: function(reason) {
-                console.error("error getting cart contents", reason);
-            },
-            success: refreshCart
-        });
-    };
 
     getCartContents();
 
