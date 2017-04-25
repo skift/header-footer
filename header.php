@@ -252,7 +252,11 @@ $signed_in = !empty($user_info);
                                     <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
                                 </ul>
 
+                                <?php if ($user_info["first_name"] && $user_info["last_name"]) { ?>
                                 <p>Welcome, <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>!</p>
+                                <?php } else { ?>
+                                <p>Welcome!</p>
+                                <?php } ?>
 
                             <?php } ?>
                         </div>
