@@ -3,7 +3,7 @@ var currentCartContents;
 var cartCloser;
 
 var refreshCart = function(cartContents) {
-    console.log("refresh cart", cartContents);
+    //console.log("refresh cart", cartContents);
 
     if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
 
@@ -34,7 +34,7 @@ var refreshCart = function(cartContents) {
         for (var i = 0; i < items.length; i++) {
             var thisItem = items[i];
 
-            console.log("this item", thisItem, thisItem.contentId, thisItem.resourceId);
+            //console.log("this item", thisItem, thisItem.contentId, thisItem.resourceId);
 
             $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
                 .data("contentid", thisItem.contentId).data("resourceid", thisItem.resourceId)
@@ -105,7 +105,7 @@ $(function() {
                 console.error("Error adding to cart", reason);
             },
             success: function(response) {
-                console.log("add to cart response", response);
+               // console.log("add to cart response", response);
 //                 $button.find(".btn-container").html("<i class='fa fa-check'></i> In Cart");
 
                 $(".buy-btn[data-contentid=" + contentId + "]").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn").find(".btn-container").html("<i class='fa fa-check'></i> In Cart");
@@ -138,7 +138,7 @@ $(function() {
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
 
-        console.log("remove data", {contentId:contentId, resourceId:resourceId});
+        //console.log("remove data", {contentId:contentId, resourceId:resourceId});
 
         $.ajax({
             url: mySkiftAjaxPath + "remove-from-cart.php",
@@ -152,10 +152,10 @@ $(function() {
                 $button.html("error");
             },
             complete: function(response) {
-                console.log("remove response", response);
+                //console.log("remove response", response);
 
                 var responseJson = response.responseJSON;
-                console.log("remove response json", responseJson);
+                //console.log("remove response json", responseJson);
 
                 $button.html('<i class="fa fa-trash"></i> Remove');
 
