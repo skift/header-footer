@@ -3,8 +3,10 @@ var currentCartContents;
 var cartCloser;
 
 var refreshCart = function(cartContents) {
+    console.log("refresh cart", cartContents);
 
     if (JSON.stringify(currentCartContents) !== JSON.stringify(cartContents) ) {
+
         currentCartContents = cartContents;
 
         $cart = $(".shopping-cart .cart-contents");
@@ -32,7 +34,10 @@ var refreshCart = function(cartContents) {
         for (var i = 0; i < items.length; i++) {
             var thisItem = items[i];
 
+            console.log("this item", thisItem, thisItem.contentId, thisItem.resourceId);
+
             $( $(".shopping-cart .cart-contents.popover .cart-item.template").clone() )
+                .data("contentid", thisItem.contentId).data("resourceid", thisItem.resourceId)
                 .find(".photo img").attr("src", thisItem.image).end()
                 .find(".item-name h3").html(thisItem.title).end()
                 .find(".item-price span").html(thisItem.price).end()
@@ -64,8 +69,6 @@ var getCartContents = function() {
 
 $(function() {
 
-
-
     getCartContents();
 
     $(document).on("click",".add-to-cart-btn",function() {
@@ -85,7 +88,7 @@ $(function() {
             type: type
         };
 
-        $button.html("<i class='fa fa-cog fa-spin'></i> Adding to Cart").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn");
+        $button.addClass("disabled in-cart-btn").removeClass("add-to-cart-btn").find(".btn-container").html("<i class='fa fa-cog fa-spin'></i> Adding to Cart");
 
         clearTimeout(cartCloser);
 
@@ -102,8 +105,10 @@ $(function() {
                 console.error("Error adding to cart", reason);
             },
             success: function(response) {
-                //console.log("add to cart response", response);
-                $button.html("<i class='fa fa-check'></i> In Cart");
+                console.log("add to cart response", response);
+//                 $button.find(".btn-container").html("<i class='fa fa-check'></i> In Cart");
+
+                $(".buy-btn[data-contentid=" + contentId + "]").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn").find(".btn-container").html("<i class='fa fa-check'></i> In Cart");
 
                 var cartContents = response.cartContents;
 
@@ -126,15 +131,19 @@ $(function() {
         var $button = $(this);
         var $cartItem = $button.closest(".cart-item");
         var $cart = $cartItem.closest(".cart-items");
-        var index = $button.data("index");
+
+        var contentId = $cartItem.data("contentid");
+        var resourceId = $cartItem.data("resourceid");
 
         $button.html('<i class="fa fa-cog fa-spin"></i> Remove');
         $button.prop("disabled", true);
 
+        console.log("remove data", {contentId:contentId, resourceId:resourceId});
+
         $.ajax({
             url: mySkiftAjaxPath + "remove-from-cart.php",
             method: "POST",
-            data: {index:index},
+            data: {contentId:contentId, resourceId:resourceId},
             dataType: "json",
             xhrFields: {
                 withCredentials: true
@@ -143,7 +152,18 @@ $(function() {
                 $button.html("error");
             },
             complete: function(response) {
+                console.log("remove response", response);
+
+                var responseJson = response.responseJSON;
+                console.log("remove response json", responseJson);
+
                 $button.html('<i class="fa fa-trash"></i> Remove');
+
+                if (responseJson.data.type === "content") {
+                    $(".buy-btn[data-contentid=" + responseJson.data.content_id + "]").addClass("add-to-cart-btn").removeClass("disabled in-cart-btn").find(".btn-container").html("<div>Buy This Report Now</div><span>$295</span>");
+                } else {
+                    $(".buy-btn[data-contentid=" + responseJson.data.content_id + "]").addClass("add-to-cart-btn").removeClass("disabled in-cart-btn").find(".btn-container").html("Subscribe Now");
+                }
 
                 $cartItem.fadeOut(function() {
                    $(this).remove();
