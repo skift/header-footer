@@ -138,7 +138,7 @@ $(function() {
                                 if ($form.hasClass("reload")) {
                                     var path = location.pathname;
 
-                                    if (path.indexOf("/login") > -1) {
+                                    if (path.indexOf("/login") > -1 || path.indexOf("/create-account") > -1) {
                                         location.href = mySkiftPath;
                                     } else {
                                         location.reload();
