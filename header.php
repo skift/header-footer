@@ -38,7 +38,7 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
 
 if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
     $url_paths = array(
-        "main"      => "https://skiftish.staging.wpengine.com",
+        "main"      => "https://dev.staging.wpengine.com",
         "trends"    => "http://dev.research.skift.com",
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
@@ -121,10 +121,10 @@ $signed_in = !empty($user_info);
                     </div>
                 <?php } ?>
                 <ul id="navigation-menu">
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news/"<?php if ($select_tab === "news") { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
                         <div class="sub-menu">
                             <ul>
-                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/">Latest News</a></li>
+                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news/">Latest News</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/rooms/hotels/">Hotels</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/destinations/">Destinations</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/digital/">Digital</a></li>
@@ -323,7 +323,7 @@ $signed_in = !empty($user_info);
 
                 if (!$hasSubNav || $useMainMobileMenu) {
                 ?>
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/<?php echo date("Y"); ?>/">News</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news/">News</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>">Research</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
