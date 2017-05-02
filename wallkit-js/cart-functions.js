@@ -68,8 +68,9 @@ var getCartContents = function() {
 };
 
 $(function() {
-
-    getCartContents();
+    if ($(".shopping-cart").length) {
+        getCartContents();
+    }
 
     $(document).on("click",".add-to-cart-btn",function() {
         var $button = $(this);
