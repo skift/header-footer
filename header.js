@@ -7,7 +7,6 @@ $(function() {
   var $headerPad = $("#header-pad");
   var scrollOffset;
   var headerTop = 0;
-  var headerOffset = 0;
 
   var noFix = $header.hasClass("no-fix");
 
