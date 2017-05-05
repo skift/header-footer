@@ -170,16 +170,26 @@ $(function() {
     createAd(headerAd, setHeaderOffset);
   }
 
-  //social share buttons
-  var socialPop = function(baseLink, title,width,height) {
+  var generateShareLink = function(baseLink, urlencode) {
       var shareLink = location.href;
       if (typeof shareID !== 'undefined' && shareID) {
           shareLink += "?shareID=" + shareID;
       }
-      console.log("shareLink", shareLink);
-      shareLink = encodeURIComponent(shareLink);
+//       console.log("shareLink", shareLink);
+
+      if (urlencode) {
+        shareLink = encodeURIComponent(shareLink);
+      }
+
       baseLink = baseLink.replace("_SHARELINK_", shareLink);
-      window.open(baseLink, title, "width=" + width + ", height=" + height + ", menubar=no, resizable=no, scrollbars=no, status=no, toolbar=no, titlebar=no");
+
+      return baseLink;
+  };
+
+  //social share buttons
+  var socialPop = function(baseLink, title,width,height) {
+      var link = generateShareLink(baseLink, true);
+      window.open(link, title, "width=" + width + ", height=" + height + ", menubar=no, resizable=no, scrollbars=no, status=no, toolbar=no, titlebar=no");
   };
 
   var getGAtag = function(isTop) {
@@ -218,8 +228,9 @@ $(function() {
 
   $(document).on("click",".article-social-btn.email,.header-social-btn.email",function() {
       ga('send', 'event', getGAtag($(this).hasClass("top")), 'Email', location.href);
+      var link = generateShareLink("_SHARELINK_", false);
 
-      location.href = "mailto:?subject=" + encodeURIComponent(document.title) + "&body=" + encodeURIComponent(document.title) + " _SHARELINK_";
+      location.href = "mailto:?subject=" + encodeURIComponent(document.title) + "&body=" + encodeURIComponent(document.title + " " + link);
   });
 
   $("#search #search-trigger").click(function(e) {
