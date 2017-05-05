@@ -172,9 +172,11 @@ $(function() {
 
   var generateShareLink = function(baseLink, urlencode) {
       var shareLink = location.href;
+/*
       if (typeof shareID !== 'undefined' && shareID) {
           shareLink += "?shareID=" + shareID;
       }
+*/
 //       console.log("shareLink", shareLink);
 
       if (urlencode) {
