@@ -175,6 +175,8 @@ if (class_exists("IPWhitelist")) {
             <?php if ($showLoginForm) { ?>
 
                 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
+
+                    <?php if (!$white_listed) { ?>
                     <div class="shopping-cart hasPopover">
                         <a href="javascript:" class="cart-btn">
                             <i class="fa fa-shopping-cart fa-lg"></i>
@@ -209,6 +211,7 @@ if (class_exists("IPWhitelist")) {
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
 
                     <div class="overlay"></div>
 
@@ -217,7 +220,7 @@ if (class_exists("IPWhitelist")) {
                         <?php if (!$signed_in && !$white_listed) { ?>
                             <a href="javascript:" class="sign-in-btn">Sign In</a>
                         <?php } else if ($white_listed) { ?>
-                            <?php echo $white_listed; ?>
+                            <?php echo "Welcome $white_listed!"; ?>
                         <?php } else { ?>
                             <a href="javascript:" class="sign-in-btn my-account-btn">
                                 <span class="fa-stack fa-lg">
