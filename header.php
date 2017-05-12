@@ -47,7 +47,6 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
     );
 }
 
-
 // user authentication
 global $user_info;
 
@@ -67,6 +66,11 @@ if (class_exists("User")) {
 }
 
 $signed_in = !empty($user_info);
+
+if (class_exists("IPWhitelist")) {
+    $ip = new IPWhitelist($_SERVER['REMOTE_ADDR']);
+    $white_listed = $ip->whitelisted();
+}
 ?>
 
 <div id="header-container"<?php if ($hasSubNav) { echo ' class="has-sub-nav"'; } ?>>
@@ -210,8 +214,10 @@ $signed_in = !empty($user_info);
 
                     <div class="sign-in hasPopover">
 
-                        <?php if (!$signed_in) { ?>
+                        <?php if (!$signed_in && !$white_listed) { ?>
                             <a href="javascript:" class="sign-in-btn">Sign In</a>
+                        <?php } else if ($white_listed) { ?>
+                            <?php echo $white_listed; ?>
                         <?php } else { ?>
                             <a href="javascript:" class="sign-in-btn my-account-btn">
                                 <span class="fa-stack fa-lg">
