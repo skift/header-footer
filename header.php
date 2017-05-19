@@ -67,9 +67,9 @@ if (class_exists("User")) {
 
 $signed_in = !empty($user_info);
 
-if (class_exists("IPWhitelist")) {
-    $ip = new IPWhitelist($_SERVER['REMOTE_ADDR']);
-    $white_listed = $ip->whitelisted();
+$white_listed = false;
+if (function_exists("is_whitelisted")) {
+    $white_listed = is_whitelisted();
 }
 ?>
 
