@@ -246,6 +246,4 @@ $(function() {
 
     e.stopPropagation();
   });
-
-    // @codekit-append "wallkit.js"
 });
