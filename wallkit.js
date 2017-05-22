@@ -21,3 +21,4 @@ function addCookieWarning(after) {
 // @codekit-append "wallkit-js/cart-functions.js"
 // @codekit-append "wallkit-js/mobile-account-manager.js"
 // @codekit-append "wallkit-js/login.js"
+// @codekit-append "wallkit-js/wk-tracking.js

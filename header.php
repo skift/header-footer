@@ -69,8 +69,6 @@ $signed_in = !empty($user_info);
 
 $white_listed = false;
 if (function_exists("is_whitelisted")) {
-    // $ip = new IPWhitelist($_SERVER['REMOTE_ADDR']);
-    // $white_listed = $ip->whitelisted();
     $white_listed = is_whitelisted();
 }
 ?>
