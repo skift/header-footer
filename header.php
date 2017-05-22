@@ -151,7 +151,7 @@ if (function_exists("is_whitelisted")) {
                             <ul>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/daily/">Daily</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/weekly-review/">Weekly</a></li>
-                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/business-traveler/">Business Traveler</a></li>
+                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/business-of-loyalty/">Business of Loyalty</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/corporate-travel/">Corporate Travel</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/meetings/">Meetings</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/new-luxury/">New Luxury</a></li>
