@@ -189,7 +189,7 @@ if (function_exists("is_whitelisted")) {
                                     <div class='photo'><img src='#' /></div>
                                     <div class='item-details'>
                                         <div class='item-name'><h3></h3></div>
-                                        <div class='item-price'>$<span></span></div>
+                                        <div class='item-price'>$<span></span> USD</div>
                                         <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn floating-remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -201,7 +201,7 @@ if (function_exists("is_whitelisted")) {
                             <div class="chin">
                                 <div class="total">
                                     <strong>Total</strong>
-                                    <div class="pull-right">$<span class="total-price">0</span></div>
+                                    <div class="pull-right">$<span class="total-price">0</span> USD</div>
                                 </div>
 
                                 <div class="buttons">
