@@ -53,13 +53,15 @@ googletag.cmd = googletag.cmd || [];
         var sectors = [];
         var thisSector;
 
+
         // loop through all categories
         for (var i = 0; i < categories.length; i++) {
             thisSector = sectorMapping[categories[i]];
 
             // if we haven't sent a particular sector yet...
-            if (thisSector !== '' && sectors.indexOf(thisSector) === -1) {
+            if (typeof thisSector !== 'undefined' && thisSector && sectors.indexOf(thisSector) === -1) {
                 sectors.push(thisSector);
+                console.log('sector', thisSector);
 
                 // ...and push it to GA
                 ga('send', 'event', 'sector', 'page view', thisSector);
