@@ -61,7 +61,6 @@ googletag.cmd = googletag.cmd || [];
             // if we haven't sent a particular sector yet...
             if (typeof thisSector !== 'undefined' && thisSector && sectors.indexOf(thisSector) === -1) {
                 sectors.push(thisSector);
-                console.log('sector', thisSector);
 
                 // ...and push it to GA
                 ga('send', 'event', 'sector', 'page view', thisSector);
