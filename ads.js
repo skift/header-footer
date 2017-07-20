@@ -58,7 +58,7 @@ googletag.cmd = googletag.cmd || [];
             thisSector = sectorMapping[categories[i]];
 
             // if we haven't sent a particular sector yet...
-            if (sectors.indexOf(thisSector) === -1) {
+            if (thisSector !== '' && sectors.indexOf(thisSector) === -1) {
                 sectors.push(thisSector);
 
                 // ...and push it to GA
