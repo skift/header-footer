@@ -9,6 +9,64 @@ googletag.cmd = googletag.cmd || [];
     gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
     var node = document.getElementsByTagName('script')[0];
     node.parentNode.insertBefore(gads, node);
+
+
+    // send sector page view to GA
+
+    var sectorMapping = {
+        'destinations': 'tourism',
+        'africa': 'tourism',
+        'asia-destinations': 'tourism',
+        'australia-new-zealand-south-pacific': 'tourism',
+        'central-south-america': 'tourism',
+        'europe-destinations': 'tourism',
+        'middle-east': 'tourism',
+        'north-america': 'tourism',
+        'digital': 'travel-tech',
+        'booking-sites': 'online-booking',
+        'media': 'travel-tech',
+        'mobile': 'travel-tech',
+        'services': 'travel-tech',
+        'startups': 'travel-tech',
+        'venture-capital': 'travel-tech',
+        'food-beverage': 'food-beverage',
+        'chefstech': 'food-beverage',
+        'rooms': 'accommodations',
+        'hotels': 'accommodations',
+        'rentalsandshares': 'accommodations',
+        'transport': 'airlines',  //maybe not?
+        'airlines': 'airlines',
+        'airports': 'airlines',
+        'cars': 'ground-transport',
+        'cruises': 'cruises',
+        'transit': 'ground-transport',
+        'trains': 'ground-transport',
+        'travel-services': 'travel-agents-and-tour-operators',
+        'corporate-travel': 'corporate-travel',
+        'luxury-travel': 'travel-agents-and-tour-operators',
+        'meetings-and-events': 'meetings-and-events',
+        'tour-operators': 'travel-agents-and-tour-operators',
+        'travel-agents': 'travel-agents-and-tour-operators'
+    };
+
+    if (categories && categories.length) {
+        var sectors = [];
+        var thisSector;
+
+        // loop through all categories
+        for (var i = 0; i < categories.length; i++) {
+            thisSector = sectorMapping[categories[i]];
+
+            // if we haven't sent a particular sector yet...
+            if (sectors.indexOf(thisSector) === -1) {
+                sectors.push(thisSector);
+
+                // ...and push it to GA
+                ga('send', 'event', 'sector', 'page view', thisSector);
+            }
+        }
+    }
+
 })();
 
 googletag.cmd.push(function() {
@@ -123,7 +181,7 @@ function createAd(ad,callback) {
         if (exists(categories)) {
             slot.setTargeting("categories", categories);
         }
-        
+
         if (exists(tags)) {
             slot.setTargeting("tags", tags);
         }
