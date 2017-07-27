@@ -1,4 +1,11 @@
 <?php
+$skift_5th_start = strtotime('07/31/2017 12:00 am');
+$skift_5th_end = strtotime('08/7/2017 12:00 am');
+$now = time();
+
+$use_skift_5th_logo = ($now >= $skift_5th_start && $now < $skift_5th_end);
+
+
 $hasSubNav = !empty($sub_nav);
 
 session_start();
@@ -99,11 +106,20 @@ if (function_exists("is_whitelisted")) {
 
     <header id="header" class="<?php echo $header_classes; ?>">
         <div id="header-left">
-            <div id="logo">
-                <a href="<?php echo $url_paths["main"]; ?>">
-                    <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
-                </a>
-            </div><!-- #logo -->
+
+            <?php if ($use_skift_5th_logo) { ?>
+                <div id="logo" class="skift5th">
+                    <a href="<?php echo $url_paths["main"]; ?>">
+                        <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-5th-logo.png" alt="Skift is 5 Logo" />
+                    </a>
+                </div>
+            <?php } else { ?>
+                <div id="logo">
+                    <a href="<?php echo $url_paths["main"]; ?>">
+                        <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
+                    </a>
+                </div>
+            <?php } ?>
 
             <nav id="primary-nav">
                 <?php if ($hasSubNav) { ?>
