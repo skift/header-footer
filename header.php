@@ -1,5 +1,5 @@
 <?php
-$skift_5th_start = strtotime('07/31/2017 12:00 am');
+$skift_5th_start = strtotime('07/30/2017 12:00 am');
 $skift_5th_end = strtotime('08/7/2017 12:00 am');
 $now = time();
 
