@@ -108,13 +108,13 @@ if (function_exists("is_whitelisted")) {
         <div id="header-left">
 
             <?php if ($use_skift_5th_logo) { ?>
-                <div id="logo" class="skift5th" style="padding: 10px 30px;">
+                <div id="logo" class="skift5th <?php echo $now; ?>" style="padding: 10px 30px;">
                     <a href="<?php echo $url_paths["main"]; ?>">
                         <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-5th-logo.png" alt="Skift is 5 Logo" style="height: 45px;" />
                     </a>
                 </div>
             <?php } else { ?>
-                <div id="logo">
+                <div id="logo" class="<?php echo $now; ?>">
                     <a href="<?php echo $url_paths["main"]; ?>">
                         <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                     </a>
