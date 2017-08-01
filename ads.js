@@ -58,6 +58,10 @@ googletag.cmd = googletag.cmd || [];
         for (var i = 0; i < categories.length; i++) {
             thisSector = sectorMapping[categories[i]];
 
+            //send category view (already tracking, but seems inaccurate)
+            thisCategory = categories[i];
+            ga('send', 'event', 'category', 'page view', thisCategory);
+
             // if we haven't sent a particular sector yet...
             if (typeof thisSector !== 'undefined' && thisSector && sectors.indexOf(thisSector) === -1) {
                 sectors.push(thisSector);
