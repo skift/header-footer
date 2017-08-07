@@ -2,7 +2,7 @@
 
 // Remove if after 8/7/2017
 $skift_5th_start = strtotime('07/30/2017 12:00 am');
-$skift_5th_end = strtotime('08/7/2017 12:00 am');
+$skift_5th_end = strtotime('08/14/2017 12:00 am');
 $now = time();
 
 $use_skift_5th_logo = ($now >= $skift_5th_start && $now < $skift_5th_end);
