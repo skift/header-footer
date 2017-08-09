@@ -36,7 +36,8 @@
                 form.find(".hs-field-desc").css({
                     fontSize: '12px',
                     paddingLeft: '12px',
-                    borderBottom: 'none'
+                    borderBottom: 'none',
+                    marginBottom: '10px'
                 });
 
                 form.find("li.hs-form-radio span, li.hs-form-booleancheckbox span").addClass("control-label");
