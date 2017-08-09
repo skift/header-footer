@@ -22,16 +22,24 @@
                 }
 
                 form.find(".hs-form-field").addClass("form-group");
-//                 form.find(".hs-form-checkbox").addClass("checkbox-control");
-//                 form.find(".hs-form-radio").addClass("radio-control");
+                form.find(".hs-form-checkbox, .hs-form-booleancheckbox").addClass("checkbox-control");
+                form.find(".hs-form-radio").addClass("radio-control");
                 form.find("label").addClass("control-label");
                 form.find(".hs-input").addClass("form-control");
 
-/*
-                form.find(".hs-form-checkbox").each(function() {
+                form.find(".inputs-list").css({
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: 0
+                });
+
+                form.find("li.hs-form-radio span, li.hs-form-booleancheckbox span").addClass("control-label");
+                form.find("li.hs-form-radio label, li.hs-form-booleancheckbox label").removeClass("control-label");
+
+
+                form.find(".hs-form-checkbox:not(li)").each(function() {
                     $(this).find(".form-control").prependTo($(this));
                 });
-*/
 
                 if (!form.hasClass("noPlaceholders")) {
                     form.find(".hs-input").each(function() {
