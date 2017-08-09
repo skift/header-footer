@@ -22,14 +22,16 @@
                 }
 
                 form.find(".hs-form-field").addClass("form-group");
-                form.find(".hs-form-checkbox").addClass("checkbox-control");
-                form.find(".hs-form-radio").addClass("radio-control");
+//                 form.find(".hs-form-checkbox").addClass("checkbox-control");
+//                 form.find(".hs-form-radio").addClass("radio-control");
                 form.find("label").addClass("control-label");
                 form.find(".hs-input").addClass("form-control");
 
+/*
                 form.find(".hs-form-checkbox").each(function() {
                     $(this).find(".form-control").prependTo($(this));
                 });
+*/
 
                 if (!form.hasClass("noPlaceholders")) {
                     form.find(".hs-input").each(function() {
