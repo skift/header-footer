@@ -33,6 +33,12 @@
                     margin: 0
                 });
 
+                form.find(".hs-field-desc").css({
+                    fontSize: '12px',
+                    paddingLeft: '12px',
+                    borderBottom: 'none'
+                });
+
                 form.find("li.hs-form-radio span, li.hs-form-booleancheckbox span").addClass("control-label");
                 form.find("li.hs-form-radio label, li.hs-form-booleancheckbox label").removeClass("control-label");
 
