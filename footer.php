@@ -96,6 +96,8 @@ function getTweets($num) {
                         <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/terms/">Terms of Use</a></li>
                         <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/privacy/">Privacy Policy</a></li>
 					</ul>
+
+					<div class="copyright">&copy; <?php echo date('Y'); ?> Skift Inc. All Rights Reserved</div>
 				</div>
 			</div><!-- first -->
 

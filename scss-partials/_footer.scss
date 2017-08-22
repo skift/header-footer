@@ -16,6 +16,10 @@
         }
     }
 
+    .copyright {
+        font-size: 12px;
+    }
+
     #footer-content {
         margin: 0 auto;
         max-width: 1300px;
@@ -332,7 +336,7 @@
         @media screen and (max-width: $mobileBP){
             display: none;
         }
-        
+
         #footer-content{
             vertical-align: top;
             padding: 5px 5px 0 5px;
