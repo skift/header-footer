@@ -40,8 +40,8 @@
                     marginBottom: '10px'
                 });
 
-                form.find("li.hs-form-radio span, li.hs-form-booleancheckbox span").addClass("control-label");
-                form.find("li.hs-form-radio label, li.hs-form-booleancheckbox label").removeClass("control-label");
+                form.find("li.hs-form-radio span, li.hs-form-booleancheckbox span, .hs-form-checkbox-display span").addClass("control-label");
+                form.find("li.hs-form-radio label, li.hs-form-booleancheckbox label, .hs-form-checkbox-display").removeClass("control-label");
 
 
                 form.find(".hs-form-checkbox:not(li)").each(function() {
