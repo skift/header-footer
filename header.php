@@ -171,6 +171,7 @@ if (function_exists("is_whitelisted")) {
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/corporate-travel/">Corporate Travel</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/meetings/">Meetings</a></li>
                             	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/new-luxury/">New Luxury</a></li>
+                            	<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/airline/">Airline Innovation</a></li>
                             	<li class="menu-item"><a href="http://table.skift.com">Skift Table</a></li>
                             </ul>
                         </div>
