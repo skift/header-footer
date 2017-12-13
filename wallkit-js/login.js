@@ -122,6 +122,9 @@ $(function() {
                     withCredentials: true
                 },
                 error: function(reason) {
+                    $form.find("button").html("Sign In");
+                    $form.find("input,button").attr("disabled", false);
+
                     showBannerMessage("An uexpected error occured.", $form)
                 },
                 success: function(response) {
