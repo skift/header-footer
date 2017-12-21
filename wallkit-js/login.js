@@ -108,28 +108,34 @@ $(function() {
 
             $form.find("input,button").attr("disabled", true);
 
-            var loginData = {
-                login_email: $form.find(".username-field").val(),
-                login_password: $form.find(".password-field").val()
-            };
+            var loginData = new FormData();
+
+            loginData.append('email', $form.find('.username-field').val());
+            loginData.append('password', $form.find('.password-field').val());
 
             $.ajax({
-                url: mySkiftAjaxPath + "login.php",
+                url: "https://wallkit.skift.com/api/v1/authorization",
                 method: "POST",
-                dataType: "json",
                 data: loginData,
-                xhrFields: {
-                    withCredentials: true
+                processData: false,
+                contentType: false,
+                headers: {
+                    resource: 'K3s0S2lda2dSpDw41ds'
                 },
-                error: function(reason) {
-                    showBannerMessage("An uexpected error occured.", $form)
-                },
-                success: function(response) {
-
+                complete: function() {
                     $form.find("button").html("Sign In");
                     $form.find("input,button").attr("disabled", false);
+                },
+                error: function(reason) {
+                    var message = reason.responseJSON.error_description ? reason.responseJSON.error_description : 'An uexpected error occured.';
+                    showBannerMessage(message, $form);
+                    shake($form,1);
+                },
+                success: function(response) {
+                    if (response.active) {
+                        var token = response.token;
+                        setCookie('usr', token, 30);
 
-                    if (response.success) {
                         showBannerMessage("You are now logged in", $form, function() {
                             var redirect = $form.find(".login-redirect").val();
 
@@ -151,7 +157,7 @@ $(function() {
                             }
                         }, true);
                     } else {
-                        showBannerMessage(response.errorMessage, $form)
+                        showBannerMessage('Your account is suspended. Please contact us.', $form)
                         shake($form,1);
                     }
                 }
@@ -167,3 +173,12 @@ $(function() {
     });
 
 });
+
+function setCookie(name, val, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toUTCString();
+
+    var domain = location.hostname === 'localhost' ? 'localhost' : '.' + location.hostname;
+    document.cookie = name + "=" + val + ";" + expires + ";path=/;domain=" + domain;
+}
