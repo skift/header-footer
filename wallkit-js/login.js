@@ -177,7 +177,7 @@ function setCookie(name, val, exdays) {
     var expires = 'expires=' + d.toUTCString();
 
     var host = location.hostname;
-    var domain = host === 'localhost' ? 'localhost' : host.indexOf('.skift') !== -1 ? '.skift.com' : '.wpengine.com';
+    var domain = host === 'localhost' ? 'localhost' : host.indexOf('skift.com') !== -1 ? '.skift.com' : '.wpengine.com';
 
     document.cookie = name + '=' + val + ';' + expires + ';path=/;domain=' + domain;
 }
