@@ -16,11 +16,14 @@
         background-color:$green;
     }
 
-    &.show {
+    &.show, &.visible {
         display: block;
+        @include opacity(1);
+        @include transition(opacity 0.3s);
     }
 
-    &.visible {
+    &.hide {
         display: block;
+        @include opacity(0);
     }
 }
