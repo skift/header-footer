@@ -16,23 +16,11 @@
         background-color:$green;
     }
 
-    &.show, &.visible {
-        display: block !important;
-        @include opacity(1);
-        @include transition(opacity 0.3s);
+    &.show {
+        display: block;
     }
 
-    &.hide {
-        display: block !important;
-        @include opacity(0);
+    &.visible {
+        display: block;
     }
-
-    &.update {
-        animation: blink 1s infinite;
-    }
-}
-
-@keyframes blink {
-	0% { opacity: 0 }
-	50% { opacity: 1 }
 }
