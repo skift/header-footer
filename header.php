@@ -125,13 +125,13 @@ if (function_exists("is_whitelisted")) {
 
             <nav id="primary-nav">
                 <?php if ($hasSubNav) { ?>
-                    <div class="sub-menu<?php if (!empty($sub_nav_logo)) { echo ' has-sub-nav-logo'; } ?>">
-                        <?php
-                        if (!empty($sub_nav_logo)) {
-                            echo "<a href='" . home_url() . "'><img src='$sub_nav_logo' alt='Skift Research' class='sub-nav-logo' /></a>";
-                        }
-                        ?>
-                        <div class="sub-menu-wrap">
+                    <div class="sub-menu">
+                        <div class="sub-menu-wrap<?php if (!empty($sub_nav_logo)) { echo ' has-sub-nav-logo'; } ?>">
+                            <?php
+                            if (!empty($sub_nav_logo)) {
+                                echo "<a href='" . home_url() . "'><img src='$sub_nav_logo' alt='Skift Research' class='sub-nav-logo' /></a>";
+                            }
+                            ?>
                             <ul>
                                 <?php
                                 wp_nav_menu(array(

@@ -122,10 +122,6 @@ body {
 
                 overflow: hidden;
 
-                &.has-sub-nav-logo {
-                    padding-left:135px;
-                }
-
                 .sub-nav-logo {
                     width:100px;
                     height:auto;
@@ -154,11 +150,17 @@ body {
                     overflow-y: hidden;
                     overflow-x: auto;
                     background-color:$darkYellow;
+
+                    &.has-sub-nav-logo {
+                        padding-left:135px;
+                    }
                 }
 
                 .sub-menu-wrap > ul {
                     background-color:$darkYellow;
                     font-size: 0;
+                    margin-bottom: 0;
+                    height: $subNavHeight;
                 }
 
                 ul > li {
@@ -167,6 +169,11 @@ body {
 
                     margin:0;
                     background-color:$darkYellow;
+
+                    &.menu-btn {
+                        top: -4px;
+                        padding: 0 10px;
+                    }
 
                     &:not(.menu-btn) > a {
                         @include header-link();
