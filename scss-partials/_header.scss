@@ -101,13 +101,11 @@ body {
 
             .sub-menu {
                 z-index: -1;
-
-                top:$headerHeight;
-
                 @include transition(top 0.3s);
 
                 width:100%;
-                height:$subNavHeight;
+//                 height:$subNavHeight;
+                height: auto;
 
                 position: absolute;
                 left:0;
@@ -119,7 +117,7 @@ body {
                 display: block;
                 text-align: center;
 
-                background-color:$darkYellow;
+//                 background-color:$darkYellow;
 
                 white-space: nowrap;
                 overflow: hidden;
@@ -148,6 +146,11 @@ body {
                     .sub-nav-logo {
                         left:20px;
                     }
+                }
+
+                & > ul {
+                    background-color:$darkYellow;
+//                     margin-bottom: 30px; // adds area below subnav for more space before nav disapears
                 }
 
                 & ul > li {
@@ -209,7 +212,7 @@ body {
                         }
 
                         .sub-menu {
-                            top:0;
+                            top: 0;
                         }
 
                         &:hover,&.selected {
@@ -219,6 +222,10 @@ body {
 
                             .sub-menu {
                                 top:$headerHeight;
+
+                                & > ul {
+                                    margin-bottom: 30px;
+                                }
                             }
                         }
                     }
