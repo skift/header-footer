@@ -131,15 +131,17 @@ if (function_exists("is_whitelisted")) {
                             echo "<a href='" . home_url() . "'><img src='$sub_nav_logo' alt='Skift Research' class='sub-nav-logo' /></a>";
                         }
                         ?>
-                        <ul>
-                        <?php
-                        wp_nav_menu(array(
-                            'theme_location' => $sub_nav,
-                            'container' => false,
-                            'items_wrap' => '%3$s'
-                        ));
-                        ?>
-                        </ul>
+                        <div class="sub-menu-wrap">
+                            <ul>
+                                <?php
+                                wp_nav_menu(array(
+                                    'theme_location' => $sub_nav,
+                                    'container' => false,
+                                    'items_wrap' => '%3$s'
+                                ));
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                 <?php } ?>
                 <ul id="navigation-menu">
