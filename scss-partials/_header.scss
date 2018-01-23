@@ -109,6 +109,7 @@ body {
 
                 position: absolute;
                 left:0;
+                top:$headerHeight;
 
                 list-style: none;
                 padding:0;
@@ -119,10 +120,7 @@ body {
 
 //                 background-color:$darkYellow;
 
-                white-space: nowrap;
                 overflow: hidden;
-                overflow-y: hidden;
-                overflow-x: auto;
 
                 &.has-sub-nav-logo {
                     padding-left:135px;
@@ -148,16 +146,26 @@ body {
                     }
                 }
 
-                & > ul {
+                .sub-menu-wrap {
+                    width: 100%;
+                    height: auto;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    overflow-y: hidden;
+                    overflow-x: auto;
+                    background-color:$darkYellow;
+                }
+
+                .sub-menu-wrap > ul {
                     background-color:$darkYellow;
                     font-size: 0;
                 }
 
-                & ul > li {
+                ul > li {
                     position: relative;
                     display: inline-block;
 
-                    margin:0 5px;
+                    margin:0;
                     background-color:$darkYellow;
 
                     &:not(.menu-btn) > a {
@@ -201,7 +209,7 @@ body {
                     & > li {
                         display: inline-block;
 
-                        margin:0 5px;
+                        margin: 0 5px;
 
                         & > a {
                             @include header-link();
@@ -224,7 +232,7 @@ body {
                             .sub-menu {
                                 top:$headerHeight;
 
-                                & > ul {
+                                .sub-menu-wrap {
                                     margin-bottom: 30px;
                                 }
                             }
