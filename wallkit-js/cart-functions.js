@@ -167,13 +167,26 @@ $(function() {
 
         //console.log("remove data", {contentId:contentId, resourceId:resourceId});
 
-        console.log('remove', contentId, resourceId);
+
 
         var newCart = [];
+        var removedItem;
 
         for (var i = 0, e = cartItems.length; i < e; i++) {
             if (!(cartItems[i].resource_id === resourceId && cartItems[i].content_id === contentId)) {
                 newCart.push(cartItems[i]);
+            } else {
+                removedItem = cartItems[i];
+            }
+        }
+
+        console.log('removed item', removedItem);
+
+        if (removedItem) {
+            if (removedItem.type === "content") {
+                $(".buy-btn[data-contentid=" + removedItem.content_id + "]").addClass("add-to-cart-btn").removeClass("disabled in-cart-btn").find(".btn-container").html("<div><strong>Buy This Report Now</strong></div><span>$295</span>");
+            } else {
+                $(".buy-btn[data-contentid=" + removedItem.content_id + "]").addClass("add-to-cart-btn").removeClass("disabled in-cart-btn").find(".btn-container").html("Subscribe Now");
             }
         }
 
