@@ -111,7 +111,11 @@ $(function() {
     cartItems = getCookie('cart_contents');
 
     if (cartItems) {
-        cartItems = JSON.parse(cartItems);
+        try {
+            cartItems = JSON.parse(cartItems);
+        } catch(e) {
+            cartItems = [];
+        }
     } else {
         cartItems = [];
     }
