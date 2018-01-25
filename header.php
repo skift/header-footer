@@ -20,7 +20,7 @@ $url_paths = array(
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com",
-    "myskift"    => "https://my.skift.com"
+    "myskift"    => "https://beta.my.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -30,7 +30,7 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "edu"       => "http://localhost/edu",
         "forum"     => "http://localhost/forum",
         "skiftx"    => "http://localhost/skiftx",
-        "myskift"    => "http://localhost/myskift"
+        "myskift"    => "http://localhost:3000"
     );
 }
 
@@ -41,7 +41,7 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://myskift.wpengine.com"
+        "myskift"    => "https://myskiftv2.wpengine.com"
     );
 }
 
@@ -52,7 +52,7 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "http://dev.my.skift.com"
+        "myskift"    => "http://beta.my.skift.com"
     );
 }
 
@@ -240,50 +240,27 @@ if (function_exists("is_whitelisted")) {
 
                     <div class="overlay"></div>
 
-                    <div class="sign-in hasPopover">
-
-                        <?php if (!$signed_in && !$white_listed) { ?>
-                            <a href="javascript:" class="sign-in-btn">Sign In</a>
-                        <?php } else if ($white_listed) { ?>
-                            <?php echo "Welcome $white_listed!"; ?>
-                        <?php } else { ?>
+                    <?php if (!$signed_in && !$white_listed) { ?>
+                        <?php $redirect = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+                        <div class="sign-in"><a href="<?php echo $url_paths["myskift"]; ?>/login?redirect=<?php echo urlencode($redirect);?>" class="sign-in-btn">Sign In</a></div>
+                    <?php } else if ($white_listed) { ?>
+                        <div class="sign-in"><?php echo "Welcome $white_listed!"; ?></div>
+                    <?php } else { ?>
+                        <div class="sign-in hasPopover">
                             <a href="javascript:" class="sign-in-btn my-account-btn">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-user fa-stack-1x"></i>
                                 </span>
                             </a>
-                        <?php } ?>
 
-                        <div id="sign-in-popover" class="popover">
-                            <?php if (!$signed_in) { ?>
-
-                                <form class="login-form dark-bg account-form reload">
-                                    <div class="alert alert-danger error-text"></div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control has-floating-label username-field" name="email" />
-                                        <label for="username" class="floating-form-label">Email Address</label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="password" class="form-control has-floating-label password-field" name="password" />
-                                        <label for="password" class="floating-form-label">Password</label>
-                                        <a href="<?php echo $url_paths["myskift"]; ?>/login?forgot=true" class="forgot-password-btn">Forgot?</a>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <button class="login-btn btn btn-yellow btn-sm">Sign In</button>
-                                        <a href="<?php echo $url_paths["myskift"]; ?>/create-account" class="under-btn-link">Create an Account</a>
-                                    </div>
-                                </form>
-
-                            <?php } else { ?>
-
+                            <div id="sign-in-popover" class="popover">
                                 <ul id="my-account-menu">
-                                    <li><a href="<?php echo $url_paths["myskift"]; ?>">My Account</a></li>
-                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/purchases">My Purchases</a></li>
-                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/login?logout=true" class="logout-btn">Logout</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>">Account</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/purchases">Purchases</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/payment">Payment Methods</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/profile">Your Profile</a></li>
+                                    <li><a href="<?php echo $url_paths["myskift"]; ?>/login" class="logout-btn">Sign Out</a></li>
                                 </ul>
 
                                 <?php if ($user_info["first_name"] && $user_info["last_name"]) { ?>
@@ -291,12 +268,11 @@ if (function_exists("is_whitelisted")) {
                                 <?php } else { ?>
                                 <p>Welcome!</p>
                                 <?php } ?>
-
-                            <?php } ?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="overlay"></div>
+                        <div class="overlay"></div>
+                    <?php } ?>
                 </div>
 
             <?php } else { ?>

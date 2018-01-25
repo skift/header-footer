@@ -53,7 +53,7 @@ var getCartContents = function() {
     var rand = Math.random(); // add a random number to the ajax request to avoid caching issues
 
     $.ajax({
-        url: mySkiftAjaxPath + "get-cart-contents.php",
+        url: mySkiftAjaxPath + "get-cart",
         method: "POST",
         data: {rand:rand},
         dataType: "json",
@@ -94,7 +94,7 @@ $(function() {
         clearTimeout(cartCloser);
 
         $.ajax({
-            url: mySkiftAjaxPath + "add-to-cart.php",
+            url: mySkiftAjaxPath + "add-to-cart",
             method: "POST",
             data: itemInfo,
             dataType: 'json',
@@ -142,7 +142,7 @@ $(function() {
         //console.log("remove data", {contentId:contentId, resourceId:resourceId});
 
         $.ajax({
-            url: mySkiftAjaxPath + "remove-from-cart.php",
+            url: mySkiftAjaxPath + "remove-from-cart",
             method: "POST",
             data: {contentId:contentId, resourceId:resourceId},
             dataType: "json",
