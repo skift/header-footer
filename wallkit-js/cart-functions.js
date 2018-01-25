@@ -146,6 +146,12 @@ $(function() {
         $(".buy-btn[data-contentid=" + contentId + "]").addClass("disabled in-cart-btn").removeClass("add-to-cart-btn").find(".btn-container").html("<i class='fa fa-check'></i> In Cart");
 
         refreshCart();
+
+        $(".shopping-cart").addClass("isOpen");
+
+        cartCloser = setTimeout(function() {
+            $(".shopping-cart").removeClass("isOpen");
+        }, 3000);
     });
 
     $(document).on("click", ".remove-from-cart-btn", function() {
@@ -170,7 +176,6 @@ $(function() {
                 newCart.push(cartItems[i]);
             }
         }
-        console.log('new cart', newCart);
 
         cartItems = newCart;
 
@@ -183,6 +188,8 @@ $(function() {
         if ($(".sign-in").hasClass("isOpen")) {
             $(".sign-in").removeClass("isOpen");
         }
+
+        clearTimeout(cartCloser);
 
         $(".shopping-cart").toggleClass("isOpen");
     });
