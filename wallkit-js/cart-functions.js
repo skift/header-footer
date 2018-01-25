@@ -97,7 +97,7 @@ function updateCartTotal(items) {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(response) {
-            console.log('cart total', response);
+//             console.log('cart total', response);
 
             if (latestFetcherId === response.fetcherId) {
                 $(".shopping-cart .total-price").html(response.total);
@@ -120,7 +120,7 @@ $(function() {
         cartItems = [];
     }
 
-    console.log('cartItems', cartItems);
+//     console.log('cartItems', cartItems);
     refreshCart();
 
     $(document).on("click",".add-to-cart-btn",function() {
@@ -184,7 +184,7 @@ $(function() {
             }
         }
 
-        console.log('removed item', removedItem);
+//         console.log('removed item', removedItem);
 
         if (removedItem) {
             if (removedItem.type === "content") {
@@ -215,7 +215,7 @@ $(function() {
 
 function saveCart(items) {
     var cart = JSON.stringify(items);
-    console.log('save cart', cart);
+//     console.log('save cart', cart);
     setCookie('cart_contents', cart, 30);
 }
 
