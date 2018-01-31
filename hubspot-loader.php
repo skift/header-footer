@@ -95,7 +95,7 @@
     function fireHubspotForms(fromQueue) {
         if (!hsScriptsLoading) {
             hsScriptsLoading = true;
-            console.log('load hs scripts');
+
             var hsScripts = document.createElement('script');
             hsScripts.setAttribute('src','//js.hsforms.net/forms/v2.js');
             document.head.appendChild(hsScripts);
@@ -117,6 +117,5 @@
             }
 
         }
-
     }
 </script>
