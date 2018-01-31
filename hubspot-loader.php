@@ -3,6 +3,7 @@
     //Functions to load HubSpot forms asynchronously
     var hubspotLoopInitiated = false;
     var queuedForms = [];
+    var hsScriptsLoading = false;
 
     function queueHubspotForm(form) {
         form.css = form.css || '';
@@ -92,6 +93,13 @@
     }
 
     function fireHubspotForms(fromQueue) {
+        if (!hsScriptsLoading) {
+            hsScriptsLoading = true;
+            console.log('load hs scripts');
+            var hsScripts = document.createElement('script');
+            hsScripts.setAttribute('src','//js.hsforms.net/forms/v2.js');
+            document.head.appendChild(hsScripts);
+        }
 
         if (typeof hbspt !== "undefined" && hbspt) {
 
