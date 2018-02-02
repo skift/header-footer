@@ -53,11 +53,10 @@ body {
     }
 
     #top-banner {
-        min-height: 120px;
         background-color: $darkGray;
-        padding: 15px 0;
 
         .headerAd {
+            padding: 15px 0;
             margin: 0 auto;
             max-width: 970px;
             text-align: center;
