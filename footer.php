@@ -121,6 +121,11 @@ function getTweets($num) {
 							</a>
 						</li>
 						<li>
+							<a href="https://www.instagram.com/skiftnews/" class="icon">
+								<i class="fa fa-instagram" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li>
 							<a href="<?php echo $url_paths["main"]; ?>/newsletters/" class="icon">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</a>
