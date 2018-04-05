@@ -1,7 +1,7 @@
 $(function() {
 	'use strict';
 
-    if (wkInfo && wkInfo.userTok) {
+    if (wkInfo && wkInfo.userTok && !window.isSkift) {
         var url = 'https://wallkit.skift.com/api/v1/user/history';
         var data = wkInfo.page;
         var headers = {
