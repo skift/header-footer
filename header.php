@@ -39,7 +39,7 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
         "main"      => "https://skiftish.staging.wpengine.com",
         "trends"    => "https://skiftproducts.staging.wpengine.com",
         "edu"       => "http://skiftedu.staging.wpengine.com",
-        "forum"     => "http://skforum.staging.wpengine.com",
+        "forum"     => "http://skforums.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
         "myskift"    => "https://myskift.wpengine.com"
     );
