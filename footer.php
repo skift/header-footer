@@ -93,6 +93,7 @@ function getTweets($num) {
                     <ul>
 						<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/about/">About Skift</a></li>
 						<li class="menu-item"><a href="<?php echo $url_paths["skiftx"]; ?>">Advertise With Us</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news-staff">News Staff</a></li>
                         <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/terms/">Terms of Use</a></li>
                         <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/privacy/">Privacy Policy</a></li>
 					</ul>
@@ -118,6 +119,11 @@ function getTweets($num) {
 						<li>
 							<a href="https://linkedin.com/company/skift" class="icon">
 								<i class="fa fa-linkedin" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.instagram.com/skiftnews/" class="icon">
+								<i class="fa fa-instagram" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>

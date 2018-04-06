@@ -162,7 +162,7 @@ $(function() {
       adClass: 'landscapeAd headerAd',
       slot: '/22809282/leaderboard',
       size: [[728, 90],[970,90],[970,250],[970,418]],
-      mobileSize: [[300,250],[300,90],[300,50]],
+      mobileSize: [[300,90],[300,50],[320,50]],
       ignoreContainerHeight: true,
       appendTo: $("#top-banner")
     };
