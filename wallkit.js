@@ -8,6 +8,8 @@ function getQSParameterByName(name) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+console.log('My Skift v2');
+
 function cookiesEnabled() {
     return navigator.cookieEnabled;
 }
