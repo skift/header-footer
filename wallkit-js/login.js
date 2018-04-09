@@ -4,9 +4,11 @@ $(function() {
 
         // Header sign in popover
 
+/*
         if (!cookiesEnabled()) {
             addCookieWarning('.login-form .error-text');
         }
+*/
 
         var clearLoginState = function() {
             var $form = $('#header-sign-in-with-popover');
@@ -65,6 +67,7 @@ $(function() {
 
     }
 
+/*
     $('.login-btn').click(function(e) {
         var $form = $(this).closest('.login-form');
 
@@ -168,16 +171,6 @@ $(function() {
         e.preventDefault();
         return false;
     });
+*/
 
 });
-
-function setCookie(name, val, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = 'expires=' + d.toUTCString();
-
-    var host = location.hostname;
-    var domain = host === 'localhost' ? 'localhost' : host.indexOf('skift.com') !== -1 ? '.skift.com' : '.wpengine.com';
-
-    document.cookie = name + '=' + val + ';' + expires + ';path=/;domain=' + domain;
-}
