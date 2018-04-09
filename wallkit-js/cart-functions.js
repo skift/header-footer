@@ -120,6 +120,8 @@ $(function() {
         cartItems = [];
     }
 
+    saveCart(cartItems);
+
 //     console.log('cartItems', cartItems);
     refreshCart();
 
