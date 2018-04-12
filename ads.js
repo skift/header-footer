@@ -10,7 +10,6 @@ googletag.cmd = googletag.cmd || [];
     var node = document.getElementsByTagName('script')[0];
     node.parentNode.insertBefore(gads, node);
 
-
     // send sector page view to GA
 
     var sectorMapping = {
@@ -48,6 +47,8 @@ googletag.cmd = googletag.cmd || [];
         'tour-operators': 'travel-agents-and-tour-operators',
         'travel-agents': 'travel-agents-and-tour-operators'
     };
+
+    var categories = window.pageData.categories;
 
     if (categories && categories.length) {
         var sectors = [];
@@ -87,9 +88,11 @@ function generateAdSlotID() {
     return 'skiftAd' + nextSlotID++;
 }
 
+/*
 function parseBool(bool) {
     return bool === "1" || bool === 1 || bool === "yes" || bool === "true" || bool ? true : false;
 }
+*/
 
 function lookForActualHeight(e) {
     var eHeight = e.height();
@@ -176,16 +179,16 @@ function createAd(ad,callback) {
         var slot = googletag.defineSlot(ad.slot, ad.size, ad.slotName).addService(googletag.pubads());
         googletag.display(ad.slotName);
 
-        if (exists(postID)) {
-            slot.setTargeting("postID", postID);
+        if (exists(window.pageData.postId)) {
+            slot.setTargeting("postID", window.pageData.postId);
         }
 
-        if (exists(categories)) {
-            slot.setTargeting("categories", categories);
+        if (exists(window.pageData.categories)) {
+            slot.setTargeting("categories", window.pageData.categories);
         }
 
-        if (exists(tags)) {
-            slot.setTargeting("tags", tags);
+        if (exists(window.pageData.tags)) {
+            slot.setTargeting("tags", window.pageData.tags);
         }
 
         if (exists(ad.targeted) && exists(ad.targeted.targetType) && exists(ad.targeted.target) ) {
@@ -195,7 +198,6 @@ function createAd(ad,callback) {
         }
 
         googletag.pubads().refresh([slot]);
-
 
         if (typeof callback === "function") {
             googletag.pubads().addEventListener('slotRenderEnded', function(event) {
