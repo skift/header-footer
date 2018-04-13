@@ -9,7 +9,7 @@
                         <i class="fa fa-circle-thin fa-stack-2x"></i>
                         <i class="fa fa-user fa-stack-1x"></i>
                     </span>
-                    <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>
+                    <?php echo $user_info['first_name'] . ' ' . $user_info['last_name']; ?>
                 </a>
                 <?php
             } else {
@@ -51,8 +51,8 @@
             </div>
 
             <div class="buttons">
-                <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
-                <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
+                <a href="<?php echo $url_paths['myskift']; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
+                <a href="<?php echo $url_paths['myskift']; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
             </div>
         </div>
     </div>

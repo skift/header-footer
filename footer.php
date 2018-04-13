@@ -1,87 +1,5 @@
 <?php
-$url_paths = array(
-    "main"      => "https://www.skift.com",
-    "trends"    => "https://research.skift.com",
-    "edu"       => "http://edu.skift.com",
-    "forum"     => "http://forum.skift.com",
-    "skiftx"    => "http://www.skiftx.com"
-);
-
-if ($_SERVER['HTTP_HOST'] === "localhost") {
-    $url_paths = array(
-        "main"      => "http://localhost/skift",
-        "trends"    => "http://localhost/trends",
-        "edu"       => "http://localhost/edu",
-        "forum"     => "http://localhost/forum",
-        "skiftx"    => "http://localhost/skiftx"
-    );
-}
-
-function check_for_cached_tweet($cache_file_path) {
-    $cached_time = filemtime($cache_file_path);
-
-    $use_cache = time() - $cached_time < (60 * 60);
-
-    if ($use_cache) $cached_contents = file_get_contents($cache_file_path);
-
-    return $cached_contents;
-}
-function getLatestTweet() {
-    $latestTweet = getTweets(1);
-    return $latestTweet[0];
-}
-function getTweets($num) {
-    $cache_file_path = get_template_directory() . "/inc/resource-cache/latest-tweet.json";
-
-    $cached_resource = check_for_cached_tweet($cache_file_path);
-
-    if (empty($cached_resource)) {
-        $api_key = urlencode('yaa6xQpwIrIAFhJgsTgpQfqcm'); // Consumer Key (API Key)
-        $api_secret = urlencode('uHCaJ3bQmIMARlbOjsmoMn90siO2le90ltQ9zrZTEQ63dk4oUO'); // Consumer Secret (API Secret)
-        $auth_url = 'https://api.twitter.com/oauth2/token';
-
-        // what we want?
-        $data_username = 'skift'; // username
-        $data_count = $num; // number of tweets
-        $data_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-
-        // get api access token
-        $api_credentials = base64_encode($api_key.':'.$api_secret);
-
-        $auth_headers = 'Authorization: Basic '.$api_credentials."\r\n".
-                        'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'."\r\n";
-
-        $auth_context = stream_context_create(
-            array(
-                'http' => array(
-                    'header' => $auth_headers,
-                    'method' => 'POST',
-                    'content'=> http_build_query(array('grant_type' => 'client_credentials', )),
-                )
-            )
-        );
-
-        $auth_response = json_decode(file_get_contents($auth_url, 0, $auth_context), true);
-
-        $auth_token = $auth_response['access_token'];
-
-        // get tweets
-        $data_context = stream_context_create( array( 'http' => array( 'header' => 'Authorization: Bearer '.$auth_token."\r\n", ) ) );
-
-
-        $json = file_get_contents($data_url.'?count='.$data_count.'&screen_name='.urlencode($data_username), 0, $data_context);
-        $tweets = json_decode($json, true);
-
-         //save response to the cache file
-        $cache_file = fopen($cache_file_path, "w") or die("Unable to open cache file!");
-        fwrite($cache_file, $json);
-        fclose($cache_file);
-
-        return $tweets;
-    } else {
-        return json_decode($cached_resource, true);
-    }
-}
+global $url_paths;
 ?>
 
 <footer id="footer" <?php if(!empty($footerClass)) echo 'class="'.$footerClass.'"'; ?> >
@@ -91,16 +9,17 @@ function getTweets($num) {
 					<div class="footer-title">Skift Corporate</div>
 
                     <ul>
-						<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/about/">About Skift</a></li>
-						<li class="menu-item"><a href="<?php echo $url_paths["skiftx"]; ?>">Advertise With Us</a></li>
-						<li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news-staff">News Staff</a></li>
-                        <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/terms/">Terms of Use</a></li>
-                        <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/privacy/">Privacy Policy</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/about/">About Skift</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>">Advertise With Us</a></li>
+						<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/news-staff">News Staff</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/terms/">Terms of Use</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/privacy/">Privacy Policy</a></li>
 					</ul>
 
 					<div class="copyright">&copy; <?php echo date('Y'); ?> Skift Inc. All Rights Reserved</div>
 				</div>
-			</div><!-- first -->
+			</div>
+            <!-- first -->
 
 			<div class="footer-column middle">
 				<div class="footer-item" id="social">
@@ -127,7 +46,7 @@ function getTweets($num) {
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo $url_paths["main"]; ?>/newsletters/" class="icon">
+							<a href="<?php echo $url_paths['main']; ?>/newsletters/" class="icon">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</a>
 						</li>
@@ -135,28 +54,28 @@ function getTweets($num) {
 					<div id="footer-tweet-box">
 						<div id="footer-tweet">
 							<?php
-                            $tweet = getLatestTweet();
+                            $tweet = get_latest_tweet();
 
-                            $tweetText = $tweet['text'];
-                            $tweetTime = human_time_diff(time(), strtotime($tweet['created_at']));
+                            $tweet_text = $tweet['text'];
+                            $tweet_time = human_time_diff(time(), strtotime($tweet['created_at']));
 
-                            $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+                            $regex_url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 
                             // Check if there is a url in the text
-                            if (preg_match_all($reg_exUrl, $tweetText, $url)) {
+                            if (preg_match_all($regex_url, $tweet_text, $url)) {
                                // make the urls links
                                $urls = $url[0];
 
                                foreach ($urls as $link) {
-                                   $tweetText = str_replace($link, "<a href=\"$link\">$link</a>", $tweetText);
+                                   $tweet_text = str_replace($link, "<a href=\"$link\">$link</a>", $tweet_text);
                                }
                             }
     				        ?>
 							<p id="tweet-content">
-								<?php echo $tweetText;?>
+								<?php echo $tweet_text;?>
 							</p>
 							<p id="tweet-meta">
-								Twitter | <?php echo $tweetTime; ?> ago
+								Twitter | <?php echo $tweet_time; ?> ago
 							</p>
 						</div>
 					</div>
@@ -168,54 +87,6 @@ function getTweets($num) {
 					<div class="footer-title">Latest Podcast Episodes</div>
 					<ul>
 						<?php
-                        function get_recent_podcasts_footer( $num ){
-                            $url = "http://podcast.skift.com/feed/";
-                            $rss = fetch_feed($url);
-
-                            if (!is_wp_error($rss)) {
-                                $first_group = $rss->get_item_quantity($num);
-                                $podcasts = $rss->get_items(0, $first_group);
-
-                                $return = array();
-
-                                foreach ($podcasts as $podcast) {
-                                    $link = esc_url($podcast->get_permalink());
-                                    $title = esc_html($podcast->get_title());
-
-                                    $thisPodcast = array(
-                                        "link" => $link,
-                                        "title" => $title
-                                    );
-
-                                    array_push($return, $thisPodcast);
-                                }
-
-                                return $return;
-                            } else {
-                                $rss = file_get_contents($url);
-                                $rss = simplexml_load_string($rss);
-
-                                $podcasts = $rss->channel;
-
-                                $return = array();
-
-                                for ($i = 0; $i < 3; $i++) {
-                                    $link = esc_url($podcasts->item[$i]->link);
-                                    $title = esc_html($podcasts->item[$i]->title);
-
-                                    $thisPodcast = array(
-                                        "link" => $link,
-                                        "title" => $title
-                                    );
-
-                                    array_push($return, $thisPodcast);
-                                }
-
-                                return $return;
-                            }
-
-                        }
-
 						$podcasts = get_recent_podcasts_footer(3);
 
 						foreach ($podcasts as $podcast) { ?>
@@ -228,12 +99,6 @@ function getTweets($num) {
 				</div><!-- #footer-podcast -->
 			</div><!-- last -->
 			<div class="clearfix"></div>
-
-		<!--<div id="footer-info">
-
-
-			<p class="copyright">&copy;<?php echo date('Y'); ?> <a href="<?php echo $url_paths["main"]; ?>">Skift</a> All Rights Reserved</p>
-		</div><!-- #footer-info -->
 
 	</div><!-- #footer-content -->
 

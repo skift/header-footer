@@ -12,7 +12,7 @@ $url_paths = array(
     'main'      => 'https://skift.com',
     'trends'    => 'https://research.skift.com',
     'edu'       => 'http://edu.skift.com',
-    'forum'     => 'http://forum.skift.com',
+    'forum'     => 'https://forum.skift.com',
     'skiftx'    => 'http://www.skiftx.com',
     'myskift'    => 'https://mybeta.skift.com'
 );
