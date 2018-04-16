@@ -74,7 +74,7 @@ googletag.cmd = googletag.cmd || [];
 })();
 
 googletag.cmd.push(function() {
-    googletag.pubads().disableInitialLoad();
+    googletag.pubads().enableSingleRequest().disableInitialLoad();
     googletag.enableServices();
 });
 
