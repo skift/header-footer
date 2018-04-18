@@ -1,16 +1,13 @@
 <?php
 
-// Remove if after 8/7/2017
-$skift_5th_start = strtotime('07/30/2017 12:00 am');
-$skift_5th_end = strtotime('08/14/2017 12:00 am');
-$now = time();
-
-$use_skift_5th_logo = ($now >= $skift_5th_start && $now < $skift_5th_end);
-// end remove
-
+$dontFix = isset($dontFix) ? $dontFix : null;
+$useMainMobileMenu = isset($useMainMobileMenu) ? $useMainMobileMenu : null;
+$sub_nav = isset($sub_nav) ? $sub_nav : $sub_nav;
 $hasSubNav = !empty($sub_nav);
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 global $url_paths;
 
@@ -55,7 +52,6 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
         "myskift"    => "https://mybeta.skift.com"
     );
 }
-
 // user authentication
 global $user_info;
 
@@ -109,20 +105,11 @@ if (function_exists("is_whitelisted")) {
     <header id="header" class="<?php echo $header_classes; ?>">
         <div id="header-left">
 
-            <?php if ($use_skift_5th_logo) { ?>
-                <div id="logo" class="skift5th" style="padding: 10px 30px;">
-                    <a href="<?php echo $url_paths["main"]; ?>">
-                        <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-5th-logo.png" alt="Skift is 5 Logo" style="height: 45px;" />
-                    </a>
-                </div>
-            <?php } else { ?>
-                <div id="logo">
-                    <a href="<?php echo $url_paths["main"]; ?>">
-                        <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
-                    </a>
-                </div>
-            <?php } ?>
-
+            <div id="logo">
+                <a href="<?php echo $url_paths["main"]; ?>">
+                    <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
+                </a>
+            </div>
             <nav id="primary-nav">
                 <?php if ($hasSubNav) { ?>
                     <div class="sub-menu">
@@ -339,7 +326,7 @@ if (function_exists("is_whitelisted")) {
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>">Education</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising">Advertising</a></li>
-                <?
+                <?php
                 } else {
                     wp_nav_menu(array(
                         'theme_location' => $sub_nav,
@@ -352,11 +339,11 @@ if (function_exists("is_whitelisted")) {
 
     				if ($signed_in) {
     				?>
-                        <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
     				<?php
     				} else {
     				?>
-                        <li class="menu-item"><a href="<?=$url_paths['myskift'];?>/login">Sign In</a></li>
+                        <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a></li>
                     <?php
                     }
 				}
@@ -370,21 +357,21 @@ if (function_exists("is_whitelisted")) {
 </div>
 
 
-<? if ($showLoginForm) { ?>
+<?php if ($showLoginForm) { ?>
 <div class="mobile-account-manager shopping-cart">
     <div class="top">
         <div class="user-info">
-            <? if ($signed_in) { ?>
-                <a href="<?=$url_paths['myskift'];?>/">
+            <?php if ($signed_in) { ?>
+                <a href="<?php echo $url_paths['myskift'];?>/">
                     <span class="fa-stack">
                         <i class="fa fa-circle-thin fa-stack-2x"></i>
                         <i class="fa fa-user fa-stack-1x"></i>
                     </span>
                     <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>
                 </a>
-            <? } else { ?>
-            <a href="<?=$url_paths['myskift'];?>/login">Sign In</a>
-            <? } ?>
+            <?php } else { ?>
+            <a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a>
+        <?php } ?>
         </div>
 
         <div class="cart-btn">
@@ -398,7 +385,7 @@ if (function_exists("is_whitelisted")) {
     <div class="mobile-cart-items cart-contents">
         <div class="items">
             <div class='cart-item template'>
-                <div class='photo'><img src='#' /></div>
+                <div class='photo'><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div>
                 <div class='item-details'>
                     <div class='item-name'><h3></h3></div>
                     <div class='item-price'>$<span></span></div>
@@ -410,6 +397,7 @@ if (function_exists("is_whitelisted")) {
             <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
             <div class="spinner">Loading</div>
         </div>
+
 
         <div class="totals-area">
             <div class="total">
@@ -425,6 +413,5 @@ if (function_exists("is_whitelisted")) {
     </div>
 
 </div>
-<? } ?>
-
+<?php } ?>
 <?php include "hubspot-loader.php"; ?>
