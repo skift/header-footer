@@ -71,7 +71,6 @@ $signed_in = !empty($user_info);
 $white_listed = false;
 if (function_exists("is_whitelisted")) {
     $white_listed = is_whitelisted();
->>>>>>> master
 }
 ?>
 
@@ -90,14 +89,8 @@ if (function_exists("is_whitelisted")) {
 
     <header id="header" class="<?php if ($dont_show_banner_ad) { echo 'fixed no-banner'; } ?>">
         <div id="header-left">
-<<<<<<< HEAD
             <div id="logo">
                 <a href="<?php echo $url_paths['main']; ?>">
-=======
-
-            <div id="logo">
-                <a href="<?php echo $url_paths["main"]; ?>">
->>>>>>> master
                     <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div>
@@ -181,47 +174,6 @@ if (function_exists("is_whitelisted")) {
             ?>
         </div>
         <!-- End Wallkit -->
-
-<<<<<<< HEAD
-        <div class="clearfix"></div>
-=======
-        <nav id="mobile-menu">
-            <ul>
-                <?php
-                echo '<li class="menu-item"><a href="' . $url_paths["main"] . '">Home</a></li>';
-
-                if (!$hasSubNav || $useMainMobileMenu) {
-                ?>
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news/">News</a></li>
-                    <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>">Research</a></li>
-                    <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
-                    <li class="menu-item"><a href="<?php echo $url_paths["edu"]; ?>">Education</a></li>
-                    <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising">Advertising</a></li>
-                <?php
-                } else {
-                    wp_nav_menu(array(
-                        'theme_location' => $sub_nav,
-                        'container' => false,
-                        'items_wrap' => '%3$s'
-                    ));
-                }
-
-                if ($showLoginForm) {
-
-    				if ($signed_in) {
-    				?>
-                        <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
-    				<?php
-    				} else {
-    				?>
-                        <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a></li>
-                    <?php
-                    }
-				}
-				?>
->>>>>>> master
-
         <?php
             if ($show_login_form) {
                 require_once('partials/mobile.php');
@@ -232,69 +184,7 @@ if (function_exists("is_whitelisted")) {
 	<div id="header-pad"></div>
 </div>
 
-<<<<<<< HEAD
 <?php
     require_once('partials/mobile-account-manager.php');
     require_once('partials/hubspot-loader.php');
 ?>
-=======
-
-<?php if ($showLoginForm) { ?>
-<div class="mobile-account-manager shopping-cart">
-    <div class="top">
-        <div class="user-info">
-            <?php if ($signed_in) { ?>
-                <a href="<?php echo $url_paths['myskift'];?>/">
-                    <span class="fa-stack">
-                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                        <i class="fa fa-user fa-stack-1x"></i>
-                    </span>
-                    <?php echo $user_info["first_name"] . ' ' . $user_info["last_name"]; ?>
-                </a>
-            <?php } else { ?>
-            <a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a>
-        <?php } ?>
-        </div>
-
-        <div class="cart-btn">
-            <i class="fa fa-shopping-cart fa-lg"></i>
-            <div class="badge">0</div>
-        </div>
-
-        <div class="close-mobile-account-manager"><i class="fa fa-close"></i></div>
-    </div>
-
-    <div class="mobile-cart-items cart-contents">
-        <div class="items">
-            <div class='cart-item template'>
-                <div class='photo'><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div>
-                <div class='item-details'>
-                    <div class='item-name'><h3></h3></div>
-                    <div class='item-price'>$<span></span></div>
-                    <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
-            <div class="spinner">Loading</div>
-        </div>
-
-
-        <div class="totals-area">
-            <div class="total">
-                <strong>Total</strong>
-                <div class="pull-right">$<span class="total-price">0</span></div>
-            </div>
-
-            <div class="buttons">
-                <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
-                <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-<?php } ?>
-<?php include "hubspot-loader.php"; ?>
->>>>>>> master

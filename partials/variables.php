@@ -1,5 +1,5 @@
 <?php
-/** Declare variables that may be defined in header.php */
+/** Declare variables that may be defined in theme header.php */
 $sub_nav = isset($sub_nav) ? $sub_nav : null;
 $sub_nav_logo = isset($sub_nav_logo) ? $sub_nav_logo : null;
 $has_sub_nav = !empty($sub_nav);

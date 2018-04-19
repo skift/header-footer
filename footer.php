@@ -1,8 +1,14 @@
 <?php
+require_once('resources/utility.php');
+require_once('resources/podcasts.php');
+require_once('resources/twitter.php');
+
 global $url_paths;
+
+$footer_class = isset($footerClass) ? $footerClass : null;
 ?>
 
-<footer id="footer" <?php if(!empty($footerClass)) echo 'class="'.$footerClass.'"'; ?> >
+<footer id="footer" <?php if(!empty($footer_class)) echo 'class="'.$footer_class.'"'; ?> >
 	<div id="footer-content">
 			<div class="footer-column first">
 				<div class="footer-item" id="footer-nav">
@@ -54,28 +60,13 @@ global $url_paths;
 					<div id="footer-tweet-box">
 						<div id="footer-tweet">
 							<?php
-                            $tweet = get_latest_tweet();
-
-                            $tweet_text = $tweet['text'];
-                            $tweet_time = human_time_diff(time(), strtotime($tweet['created_at']));
-
-                            $regex_url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-
-                            // Check if there is a url in the text
-                            if (preg_match_all($regex_url, $tweet_text, $url)) {
-                               // make the urls links
-                               $urls = $url[0];
-
-                               foreach ($urls as $link) {
-                                   $tweet_text = str_replace($link, "<a href=\"$link\">$link</a>", $tweet_text);
-                               }
-                            }
+                            $tweet = new \HeaderFooter\Tweet();
     				        ?>
 							<p id="tweet-content">
-								<?php echo $tweet_text;?>
+								<?php echo $tweet->text;?>
 							</p>
 							<p id="tweet-meta">
-								Twitter | <?php echo $tweet_time; ?> ago
+								Twitter | <?php echo $tweet->time; ?> ago
 							</p>
 						</div>
 					</div>
@@ -87,11 +78,11 @@ global $url_paths;
 					<div class="footer-title">Latest Podcast Episodes</div>
 					<ul>
 						<?php
-						$podcasts = get_recent_podcasts_footer(3);
+						$podcasts = \HeaderFooter\Podcast::latest(3);
 
 						foreach ($podcasts as $podcast) { ?>
-							<li><a target="_blank" href="<?php echo $podcast["link"]; ?>">
-								<?php echo $podcast["title"]; ?>&nbsp;<i class="fa fa-chevron-right"></i>
+							<li><a target="_blank" href="<?php echo $podcast->link; ?>">
+								<?php echo $podcast->title; ?>&nbsp;<i class="fa fa-chevron-right"></i>
 								</a>
 							</li>
 						<?php } ?>
