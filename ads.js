@@ -74,6 +74,7 @@ googletag.cmd = googletag.cmd || [];
 })();
 
 googletag.cmd.push(function() {
+    googletag.pubads().enableSingleRequest();
     googletag.pubads().disableInitialLoad();
     googletag.enableServices();
 });
