@@ -4,8 +4,8 @@ $sub_nav = isset($sub_nav) ? $sub_nav : null;
 $sub_nav_logo = isset($sub_nav_logo) ? $sub_nav_logo : null;
 $has_sub_nav = !empty($sub_nav);
 $select_tab = isset($select_tab) ? $select_tab : null;
-$dont_show_banner_ad = isset($dontShowBannerAd) ? $dontShowBannerAd : null; //This is defined in header.php -- change as themes are updated
-$show_login_form = isset($showLoginForm) ? $showLoginForm : null; //Defined in products/header.php
+$dont_show_banner_ad = isset($dont_show_banner_ad) ? $dont_show_banner_ad : null;
+$show_login_form = isset($show_login_form) ? $show_login_form : null; //Defined in products/header.php
 
 global $url_paths;
 $url_paths = array(
@@ -56,8 +56,7 @@ $user_info = false;
 $signed_in = false;
 if (class_exists('User')) {
     // check user auth using the wallkit plugin
-    $auth_user = new User();
-    $user_info = $auth_user->info;
+    $user_info = (new User())->info;
     $signed_in = !empty($user_info);
 } else {
     if (function_exists('user_auth')) {
