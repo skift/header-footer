@@ -66,7 +66,7 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 								<?php echo $tweet->text;?>
 							</p>
 							<p id="tweet-meta">
-								Twitter | <?php echo $tweet->time; ?> ago
+								Twitter | <?php echo $tweet->time; ?>
 							</p>
 						</div>
 					</div>
