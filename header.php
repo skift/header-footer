@@ -123,7 +123,7 @@ if (function_exists("is_whitelisted")) {
             <!-- #search -->
         </div>
         <!-- end #header-right -->
-        <div class="clear-fix"></div>
+        <div class="clearfix"></div>
         <?php require_once('partials/mobile.php'); ?>
     </header>
 
