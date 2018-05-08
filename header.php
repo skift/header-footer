@@ -67,6 +67,7 @@ if (class_exists("User")) {
 }
 
 $signed_in = !empty($user_info);
+$is_subscriber = is_subscriber($_COOKIE['usr']);
 
 $white_listed = false;
 if (function_exists("is_whitelisted")) {
