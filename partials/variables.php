@@ -6,7 +6,6 @@ $has_sub_nav = !empty($sub_nav);
 $select_tab = isset($select_tab) ? $select_tab : null;
 $dont_show_banner_ad = isset($dont_show_banner_ad) ? $dont_show_banner_ad : null;
 $show_login_form = isset($show_login_form) ? $show_login_form : null; //Defined in products/header.php
-die(var_dump($show_login_form));
 global $url_paths;
 $url_paths = array(
     'main'      => 'https://skift.com',
