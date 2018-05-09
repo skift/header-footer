@@ -1,4 +1,4 @@
-<div class="mobile-account-manager shopping-cart">
+<div class="mobile-account-manager<?php if (!$is_subscriber) echo ' shopping-cart'; ?>">
     <div class="top">
         <div class="user-info">
             <?php
@@ -20,10 +20,12 @@
             ?>
         </div>
 
+        <?php if (!$is_subscriber) { ?>
         <div class="cart-btn">
             <i class="fa fa-shopping-cart fa-lg"></i>
             <div class="badge">0</div>
         </div>
+        <?php } ?>
 
         <div class="close-mobile-account-manager"><i class="fa fa-close"></i></div>
     </div>

@@ -1,42 +1,44 @@
 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
     <?php
     if (!$white_listed) {
-        ?>
-        <div class="shopping-cart hasPopover">
-            <a href="javascript:" class="cart-btn">
-                <i class="fa fa-shopping-cart fa-lg"></i>
-                <div class="badge">0</div>
-            </a>
+        if (!$is_subscriber) {
+            ?>
+            <div class="shopping-cart hasPopover">
+                <a href="javascript:" class="cart-btn">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                    <div class="badge">0</div>
+                </a>
 
-            <div id="cart-popover" class="popover cart-contents">
-                <div class="items">
-                    <div class='cart-item template'>
-                        <div class='photo'><img src='#' /></div>
-                        <div class='item-details'>
-                            <div class='item-name'><h3></h3></div>
-                            <div class='item-price'>$<span></span> USD</div>
-                            <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn floating-remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
+                <div id="cart-popover" class="popover cart-contents">
+                    <div class="items">
+                        <div class='cart-item template'>
+                            <div class='photo'><img src='#' /></div>
+                            <div class='item-details'>
+                                <div class='item-name'><h3></h3></div>
+                                <div class='item-price'>$<span></span> USD</div>
+                                <div class='remove-item'><button class='btn btn-green btn-xs remove-from-cart-btn floating-remove-from-cart-btn'><i class='fa fa-trash'></i>  Remove</button></div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
 
-                    <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
-                    <div class="spinner">Loading</div>
-                </div>
-                <div class="chin">
-                    <div class="total">
-                        <strong>Total</strong>
-                        <div class="pull-right">$<span class="total-price">0</span> USD</div>
+                        <div class='no-items'><p><small><i>Your cart is empty</i></small></p></div>
+                        <div class="spinner">Loading</div>
                     </div>
+                    <div class="chin">
+                        <div class="total">
+                            <strong>Total</strong>
+                            <div class="pull-right">$<span class="total-price">0</span> USD</div>
+                        </div>
 
-                    <div class="buttons">
-                        <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
-                        <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
+                        <div class="buttons">
+                            <a href="<?php echo $url_paths["myskift"]; ?>/cart" class="btn btn-green btn-sm">View Cart</a>
+                            <a href="<?php echo $url_paths["myskift"]; ?>/checkout" class="btn btn-yellow btn-sm">Checkout</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <?php
+            <?php
+        }
     }
     ?>
     <div class="overlay"></div>
