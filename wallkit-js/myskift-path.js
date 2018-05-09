@@ -1,4 +1,4 @@
-var mySkiftPath = "https://mybeta.skift.com/";
+var mySkiftPath = "https://my.skift.com/";
 var host = document.location.host;
 
 if (host.indexOf("localhost") > -1) {
@@ -10,7 +10,7 @@ if (host.indexOf(".wpengine.com") > -1) {
 }
 
 if (host.indexOf("dev.") > -1) {
-    mySkiftPath = "https://mybeta.skift.com/";
+    mySkiftPath = "https://my.skift.com/";
 }
 
 if (host.indexOf("myskift.wpengine.com") > -1 || host.indexOf("my.skift.com") > -1 || host.indexOf("dev.my.skift.com") > -1) {

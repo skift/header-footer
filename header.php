@@ -13,7 +13,7 @@ $url_paths = array(
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com",
-    "myskift"    => "https://mybeta.skift.com"
+    "myskift"    => "https://my.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -45,7 +45,7 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://mybeta.skift.com"
+        "myskift"    => "https://my.skift.com"
     );
 }
 // user authentication
