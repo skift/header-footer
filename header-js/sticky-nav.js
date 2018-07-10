@@ -1,42 +1,41 @@
-var headerOffset;
+var headerOffset, $header, $headerPad, noFix, scrollOffset;
+
+function setHeaderOffset() {
+    headerOffset = $header.offset().top;
+}
+
+function setHeaderFixed(force) {
+    if (!noFix) {
+        if (!$header.hasClass('fixed') || headerOffset === null) {
+            setHeaderOffset();
+        }
+
+        if (scrollOffset >= headerOffset) {
+            if (!$header.hasClass('fixed') || force) {
+                $header.addClass('fixed').css('top', 0);
+                $headerPad.show();
+            }
+        } else {
+            if ($header.hasClass('fixed') || force) {
+                $header.removeClass('fixed').css('top', 0);
+                $headerPad.hide();
+            }
+        }
+    }
+}
 
 $(function() {
     'use strict';
 
-    var $header = $('#header');
-    var $headerPad = $('#header-pad');
-    var scrollOffset;
-
-    var noFix = $header.hasClass('no-fix');
-
-    var setHeaderOffset = function() {
-        headerOffset = $header.position().top;
-
-        scrollOffset = $(window).scrollTop();
-    };
+    $header = $('#header');
+    $headerPad = $('#header-pad');
+    noFix = $header.hasClass('no-fix');
 
     setHeaderOffset();
-
-    var setHeaderFixed = function(force) {
-        if (!noFix) {
-            if (scrollOffset >= headerOffset) {
-                if (!$header.hasClass('fixed') || force) {
-                    $header.addClass('fixed').css('top', 0);
-                    $headerPad.show();
-                }
-            } else {
-                if ($header.hasClass('fixed') || force) {
-                    $header.removeClass('fixed').css('top', 0);
-                    $headerPad.hide();
-                }
-            }
-        }
-    };
 
     if (!$header.hasClass('no-banner') && !noFix) {
         $(document).on('scroll', function() {
             scrollOffset = $(window).scrollTop();
-
             setHeaderFixed();
         });
     }
@@ -52,7 +51,13 @@ $(function() {
             appendTo: $('#top-banner')
         };
 
-        createAd(headerAd, setHeaderOffset);
+        createAd(headerAd, function() {
+            headerOffset = 99999;
+
+            setTimeout(function() {
+                setHeaderOffset();
+            }, 10);
+        });
     }
 
     // mobile menu
