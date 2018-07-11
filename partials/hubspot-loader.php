@@ -74,6 +74,12 @@
                     }
                 });
 
+                form.find(".hs-fieldtype-select").change(function() {
+                    form.find(".hs-form-field").addClass("form-group");
+                    form.find("label").addClass("control-label");
+                    form.find(".hs-input").addClass("form-control");
+                });
+
                 if (form.hasClass("hideLabels")) {
                     form.find("label").remove();
                 }
