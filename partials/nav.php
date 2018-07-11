@@ -56,7 +56,7 @@
                         <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/meetings/">Meetings</a></li>
                         <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/new-luxury/">New Luxury</a></li>
                         <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/airline/">Airline Innovation</a></li>
-                        <li class="menu-item"><a href="http://table.skift.com">Skift Table</a></li>
+                        <li class="menu-item"><a href="http://table.skift.com/subscribe/">Skift Table</a></li>
                     </ul>
                 </div>
             </div>
