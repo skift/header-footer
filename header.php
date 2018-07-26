@@ -13,7 +13,8 @@ $url_paths = array(
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com",
-    "myskift"    => "https://my.skift.com"
+    "myskift"    => "https://my.skift.com",
+    "table"    => "https://table.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -23,7 +24,8 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "edu"       => "http://localhost/edu",
         "forum"     => "http://localhost/forum",
         "skiftx"    => "http://localhost/skiftx",
-        "myskift"    => "http://localhost:3000"
+        "myskift"    => "http://localhost:3000",
+        "table"    => "http://localhost/chefstech"
     );
 }
 
@@ -34,7 +36,8 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforums.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://myskiftv2.wpengine.com"
+        "myskift"    => "https://myskiftv2.wpengine.com",
+        "table"    => "https://chefstech.staging.wpengine.com"
     );
 }
 
@@ -45,7 +48,8 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://my.skift.com"
+        "myskift"    => "https://my.skift.com",
+        "table"    => "https://chefstech.staging.wpengine.com"
     );
 }
 // user authentication
