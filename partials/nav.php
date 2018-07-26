@@ -61,7 +61,11 @@
                 </div>
             </div>
         </li>
-        <li class="menu-item"><a href="<?php echo $url_paths['edu']; ?>"<?php if ($select_tab === 'education') { echo ' class="selected"'; } ?>>Edu</a></li>
         <li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>"<?php if ($select_tab === 'advertising') { echo ' class="selected"'; } ?>>Advertising</a></li>
+        <li class="menu-item">
+            <a href="<?php echo $url_paths['table']; ?>" class="nav-logo" style="position: relative; top: -1px; padding: 5px 10px;">
+                <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-table-logo.png" srcset="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-table-logo@2x.png 2x" alt="Skift Table" style="width: 60px;" />
+            </a>
+        </li>
     </ul>
 </nav>
