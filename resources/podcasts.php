@@ -4,7 +4,7 @@ namespace HeaderFooter;
 class PodcastClient extends \Curl {
     public function __construct($resource = null) {
         isset($resource) or $resource = 'posts?per_page=3';
-        parent::__construct($resource, array(), null, null, 'http://podcast.skift.com/wp-json/wp/v2');
+        parent::__construct($resource, array(), null, null, 'https://podcast.skift.com/wp-json/wp/v2');
         $this->utility = new CacheUtility('podcasts.json');
         $this->read_or_fetch_podcasts();
     }
