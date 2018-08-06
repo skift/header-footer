@@ -43,9 +43,9 @@
                 </div>
             </div>
         </li>
-        <li class="menu-item"><a href="<?php echo $url_paths['trends']; ?>"<?php if ($select_tab === 'research') { echo ' class="selected"'; } ?>>Research</a></li>
-        <li class="menu-item"><a href="<?php echo $url_paths['forum']; ?>"<?php if ($select_tab === 'conferences') { echo ' class="selected"'; } ?>>Conferences</a></li>
-        <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/newsletters"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
+        <li class="menu-item"><a href="<?php echo $url_paths['trends']; ?>/"<?php if ($select_tab === 'research') { echo ' class="selected"'; } ?>>Research</a></li>
+        <li class="menu-item"><a href="<?php echo $url_paths['forum']; ?>/"<?php if ($select_tab === 'conferences') { echo ' class="selected"'; } ?>>Conferences</a></li>
+        <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/newsletters/"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
             <div class="sub-menu">
                 <div class="sub-menu-wrap">
                     <ul>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </li>
-        <li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>"<?php if ($select_tab === 'advertising') { echo ' class="selected"'; } ?>>Advertising</a></li>
+        <li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>/"<?php if ($select_tab === 'advertising') { echo ' class="selected"'; } ?>>Advertising</a></li>
         <li class="menu-item">
             <a href="<?php echo $url_paths['table']; ?>" class="nav-logo" style="position: relative; top: -1px; padding: 5px 10px;">
                 <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-table-logo.png" srcset="<?php echo get_template_directory_uri() ?>/header-footer/img/skift-table-logo@2x.png 2x" alt="Skift Table" style="width: 60px;" />
