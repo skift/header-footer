@@ -32,22 +32,22 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 					<div class="footer-title">Follow Us</div>
 					<ul>
 						<li>
-							<a href="https://facebook.com/skiftnews" class="icon">
+							<a href="https://facebook.com/skiftnews" class="icon" target="_blank" rel="noopener noreferrer">
 								<i class="fa fa-facebook" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>
-							<a href="https://twitter.com/skift" class="icon selected">
+							<a href="https://twitter.com/skift" class="icon selected" target="_blank" rel="noopener noreferrer">
 								<i class="fa fa-twitter twitter-icon" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>
-							<a href="https://linkedin.com/company/skift" class="icon">
+							<a href="https://linkedin.com/company/skift" class="icon" target="_blank" rel="noopener noreferrer">
 								<i class="fa fa-linkedin" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>
-							<a href="https://www.instagram.com/skiftnews/" class="icon">
+							<a href="https://www.instagram.com/skiftnews/" class="icon" target="_blank" rel="noopener noreferrer">
 								<i class="fa fa-instagram" aria-hidden="true"></i>
 							</a>
 						</li>
