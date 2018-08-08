@@ -81,7 +81,7 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 						$podcasts = \HeaderFooter\Podcast::latest(3);
 
 						foreach ($podcasts as $podcast) { ?>
-							<li><a target="_blank" href="<?php echo $podcast->link; ?>">
+							<li><a href="<?php echo $podcast->link; ?>">
 								<?php echo $podcast->title; ?>&nbsp;<i class="fa fa-chevron-right"></i>
 								</a>
 							</li>
