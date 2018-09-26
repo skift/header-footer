@@ -62,7 +62,7 @@ $time = current_time('timestamp');
 
 if ($_SERVER['HTTP_HOST'] === 'skift.com' || $_SERVER['HTTP_HOST'] === 'research.skift.com') {
     $time = strtotime('+4 hours', $time);
-} else if ($_SERVER['HTTP_HOST'] === 'forum.skift.com') {
+} else if ($_SERVER['HTTP_HOST'] === 'forum.skift.com' || $_SERVER['HTTP_HOST'] === 'wellness.skift.com') {
     $time = strtotime('-4 hours', $time);
 }
 
