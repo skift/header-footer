@@ -35,6 +35,7 @@
             <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/newsletters">Newsletters</a></li>
             <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising">Advertising</a></li>
             <li class="menu-item"><a href="<?php echo $url_paths["table"]; ?>">Skift Table</a></li>
+            <li class="menu-item"><a href="<?php echo $url_paths["wellness"]; ?>">Skift Wellness</a></li>
             <?php
         } else {
             wp_nav_menu(array(
