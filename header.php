@@ -13,8 +13,9 @@ $url_paths = array(
     "edu"       => "http://edu.skift.com",
     "forum"     => "http://forum.skift.com",
     "skiftx"    => "http://www.skiftx.com",
-    "myskift"    => "https://my.skift.com",
-    "table"    => "https://table.skift.com"
+    "myskift"   => "https://my.skift.com",
+    "table"     => "https://table.skift.com",
+    "wellness"  => "https://wellness.skift.com"
 );
 
 if ($_SERVER['HTTP_HOST'] === "localhost") {
@@ -24,8 +25,9 @@ if ($_SERVER['HTTP_HOST'] === "localhost") {
         "edu"       => "http://localhost/edu",
         "forum"     => "http://localhost/forum",
         "skiftx"    => "http://localhost/skiftx",
-        "myskift"    => "http://localhost:3000",
-        "table"    => "http://localhost/chefstech"
+        "myskift"   => "http://localhost:3000",
+        "table"     => "http://localhost/chefstech",
+        "wellness"  => "http://localhost/wellness"
     );
 }
 
@@ -36,8 +38,9 @@ if (strpos($_SERVER['HTTP_HOST'],".wpengine.com") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforums.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://myskiftv2.wpengine.com",
-        "table"    => "https://chefstech.staging.wpengine.com"
+        "myskift"   => "https://myskiftv2.wpengine.com",
+        "table"     => "https://chefstech.staging.wpengine.com",
+        "wellness"  => "https://skiftwellness.staging.wpengine.com"
     );
 }
 
@@ -48,10 +51,29 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
         "edu"       => "http://skiftedu.staging.wpengine.com",
         "forum"     => "http://skforum.staging.wpengine.com",
         "skiftx"    => "http://skiftx.staging.wpengine.com",
-        "myskift"    => "https://my.skift.com",
-        "table"    => "https://chefstech.staging.wpengine.com"
+        "myskift"   => "https://my.skift.com",
+        "table"     => "https://chefstech.staging.wpengine.com",
+        "wellness"  => "https://skiftwellness.staging.wpengine.com"
     );
 }
+
+// time-lock for wellness nav item
+$time = current_time('timestamp');
+
+echo '<script>';
+echo 'console.log("' . date('g:i a', $time) . '");';
+
+$is_skift_travel = $_SERVER['HTTP_HOST'] === 'skift.com';
+
+if (!$is_skift_travel) {
+    $time = strtotime('-4 hours', $time);
+    echo 'console.log("' . date('g:i a', $time) . '");';
+}
+
+echo '</script>';
+
+$show_wellness_logo = $time > strtotime('09/27/2018 12:00 am') || isset($_GET['wellness']);
+
 // user authentication
 global $user_info;
 
