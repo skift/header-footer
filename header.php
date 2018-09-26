@@ -59,18 +59,13 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
 
 // time-lock for wellness nav item
 $time = current_time('timestamp');
+$time = strtotime('+4 hours', $time);
 
-echo '<script>';
-echo 'console.log("' . date('g:i a', $time) . '");';
-
-$is_skift_travel = $_SERVER['HTTP_HOST'] === 'skift.com';
-
-if (!$is_skift_travel) {
-    $time = strtotime('-4 hours', $time);
+if (isset($_GET['logtime'])) {
+    echo '<script>';
     echo 'console.log("' . date('g:i a', $time) . '");';
+    echo '</script>';
 }
-
-echo '</script>';
 
 $show_wellness_logo = $time > strtotime('09/27/2018 12:00 am') || isset($_GET['wellness']);
 
