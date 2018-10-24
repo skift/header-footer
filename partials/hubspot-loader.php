@@ -81,7 +81,7 @@
                 });
 
                 if (form.hasClass("hideLabels")) {
-                    form.find("label").remove();
+                    form.find("label").hide();
                 }
 
                 if (typeof prevOnReady === "function") {
