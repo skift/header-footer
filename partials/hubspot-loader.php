@@ -14,8 +14,6 @@
         }
 
         var formatForm = function(form) {
-            console.log('format');
-
             form.find(".hs-form-field").addClass("form-group");
             form.find(".hs-form-checkbox, .hs-form-booleancheckbox").addClass("checkbox-control");
             form.find(".hs-form-radio").addClass("radio-control");
