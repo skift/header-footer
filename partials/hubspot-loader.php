@@ -93,7 +93,7 @@
                     form.parent().appendTo(formContainer);
                 }
             
-                form.find('input[type=checkbox], select').on('click change', function() {
+                form.find('select').on('change', function() {
                     formatForm(form);
                 });
 
