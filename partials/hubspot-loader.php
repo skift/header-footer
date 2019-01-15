@@ -107,7 +107,7 @@
             hsScriptsLoading = true;
 
             var hsScripts = document.createElement('script');
-            hsScripts.setAttribute('src','//js.hsforms.net/forms/v2.js');
+            hsScripts.setAttribute('src','https://js.hsforms.net/forms/v2.js');
             document.head.appendChild(hsScripts);
         }
 
