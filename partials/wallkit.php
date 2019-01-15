@@ -1,7 +1,8 @@
 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
     <?php
     if (!$white_listed) {
-        if (!$is_subscriber) {
+        // show the cart to everyone now
+        // if (!$is_subscriber) { 
             ?>
             <div class="shopping-cart hasPopover">
                 <a href="javascript:" class="cart-btn">
@@ -38,7 +39,7 @@
                 </div>
             </div>
             <?php
-        }
+        // }
     }
     ?>
     <div class="overlay"></div>
