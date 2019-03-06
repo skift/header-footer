@@ -95,7 +95,7 @@ if (class_exists("User")) {
 $signed_in = !empty($user_info);
 
 if (function_exists('is_subscriber')) {
-    $is_subscriber = is_subscriber($_COOKIE['usr']);
+    $is_subscriber = isset($_COOKIE['usr']) && is_subscriber($_COOKIE['usr']);
 } else {
     $is_subscriber = false;
 }
