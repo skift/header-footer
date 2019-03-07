@@ -41,7 +41,7 @@ $(function() {
     }
 
     // article pages generate their own header ad bacause sometimes the first story is sponsored and we wanted a targeted ad
-    if (!$('#articleContainer').length && $('#top-banner').length && typeof createAd === 'function') {
+    if (!$('#articleContainer').length && !$('#skiftx-insight').length && $('#top-banner').length && typeof createAd === 'function') {
         var headerAd = {
             adClass: 'landscapeAd headerAd',
             slot: '/22809282/leaderboard',
