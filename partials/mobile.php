@@ -25,6 +25,7 @@
 <nav id="mobile-menu">
     <ul>
         <?php
+        global $url_paths;
         echo '<li class="menu-item"><a href="' . $url_paths["main"] . '">Home</a></li>';
 
         if (!$has_sub_nav) {
@@ -51,11 +52,11 @@
 
             if ($signed_in) {
             ?>
-                <li class="menu-item"><a href="<?php $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
+                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
             <?php
             } else {
             ?>
-                <li class="menu-item"><a href="<?php $url_paths['myskift'];?>/login">Sign In</a></li>
+                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a></li>
             <?php
             }
         }
