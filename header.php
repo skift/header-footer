@@ -120,42 +120,24 @@ if (function_exists("is_whitelisted")) {
     ?>
 
     <header id="header" class="<?php if ($dont_show_banner_ad) { echo 'fixed no-banner'; } ?>">
-        <div id="header-left">
+        <div id="header-wrap">
             <div id="logo">
                 <a href="<?php echo $url_paths['main']; ?>">
                     <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
                 </a>
             </div>
-            <?php require_once('partials/nav.php'); ?>
-            <div class="clearfix"></div>
-        </div>
-        <!-- #header-menus -->
 
-        <!-- #header-right (including Wallkit) -->
-        <div id="header-right">
-            <?php
-                if ($show_login_form) {
-                    require_once('partials/wallkit.php');
-                } else {
-                    require_once('partials/header-social.php');
-                }
+            <?php 
+            require_once('partials/nav.php');
+
+            if ($show_login_form) {
+                require_once('partials/wallkit.php');
+            }
             ?>
-            <div id="search">
-                <div id="search-container">
-                    <div id="search-trigger"><i class="fa fa-search"></i></div>
 
-                    <div id="search-form">
-                        <form method="get" action="<?php echo $url_paths["main"]; ?>">
-                            <input type="search" name="s" id="search-box" class="text" />
-                            <input type="button" value="&times;" id="search-clear" name="clear" />
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- #search -->
+            <div id="search-trigger"><i class="fa fa-search"></i></div>
         </div>
-        <!-- end #header-right -->
-        <div class="clearfix"></div>
+
         <?php require_once('partials/mobile.php'); ?>
     </header>
 
