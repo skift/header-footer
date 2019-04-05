@@ -37,7 +37,7 @@
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/travel-services/travel-agents/">Travel Agents</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/transport/cruises/">Cruises</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/travel-services/corporate-travel/">Corporate Travel</a></li>
-                    <li class="all-sectors menu-item"><a href="<?php echo $url_paths['main']; ?>/all-categories/">All Sectors</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/all-categories/"><strong>All Sectors</strong></a></li>
                 </ul>
             </div>
         </li>
@@ -53,6 +53,7 @@
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/meetings/">Meetings</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/new-luxury/">New Luxury</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/travel-advisor/">Travel Advisor</a></li>
+                    <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/newsletters/"><strong>All Newsletters</strong></a></li>
                 </ul>
             </div>
         </li>
