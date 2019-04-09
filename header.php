@@ -136,6 +136,14 @@ if (function_exists("is_whitelisted")) {
             ?>
 
             <div id="search-trigger"><i class="fa fa-search"></i></div>
+            <div id="search-close">&times;</div>
+
+            <div id="search-wrap">
+                <i class="fa fa-search icon"></i>
+                <form id="search-form" action="<?php echo home_url(); ?>" method="get">
+                    <input type="search" placeholder="Search Skift.com" name="s" class="search-box" />
+                </form>
+            </div>
         </div>
 
         <?php require_once('partials/mobile.php'); ?>
