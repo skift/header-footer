@@ -10,6 +10,7 @@ New header config variables, change this to whatever method you want
 */
 $logo = $logo ?? '<img src="' . get_template_directory_uri() . '/header-footer/img/logo.svg' . '" class="svg" alt="Skift logo" />';
 $search_placeholder = $search_placeholder ?? 'Search';
+$search_action = $search_action ?? home_url();
 
 $primary_nav_name = $primary_nav_name ?? 'primary-nav';
 $mobile_nav_name = $mobile_nav_name ?? 'primary-nav';
@@ -132,7 +133,7 @@ if (function_exists("is_whitelisted")) {
 
             <div id="search-wrap">
                 <i class="fa fa-search icon"></i>
-                <form id="search-form" action="<?php echo home_url(); ?>" method="get">
+                <form id="search-form" action="<?php echo $search_action; ?>" method="get">
                     <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="s" class="search-box" />
                 </form>
             </div>

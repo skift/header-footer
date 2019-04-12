@@ -11,7 +11,7 @@
     <div class="mobile-search">
         <div class="mobile-search-box">
             <i class="fa fa-search"></i>
-            <form id="mobile-search-form" action="<?php echo home_url(); ?>" method="get">
+            <form id="mobile-search-form" action="<?php echo $search_action; ?>" method="get">
                 <input type="search" name="s" placeholder="<?php echo $search_placeholder; ?>" class="mobile-search-input" />
             </form>
         </div>
