@@ -1,10 +1,23 @@
 #header-sign-in-with-popover {
-    vertical-align: middle;
-    display: inline-block;
+    display: flex;
+    align-items: center;
 
     position: relative;
 
-    margin:0 0 0 20px;
+    margin: 0 20px;
+
+    opacity: 1;
+
+    @include transition(opacity 0.3s);
+
+    @at-root #header.search-open #header-sign-in-with-popover {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @media screen and (max-width: $mobileBP) {
+        display: none;
+    }
 
     .overlay {
         position: fixed;
@@ -73,9 +86,6 @@
     }
 
     .shopping-cart {
-        display: inline-block;
-        padding: 0 15px;
-
         position: relative;
         z-index: 10;
         vertical-align: middle;
@@ -191,7 +201,6 @@
     }
 
     .sign-in {
-        display: inline-block;
         padding: 0 15px;
 
         position: relative;

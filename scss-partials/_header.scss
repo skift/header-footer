@@ -304,7 +304,7 @@ body {
                     @at-root #header-container #header.search-open #primary-nav > ul > li {
                         transition: all 0.3s;
 
-                        @for $n from 1 through 5 {
+                        @for $n from 1 through 8 {
                             &:nth-child(#{$n}) {
                                 transition-delay: 0.05s * (5 - $n);
                             }
@@ -344,6 +344,55 @@ body {
                         font-size: inherit;
 
                         margin-left: 10px;
+                    }
+
+                    &.menu-cta {
+                        align-self: center;
+
+                        & > a {
+                            border-radius: 4px;
+                            padding: 8px 20px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            font-size: 12px;
+                            text-decoration: none !important;
+                        }
+
+                        &.menu-cta-black > a {
+                            background-color: #000;
+                            color: #fff;
+
+                            &:hover {
+                                background-color: lighten(#000, 10);
+                            }
+                        }
+
+                        &.menu-cta-white > a {
+                            background-color: #fff;
+                            color: #000;
+
+                            &:hover {
+                                background-color: darken(#fff, 10);
+                            }
+                        }
+
+                        &.menu-cta-orange > a {
+                            background-color: $orange;
+                            color: #fff;
+
+                            &:hover {
+                                background-color: darken($orange, 10);
+                            }
+                        }
+
+                        &.menu-cta-blue > a {
+                            background-color: $blue;
+                            color: #fff;
+
+                            &:hover {
+                                background-color: darken($blue, 10);
+                            }
+                        }
                     }
 
                     .sub-menu {
@@ -511,12 +560,44 @@ body {
                                 text-decoration: none;
                             }
                         }
+
                         margin: 20px 0 15px;
                         padding-bottom: 15px;
                         border-bottom: 1px solid rgba(238, 238, 238, 0.1);
 
                         &:last-child {
                             border-bottom: none;
+                        }
+
+                        &.menu-cta {
+                            align-self: center;
+
+                            & > a {
+                                border-radius: 4px;
+                                padding: 8px 20px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                font-size: 18px;
+                                text-decoration: none !important;
+                            }
+
+                            &.menu-cta-orange > a {
+                                background-color: $orange;
+                                color: #fff;
+
+                                &:hover {
+                                    background-color: darken($orange, 10);
+                                }
+                            }
+
+                            &.menu-cta-blue > a {
+                                background-color: $blue;
+                                color: #fff;
+
+                                &:hover {
+                                    background-color: darken($blue, 10);
+                                }
+                            }
                         }
                     }
                 }
