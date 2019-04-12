@@ -65,6 +65,7 @@ $(function() {
     $('#mobileMenuBtn').click(function() {
         if ($(this).hasClass('open')) {
             $('#mobile-menu, #mobileMenuBtn').removeClass('open');
+            $('#header').removeClass('mobile-open');
 
             //unlock scroll
             $('body').css({ overflow: 'visible', position: 'relative' });
@@ -72,6 +73,8 @@ $(function() {
             var openNav = function() {
                 $('body').css({ overflow: 'hidden', position: 'static' });
                 $('#mobile-menu, #mobileMenuBtn').addClass('open');
+
+                $('#header').addClass('mobile-open');
             };
 
             if (scrollOffset < headerOffset) {

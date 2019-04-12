@@ -54,6 +54,11 @@ body {
             z-index: 8888;
         }
 
+        // stick to top on mobile nav open for bx banners
+        &.mobile-open {
+            top: 0 !important;
+        }
+
         #header-wrap {
             width: 100%;
             height: $headerHeight;
