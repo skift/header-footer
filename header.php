@@ -15,6 +15,8 @@ $search_action = $search_action ?? home_url();
 $primary_nav_name = $primary_nav_name ?? 'primary-nav';
 $mobile_nav_name = $mobile_nav_name ?? 'primary-nav';
 
+$primary_nav_max_width = $primary_nav_max_width ?? '650px';
+
 global $url_paths;
 
 $url_paths = array(
