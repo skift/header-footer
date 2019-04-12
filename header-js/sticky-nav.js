@@ -1,4 +1,5 @@
-var headerOffset, $header, $headerPad, noFix, scrollOffset;
+var headerOffset, $header, $headerPad, noFix;
+var scrollOffset = 0;
 
 function setHeaderOffset() {
     headerOffset = $header.offset().top;
@@ -63,23 +64,21 @@ $(function() {
     // mobile menu
     $('#mobileMenuBtn').click(function() {
         if ($(this).hasClass('open')) {
-            $('#mobile-menu').fadeOut();
+            $('#mobile-menu, #mobileMenuBtn').removeClass('open');
 
             //unlock scroll
             $('body').css({ overflow: 'visible', position: 'relative' });
         } else {
-            var lockScroll = function() {
+            var openNav = function() {
                 $('body').css({ overflow: 'hidden', position: 'static' });
+                $('#mobile-menu, #mobileMenuBtn').addClass('open');
             };
 
             if (scrollOffset < headerOffset) {
-                $('body').animate({ scrollTop: headerOffset }, lockScroll);
+                $('html, body').animate({ scrollTop: headerOffset }, 'fast', openNav);
             } else {
-                lockScroll();
+                openNav();
             }
-
-            $('#mobile-menu').fadeIn();
          }
-         $(this).toggleClass('open');
     });
 });

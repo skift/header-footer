@@ -5,6 +5,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+/*
+New header config variables, change this to whatever method you want
+*/
+$logo = '<img src="' . get_template_directory_uri() . '/header-footer/img/logo.svg' . '" class="svg" alt="Skift logo" />';
+$search_placeholder = 'Search Skift.com';
+
+$primary_nav_name = 'primary-nav';
+$mobile_nav_name = 'mobile-nav';
+
 global $url_paths;
 
 $url_paths = array(
@@ -57,23 +66,6 @@ if (strpos($_SERVER['HTTP_HOST'],"dev.") !== false) {
     );
 }
 
-// time-lock for wellness nav item
-$time = current_time('timestamp');
-
-if ($_SERVER['HTTP_HOST'] === 'skift.com' || $_SERVER['HTTP_HOST'] === 'research.skift.com') {
-    $time = strtotime('+4 hours', $time);
-} else if ($_SERVER['HTTP_HOST'] === 'forum.skift.com' || $_SERVER['HTTP_HOST'] === 'wellness.skift.com') {
-    $time = strtotime('-4 hours', $time);
-}
-
-if (isset($_GET['logtime'])) {
-    echo '<script>';
-    echo 'console.log("' . date('g:i a', $time) . '");';
-    echo '</script>';
-}
-
-$show_wellness_logo = $time > strtotime('09/27/2018 12:00 am') || isset($_GET['wellness']);
-
 // user authentication
 global $user_info;
 
@@ -112,9 +104,9 @@ if (function_exists("is_whitelisted")) {
     if (!$dont_show_banner_ad) {
         ?>
         <div id="top-banner">
-            <!-- header banner loads into this -->
+            <!-- header banner loads into this container -->
         </div>
-        <!-- #top-banner -->
+        
         <?php
     }
     ?>
@@ -123,7 +115,7 @@ if (function_exists("is_whitelisted")) {
         <div id="header-wrap">
             <div id="logo">
                 <a href="<?php echo $url_paths['main']; ?>">
-                    <img src="<?php echo get_template_directory_uri() ?>/header-footer/img/logo.svg" class="svg" alt="Skift Logo" />
+                    <?php echo $logo; ?>
                 </a>
             </div>
 
@@ -141,7 +133,7 @@ if (function_exists("is_whitelisted")) {
             <div id="search-wrap">
                 <i class="fa fa-search icon"></i>
                 <form id="search-form" action="<?php echo home_url(); ?>" method="get">
-                    <input type="search" placeholder="Search Skift.com" name="s" class="search-box" />
+                    <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="s" class="search-box" />
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <nav id="primary-nav">
     <?php
-    if ($has_sub_nav) {
+    // removed sub_nav in latest verion
+    if ($has_sub_nav && false) {
         ?>
         <div class="sub-menu">
             <div class="sub-menu-wrap<?php if (!empty($sub_nav_logo)) { echo ' has-sub-nav-logo'; } ?>">
@@ -22,10 +23,24 @@
         </div>
         <?php
     }
+
+    ?>
+    <ul id="navigation-menu">
+        <?php
+        wp_nav_menu(array(
+            'theme_location' => $primary_nav_name,
+            'container' => false,
+            'items_wrap' => '%3$s'
+        ));
+        ?>
+    </ul>
+    <?php
+
+    if (false) {
     ?>
     <ul id="navigation-menu">
         <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/news/"<?php if ($select_tab === 'news') { echo ' class="selected"'; } ?>>News<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
-            <div class="dropdown-menu">
+            <div class="sub-menu">
                 <ul>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/news/">Latest News</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/rooms/hotels/">Hotels</a></li>
@@ -44,7 +59,7 @@
         <li class="menu-item"><a href="<?php echo $url_paths['trends']; ?>/"<?php if ($select_tab === 'research') { echo ' class="selected"'; } ?>>Research</a></li>
         <li class="menu-item"><a href="<?php echo $url_paths['forum']; ?>/"<?php if ($select_tab === 'conferences') { echo ' class="selected"'; } ?>>Conferences</a></li>
         <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/newsletters/"<?php if ($select_tab === "newsletters") { echo ' class="selected"'; } ?>>Newsletters<div class="ddCarrot"><i class="fa fa-chevron-down"></i></div></a>
-            <div class="dropdown-menu">
+            <div class="sub-menu">
                 <ul>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/daily/">Daily</a></li>
                     <li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/weekly-review/">Weekly</a></li>
@@ -59,4 +74,5 @@
         </li>
         <li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>/"<?php if ($select_tab === 'advertising') { echo ' class="selected"'; } ?>>Advertising</a></li>
     </ul>
+    <?php } ?>
 </nav>

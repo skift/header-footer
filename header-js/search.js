@@ -1,4 +1,4 @@
-$(function() {
+$(function() {    
     $(document).on('click', '#search-trigger, #search-close', function(e) {
         $('#header').toggleClass('search-open');
 
