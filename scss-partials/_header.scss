@@ -408,8 +408,11 @@ body {
                         display: none;
                         padding: 0;
 
-                        padding-bottom: 30px;
+                        margin-bottom: 30px;
                         list-style: none;
+
+                        height: calc(100vh - #{$headerHeight} - 30px);
+                        overflow-y: auto;
 
                         li {
                             white-space: nowrap;
@@ -424,7 +427,7 @@ body {
                             }
 
                             a {
-                                padding: 10px 30px;
+                                padding: 9px 30px;
                                 background-color: $darkYellow;
                                 display: block;
                                 position: relative;
@@ -452,6 +455,12 @@ body {
                                         opacity: 1;
                                         left: 0;
                                     }
+                                }
+                            }
+
+                            &:last-child {
+                                a {
+                                    padding-bottom: 15px;
                                 }
                             }
                         }
