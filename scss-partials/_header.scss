@@ -410,8 +410,8 @@ body {
 
                         margin-bottom: 30px;
                         list-style: none;
-
-                        height: calc(100vh - #{$headerHeight} - 30px);
+                        
+                        max-height: calc(100vh - #{$headerHeight} - 30px);
                         overflow-y: auto;
 
                         li {
@@ -455,12 +455,6 @@ body {
                                         opacity: 1;
                                         left: 0;
                                     }
-                                }
-                            }
-
-                            &:last-child {
-                                a {
-                                    padding-bottom: 15px;
                                 }
                             }
                         }
