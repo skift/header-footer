@@ -411,7 +411,7 @@ body {
                         margin-bottom: 30px;
                         list-style: none;
                         
-                        max-height: calc(100vh - #{$headerHeight} - 30px);
+                        max-height: calc(100vh - #{$headerHeight} - 90px);
                         overflow-y: auto;
 
                         li {
