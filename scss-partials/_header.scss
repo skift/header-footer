@@ -57,6 +57,8 @@ body {
         // stick to top on mobile nav open for bx banners
         &.mobile-open {
             top: 0 !important;
+            position: fixed !important;
+            z-index: 999999999999 !important;
         }
 
         #header-wrap {
