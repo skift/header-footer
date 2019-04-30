@@ -4,7 +4,9 @@ namespace HeaderFooter;
 
 class CacheUtility {
     public function __construct($cache) {
-        $this->cache = get_template_directory() . '/inc/resource-cache/' . $cache;
+        $cache_location = get_template_directory() . '/inc/resource-cache/' . $cache;
+        $cache_location = apply_filters('sk_footer_cache_location', $cache_location);
+        $this->cache = $cache_location;
         $this->check_for_cached_contents();
     }
     public function check_for_cached_contents() {
