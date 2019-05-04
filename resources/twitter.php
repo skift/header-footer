@@ -13,7 +13,13 @@ class TwitterClient {
         $this->tweet_count = $tweet_count;
         $this->utility = new CacheUtility('latest-tweet.json');
         $this->read_or_fetch_tweets();
-        $this->latest_tweet = $this->latest_tweets[0];
+        $tweets = $this->latest_tweets;
+        if (is_array($tweets)) {
+            $this->latest_tweet = $this->latest_tweets[0];
+        } else {
+            $this->latest_tweet = '';
+        }
+        
     }
 
     protected function read_or_fetch_tweets() {
