@@ -1,4 +1,5 @@
 <?php
+require_once 'partials/variables.php';
 
 /**
  * New header config variables, change this to whatever method you want
