@@ -12,15 +12,16 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 	<div id="footer-content">
 			<?php 
 			ob_start();
+			$first_column_identifier = 'first';
 			?>
-			<div class="footer-column first">
+			<div class="footer-column <?php echo $first_column_identifier; ?>">
 				<div class="footer-item" id="footer-nav">
 					<?php 
 					do_action('sk_footer_before_column_content', 'footer-nav');
 					?>
 					<div class="footer-title">Skift Corporate</div>
 
-                    <ul>
+                    <ul class="footer-menu">
 						<?php 
 						if (has_nav_menu('footer_links')) {
 							wp_nav_menu([
@@ -47,11 +48,12 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$first_column = ob_get_clean();
 
-			echo apply_filters('sk_footer_column_content', 'first', $first_column);
+			echo apply_filters('sk_footer_column_content', $first_column, $first_column_identifier);
 			
 			ob_start();
+			$middle_column_identifier = 'middle';
 			?>
-			<div class="footer-column middle">
+			<div class="footer-column <?php echo $middle_column_identifier; ?>">
 				<div class="footer-item" id="social">
 					<?php 
 					do_action('sk_footer_before_column_content', 'social');
@@ -102,12 +104,13 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$middle_column = ob_get_clean();
 
-			echo apply_filters('sk_footer_column_markup', 'middle', $middle_column);
+			echo apply_filters('sk_footer_column_content', $middle_column, $middle_column_identifier);
 			
 			ob_start();
+			$last_column_identifier = 'last';
 			?>
 
-			<div class="footer-column last">
+			<div class="footer-column <?php echo $last_column_identifier; ?>">
 				<div class="footer-item" id="podcast">
 					<?php 
 					do_action('sk_footer_before_column_content', 'podcast');
@@ -129,7 +132,7 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$last_column = ob_get_clean();
 			
-			echo apply_filters('sk_footer_column_content', 'last', $last_column);
+			echo apply_filters('sk_footer_column_content', $last_column, $last_column_identifier);
 			?>
 
 			<div class="clearfix"></div>
