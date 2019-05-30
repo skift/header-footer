@@ -15,6 +15,9 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			?>
 			<div class="footer-column first">
 				<div class="footer-item" id="footer-nav">
+					<?php 
+					do_action('sk_footer_before_column_content', 'footer-nav');
+					?>
 					<div class="footer-title">Skift Corporate</div>
 
                     <ul>
@@ -44,12 +47,15 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$first_column = ob_get_clean();
 
-			echo apply_filters('sk_footer_first_column', $first_column);
+			echo apply_filters('sk_footer_column_content', 'first', $first_column);
 			
 			ob_start();
 			?>
 			<div class="footer-column middle">
 				<div class="footer-item" id="social">
+					<?php 
+					do_action('sk_footer_before_column_content', 'social');
+					?>
 					<div class="footer-title">Follow Us</div>
 					<ul>
 						<li>
@@ -96,13 +102,16 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$middle_column = ob_get_clean();
 
-			echo apply_filters('sk_footer_middle_column', $middle_column);
+			echo apply_filters('sk_footer_column_markup', 'middle', $middle_column);
 			
 			ob_start();
 			?>
 
 			<div class="footer-column last">
 				<div class="footer-item" id="podcast">
+					<?php 
+					do_action('sk_footer_before_column_content', 'podcast');
+					?>
 					<div class="footer-title">Latest Podcast Episodes</div>
 					<ul>
 						<?php
@@ -120,7 +129,7 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 			<?php 
 			$last_column = ob_get_clean();
 			
-			echo apply_filters('sk_footer_last_column', $last_column);
+			echo apply_filters('sk_footer_column_content', 'last', $last_column);
 			?>
 
 			<div class="clearfix"></div>
