@@ -19,27 +19,29 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 					<?php 
 					do_action('sk_footer_before_column_content', 'footer-nav');
 					?>
-					<div class="footer-title">Skift Corporate</div>
-
-                    <ul class="footer-menu">
-						<?php 
-						if (has_nav_menu('footer_links')) {
-							wp_nav_menu([
-								'theme_location' => 'footer_links',
-								'container' => false,
-								'items_wrap' => '%3$s'
-							]);
-						} else {
+					<div id="skift-corporate">
+						<div class="footer-title">Skift Corporate</div>
+	
+						<ul class="footer-menu">
+							<?php 
+							if (has_nav_menu('footer_links')) {
+								wp_nav_menu([
+									'theme_location' => 'footer_links',
+									'container' => false,
+									'items_wrap' => '%3$s'
+								]);
+							} else {
+								?>
+								<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/about/">About Skift</a></li>
+								<li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>/">Advertise With Us</a></li>
+								<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/news-staff/">News Staff</a></li>
+								<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/terms/">Terms of Use</a></li>
+								<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/privacy/">Privacy Policy</a></li>
+								<?php
+							}
 							?>
-							<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/about/">About Skift</a></li>
-							<li class="menu-item"><a href="<?php echo $url_paths['skiftx']; ?>/">Advertise With Us</a></li>
-							<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/news-staff/">News Staff</a></li>
-							<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/terms/">Terms of Use</a></li>
-							<li class="menu-item"><a href="<?php echo $url_paths['main']; ?>/privacy/">Privacy Policy</a></li>
-							<?php
-						}
-						?>
-					</ul>
+						</ul>
+					</div>
 
 					<div class="copyright">&copy; <?php echo date('Y'); ?> Skift Inc. All Rights Reserved</div>
 				</div>
