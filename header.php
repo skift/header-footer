@@ -5,9 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-/*
-New header config variables, change this to whatever method you want
-*/
+/**
+ * New header config variables, change this to whatever method you want
+ */
 $logo = $logo ?? '<img src="' . get_template_directory_uri() . '/header-footer/img/logo.svg' . '" class="svg" alt="Skift logo" />';
 $search_placeholder = $search_placeholder ?? 'Search';
 $search_action = $search_action ?? home_url();
