@@ -130,15 +130,25 @@ if (function_exists("is_whitelisted")) {
             }
             ?>
 
-            <div id="search-trigger"><i class="fa fa-search"></i></div>
-            <div id="search-close">&times;</div>
+            <?php 
+            
+            $show_search = apply_filters('sk_header_show_search', true);
 
-            <div id="search-wrap">
-                <i class="fa fa-search icon"></i>
-                <form id="search-form" action="<?php echo $search_action; ?>" method="get">
-                    <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="<?php echo $search_query_string; ?>" class="search-box" />
-                </form>
-            </div>
+            if ($show_search) {
+                ?>
+                <div id="search-trigger"><i class="fa fa-search"></i></div>
+                <div id="search-close">&times;</div>
+
+                <div id="search-wrap">
+                    <i class="fa fa-search icon"></i>
+                    <form id="search-form" action="<?php echo $search_action; ?>" method="get">
+                        <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="<?php echo $search_query_string; ?>" class="search-box" />
+                    </form>
+                </div>
+                <?php
+            }
+            
+            ?>
         </div>
 
         <?php require_once('partials/mobile.php'); ?>
