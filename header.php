@@ -117,7 +117,7 @@ if (function_exists("is_whitelisted")) {
     <header id="header" class="<?php if ($dont_show_banner_ad) { echo 'fixed no-banner'; } ?>">
         <div id="header-wrap">
             <div id="logo">
-                <a href="<?php echo home_url(); ?>">
+                <a href="<?php echo apply_filters('sk_header_logo_url', home_url()); ?>">
                     <?php echo $logo; ?>
                 </a>
             </div>
