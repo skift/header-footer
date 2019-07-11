@@ -27,6 +27,10 @@ class CacheUtility {
     }
 
     public function write_to_cache($response) {
+        if (!is_string($response)) {
+            return;
+        }
+        
         file_put_contents($this->cache, $response);
     }
 }
