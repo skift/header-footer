@@ -55,8 +55,17 @@ class TwitterClient {
             self::$twitter_base
         );
         $response = $request->post();
-        $auth_response = json_decode($response, true);
-        return $auth_response['access_token'];
+        try {
+            $auth_response = json_decode($response, true);
+        } catch (\Exception $e) {
+            error_log('Twitter Error: ' . $e);
+        }
+
+        if (is_array($auth_response) && array_key_exists('access_token', $auth_response)) {
+            return $auth_response['access_token'];
+        } else {
+            return false;
+        }
     }
 }
 
