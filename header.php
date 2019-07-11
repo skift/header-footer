@@ -5,9 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-/*
-New header config variables, change this to whatever method you want
-*/
+/**
+ * New header config variables, change this to whatever method you want
+ */
 $logo = $logo ?? '<img src="' . get_template_directory_uri() . '/header-footer/img/logo.svg' . '" class="svg" alt="Skift logo" />';
 $search_placeholder = $search_placeholder ?? 'Search';
 $search_action = $search_action ?? home_url();
@@ -117,7 +117,7 @@ if (function_exists("is_whitelisted")) {
     <header id="header" class="<?php if ($dont_show_banner_ad) { echo 'fixed no-banner'; } ?>">
         <div id="header-wrap">
             <div id="logo">
-                <a href="<?php echo home_url(); ?>">
+                <a href="<?php echo apply_filters('sk_header_logo_url', home_url()); ?>">
                     <?php echo $logo; ?>
                 </a>
             </div>
@@ -130,15 +130,25 @@ if (function_exists("is_whitelisted")) {
             }
             ?>
 
-            <div id="search-trigger"><i class="fa fa-search"></i></div>
-            <div id="search-close">&times;</div>
+            <?php 
+            
+            $show_search = apply_filters('sk_header_show_search', true);
 
-            <div id="search-wrap">
-                <i class="fa fa-search icon"></i>
-                <form id="search-form" action="<?php echo $search_action; ?>" method="get">
-                    <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="<?php echo $search_query_string; ?>" class="search-box" />
-                </form>
-            </div>
+            if ($show_search) {
+                ?>
+                <div id="search-trigger"><i class="fa fa-search"></i></div>
+                <div id="search-close">&times;</div>
+
+                <div id="search-wrap">
+                    <i class="fa fa-search icon"></i>
+                    <form id="search-form" action="<?php echo $search_action; ?>" method="get">
+                        <input type="search" placeholder="<?php echo $search_placeholder; ?>" name="<?php echo $search_query_string; ?>" class="search-box" />
+                    </form>
+                </div>
+                <?php
+            }
+            
+            ?>
         </div>
 
         <?php require_once('partials/mobile.php'); ?>
