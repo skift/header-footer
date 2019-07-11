@@ -13,7 +13,11 @@ class TwitterClient {
         $this->tweet_count = $tweet_count;
         $this->utility = new CacheUtility('latest-tweet.json');
         $this->read_or_fetch_tweets();
-        $this->latest_tweet = $this->latest_tweets[0];
+        if ($this->latest_tweets && is_array($this->latest_tweets)) {
+            $this->latest_tweet = $this->latest_tweets[0];
+        } else {
+            $this->latest_tweet = false;
+        }
     }
 
     protected function read_or_fetch_tweets() {
@@ -72,10 +76,17 @@ class TwitterClient {
 class Tweet {
     public function __construct() {
         $client = new TwitterClient();
-        $this->tweet = (object)$client->latest_tweet;
-        $this->text = $this->tweet->text;
-        $this->parse_urls();
-        $this->time = $this->set_time();
+        $latest_tweet = $client->latest_tweet;
+        if ($latest_tweet) {
+            $this->tweet = (object)$client->latest_tweet;
+            $this->text = $this->tweet->text;
+            $this->parse_urls();
+            $this->time = $this->set_time();
+        } else {
+            $this->tweet = false;
+            $this->text = false;
+            $this->time = false;
+        }
     }
 
     private function set_time() {

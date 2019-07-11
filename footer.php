@@ -60,14 +60,18 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 					<div id="footer-tweet-box">
 						<div id="footer-tweet">
 							<?php
-                            $tweet = new \HeaderFooter\Tweet();
+							$tweet = new \HeaderFooter\Tweet();
+							if ($tweet->tweet) {
+								?>
+								<p id="tweet-content">
+									<?php echo $tweet->text;?>
+								</p>
+								<p id="tweet-meta">
+									Twitter | <?php echo $tweet->time; ?>
+								</p>
+								<?php
+							} 
     				        ?>
-							<p id="tweet-content">
-								<?php echo $tweet->text;?>
-							</p>
-							<p id="tweet-meta">
-								Twitter | <?php echo $tweet->time; ?>
-							</p>
 						</div>
 					</div>
 				</div><!-- social -->
