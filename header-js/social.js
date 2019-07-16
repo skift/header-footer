@@ -38,7 +38,7 @@ $(function() {
 
         var articleTitle = document.title.replace(" – Skift","");
 
-        if (articleTitle.length > 101) {
+        if (articleTitle.length > 241) {
             articleTitle = articleTitle.substring(0,70) + "[...]";
         }
 
