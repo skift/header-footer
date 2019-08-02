@@ -1,4 +1,6 @@
 <?php
+use Skift\MySkift\User;
+
 /** Declare variables that may be defined in theme header.php */
 $sub_nav = isset($sub_nav) ? $sub_nav : null;
 $sub_nav_logo = isset($sub_nav_logo) ? $sub_nav_logo : null;
@@ -50,24 +52,13 @@ if (strpos($_SERVER['HTTP_HOST'],'dev.') !== false) {
 }
 
 // user authentication
-global $user_info;
-$user_info = false;
-$signed_in = false;
-if (class_exists('User')) {
-    // check user auth using the wallkit plugin
-    $user_info = (new User())->info;
-    $signed_in = !empty($user_info);
-} else {
-    if (function_exists('user_auth')) {
-        // if here, we're on myskift, use the library
-        $user_info = user_auth();
-        $signed_in = !empty($user_info);
-    }
+
+global $mysk_current_user;
+
+if (!$mysk_current_user) {
+    $mysk_current_user = User::get_current_user();
 }
 
-$white_listed = false;
-if (function_exists('is_whitelisted')) {
-    $white_listed = is_whitelisted();
-}
+$whitelisted = mysk_current_whitelisted_org();
 
 ?>
