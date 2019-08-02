@@ -1,10 +1,10 @@
 <?php
 namespace HeaderFooter;
 
-class PodcastClient extends \Curl {
-    public function __construct($resource = null) {
-        isset($resource) or $resource = 'posts?per_page=3';
-        parent::__construct($resource, array(), null, null, 'https://podcast.skift.com/wp-json/wp/v2');
+class PodcastClient {
+    const API_URL = 'https://podcast.skift.com/wp-json/wp/v2/posts?per_page=3';
+
+    public function __construct() {
         $this->utility = new CacheUtility('podcasts.json');
         $this->read_or_fetch_podcasts();
     }
@@ -18,9 +18,14 @@ class PodcastClient extends \Curl {
     }
 
     private function fetch_podcasts() {
-        $response = $this->get();
-        $this->utility->write_to_cache($response);
-        return json_decode($response, true);
+        $response = wp_remote_get(self::API_URL);
+        if (is_wp_error($response)) {
+            return false;
+        }
+
+        $body = $response['body'];
+        $this->utility->write_to_cache($body);
+        return json_decode($body, true);
     }
 
 }

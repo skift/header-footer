@@ -20,12 +20,13 @@
     <ul>
         <?php
         global $url_paths;
-
+        do_action('sk_header_before_nav', $mobile_nav_name);
         wp_nav_menu(array(
             'theme_location' => $mobile_nav_name,
             'container' => false,
             'items_wrap' => '%3$s'
         ));
+        do_action('sk_header_after_nav', $mobile_nav_name);
         
         if ($show_login_form) {
 
