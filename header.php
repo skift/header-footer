@@ -50,20 +50,17 @@ if (strpos($_SERVER['HTTP_HOST'],'.wpengine.com') !== false) {
 }
 
 // user authentication
-global $current_user;
-if (!$current_user && function_exists('mysk_get_current_user')) {
-    $current_user = mysk_get_current_user();
+global $mysk_current_user;
+if (!$mysk_current_user && function_exists('mysk_get_current_user')) {
+    $mysk_current_user = mysk_get_current_user();
 }
-
-$signed_in = !empty($current_user);
-if (function_exists('mysk_current_user_is_subscriber')) {
-    $is_subscriber = mysk_current_user_is_subscriber();
-}
+$signed_in = !empty($mysk_current_user);
+$is_subscriber = function_exists('mysk_current_user_is_subscriber') && mysk_current_user_is_subscriber();
 
 /**
  * @todo get whitelisted ID
  */
-$white_listed = false;
+$whitelisted_org = function_Exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
 ?>
 
 <div id="header-container"<?php if ($has_sub_nav) { echo ' class="has-sub-nav"'; } ?>>
