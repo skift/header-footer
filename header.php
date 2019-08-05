@@ -1,5 +1,4 @@
 <?php
-die('I finally updated!');
 /**
  * New header config variables, change this to whatever method you want
  */
