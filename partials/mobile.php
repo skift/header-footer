@@ -32,11 +32,11 @@
 
             if ($signed_in) {
             ?>
-                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
+                <li class="menu-item"><a href="<?php mysk_the_logout_link(); ?>">Sign Out</a></li>
             <?php
             } else {
             ?>
-                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a></li>
+                <li class="menu-item"><a href="<?php mysk_get_login_link(); ?>">Sign In</a></li>
             <?php
             }
         }

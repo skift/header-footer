@@ -121,8 +121,5 @@ $whitelisted_org = function_Exists('mysk_current_whitelisted_org') ? mysk_curren
 	<div id="header-pad"></div>
 </div>
 <?php
-    if (false && $show_login_form) {
-        require_once 'partials/mobile-account-manager.php';
-    }
     require_once 'partials/hubspot-loader.php';
 ?>
