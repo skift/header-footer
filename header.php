@@ -86,7 +86,7 @@ $whitelisted_org = function_exists('mysk_current_whitelisted_org') ? mysk_curren
             require_once 'partials/nav.php';
 
             if ($show_login_form) {
-                require_once 'partials/wallkit.php';
+                require_once 'partials/myskift.php';
             }
             ?>
 

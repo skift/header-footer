@@ -3,7 +3,7 @@
     <?php
     if (!$signed_in && !$whitelisted_org) {
         ?>
-        <div class="sign-in"><a href="<?php mysk_the_login_link(); ?>" class="sign-in-btn">Sign In</a></div>
+        <div class="sign-in"><a href="<?php if (function_exists('mysk_get_login_link')) echo mysk_get_login_link(); ?>" class="sign-in-btn">Sign In</a></div>
         <?php
     } else if ($whitelisted_org) {
         ?>
@@ -21,8 +21,8 @@
 
             <div id="sign-in-popover" class="popover">
                 <ul id="my-account-menu">
-                    <li><a href="<?php mysk_the_dashboard_link(); ?>">Account</a></li>
-                    <li><a href="<?php mysk_the_logout_link();  ?>" class="logout-btn">Sign Out</a></li>
+                    <li><a href="<?php if (function_exists('mysk_get_dashboard_link')) echo mysk_get_dashboard_link(); ?>">Account</a></li>
+                    <li><a href="<?php if (function_exists('mysk_get_logout_link')) echo mysk_get_logout_link();  ?>" class="logout-btn">Sign Out</a></li>
                 </ul>
 
                 <?php
