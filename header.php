@@ -1,6 +1,4 @@
 <?php
-require_once 'partials/variables.php';
-
 /**
  * New header config variables, change this to whatever method you want
  */
@@ -60,7 +58,7 @@ $is_subscriber = function_exists('mysk_current_user_is_subscriber') && mysk_curr
 /**
  * @todo get whitelisted ID
  */
-$whitelisted_org = function_Exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
+$whitelisted_org = function_exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
 ?>
 
 <div id="header-container"<?php if ($has_sub_nav) { echo ' class="has-sub-nav"'; } ?>>

@@ -1,6 +1,4 @@
 <?php
-use Skift\MySkift\User;
-
 /** Declare variables that may be defined in theme header.php */
 $sub_nav = isset($sub_nav) ? $sub_nav : null;
 $sub_nav_logo = isset($sub_nav_logo) ? $sub_nav_logo : null;
@@ -8,6 +6,7 @@ $has_sub_nav = !empty($sub_nav);
 $select_tab = isset($select_tab) ? $select_tab : null;
 $dont_show_banner_ad = isset($dont_show_banner_ad) ? $dont_show_banner_ad : null;
 $show_login_form = isset($show_login_form) ? $show_login_form : null; //Defined in products/header.php
+
 global $url_paths;
 $url_paths = array(
     'main'      => 'https://skift.com',
@@ -50,15 +49,3 @@ if (strpos($_SERVER['HTTP_HOST'],'dev.') !== false) {
         'myskift'    => 'https://my.skift.com'
     );
 }
-
-// user authentication
-
-global $mysk_current_user;
-
-if (!$mysk_current_user) {
-    $mysk_current_user = User::get_current_user();
-}
-
-$whitelisted = mysk_current_whitelisted_org();
-
-?>
