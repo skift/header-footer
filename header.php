@@ -52,12 +52,8 @@ global $mysk_current_user;
 if (!$mysk_current_user && function_exists('mysk_get_current_user')) {
     $mysk_current_user = mysk_get_current_user();
 }
-$signed_in = !empty($mysk_current_user);
+$signed_in = !empty($mysk_current_user) && $mysk_current_user->is_authenticated;
 $is_subscriber = function_exists('mysk_current_user_is_subscriber') && mysk_current_user_is_subscriber();
-
-/**
- * @todo get whitelisted ID
- */
 $whitelisted_org = function_exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
 ?>
 
