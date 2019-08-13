@@ -18,7 +18,13 @@ class PodcastClient {
     }
 
     private function fetch_podcasts() {
-        $response = wp_remote_get(self::API_URL);
+        /**
+         * Inexplicably this method works with the regular WP user agent on Skift and Research installs, but not Forum
+         */
+        $response = wp_remote_get(self::API_URL, [
+            // 'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'
+            'user-agent' => 'Skift HeaderFooter'
+        ]);
         if (is_wp_error($response)) {
             return false;
         }
