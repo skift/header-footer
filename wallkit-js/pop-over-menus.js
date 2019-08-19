@@ -53,9 +53,9 @@ $(function() {
             clearLoginState();
         });
 
-        $('.sign-in').click(function(e) {
-           e.stopPropagation();
-        });
+        // $('.sign-in').click(function(e) {
+        //    e.stopPropagation();
+        // });
 
         $('.has-floating-label').on('change keyup blur input', function() {
             if ($(this).val() !== '') {
