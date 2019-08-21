@@ -16,7 +16,6 @@ function addCookieWarning(after) {
     $("<div />").addClass("error-text stay").html("This site requires cookies to be enabled.").show().insertAfter(after);
 }
 
-// @codekit-append "wallkit-js/myskift-path.js"
-// @codekit-append "wallkit-js/mobile-account-manager.js"
-// @codekit-append "wallkit-js/pop-over-menus.js
-// @codekit-append "wallkit-js/wk-tracking.js
+// @codekit-append "js/myskift/myskift-path.js"
+// @codekit-append "js/myskift/mobile-account-manager.js"
+// @codekit-append "js/myskift/pop-over-menus.js
