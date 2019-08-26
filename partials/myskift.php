@@ -7,7 +7,7 @@
         <?php
     } else if ($whitelisted_org) {
         ?>
-        <div class="sign-in"><?php echo "Welcome $white_listed!"; ?></div>
+        <div class="sign-in"><?php echo "Welcome $whitelisted_org!"; ?></div>
         <?php
     } else {
         ?>
@@ -31,7 +31,7 @@
                     ?>
                     <p>Welcome, <?php echo $mysk_current_user->name; ?>!</p>
                     <?php
-                } else {
+                } else if ($mysk_current_user->is_authenticated) {
                     ?>
                     <p>Welcome!</p>
                     <?php
