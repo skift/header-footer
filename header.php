@@ -57,7 +57,7 @@ $is_subscriber = function_exists('mysk_current_user_is_subscriber') && mysk_curr
 $whitelisted_org = function_exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
 ?>
 
-<div id="header-container"<?php if ($has_sub_nav) { echo ' class="has-sub-nav"'; } ?>>
+<div id="header-container">
 
     <?php
     if (!$dont_show_banner_ad) {
