@@ -269,3 +269,25 @@
         // }
     }
 }
+.error-text {
+    display: none;
+
+    background-color:$red;
+    padding:5px;
+    font-size:12px;
+    text-align: center;
+    color:#fff;
+    margin-bottom:15px;
+
+    &.success {
+        background-color:$green;
+    }
+
+    &.show {
+        display: block;
+    }
+
+    &.visible {
+        display: block;
+    }
+}
