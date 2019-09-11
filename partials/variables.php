@@ -6,6 +6,7 @@ $has_sub_nav = !empty($sub_nav);
 $select_tab = isset($select_tab) ? $select_tab : null;
 $dont_show_banner_ad = isset($dont_show_banner_ad) ? $dont_show_banner_ad : null;
 $show_login_form = isset($show_login_form) ? $show_login_form : null; //Defined in products/header.php
+
 global $url_paths;
 $url_paths = array(
     'main'      => 'https://skift.com',
@@ -48,26 +49,3 @@ if (strpos($_SERVER['HTTP_HOST'],'dev.') !== false) {
         'myskift'    => 'https://my.skift.com'
     );
 }
-
-// user authentication
-global $user_info;
-$user_info = false;
-$signed_in = false;
-if (class_exists('User')) {
-    // check user auth using the wallkit plugin
-    $user_info = (new User())->info;
-    $signed_in = !empty($user_info);
-} else {
-    if (function_exists('user_auth')) {
-        // if here, we're on myskift, use the library
-        $user_info = user_auth();
-        $signed_in = !empty($user_info);
-    }
-}
-
-$white_listed = false;
-if (function_exists('is_whitelisted')) {
-    $white_listed = is_whitelisted();
-}
-
-?>

@@ -1,18 +1,3 @@
-<div id="mobile-search">
-    <div id="search-trigger"><i class="fa fa-search"></i></div>
-</div>
-
-<div id="mobile-search-form">
-    <?php
-    $search = (isset($_GET['s']) && !empty($_GET['s'])) ? $_GET['s'] : '';
-    ?>
-    <form method="get" action="<?php echo $url_paths["main"]; ?>">
-        <input type="button" value="&times;" id="mobile-search-close" name="clear" />
-        <input type="search" value="<?php echo $search; ?>" name="s" id="mobile-search-box" class="text" />
-        <button type="submit" id="mobile-search-go" name="go"><i class="fa fa-search"></i></button>
-    </form>
-</div>
-
 <div id="mobileMenuBtn">
     <div class="top-line"></div>
     <div class="middle">
@@ -23,40 +8,35 @@
 </div>
 
 <nav id="mobile-menu">
+    <div class="mobile-search">
+        <div class="mobile-search-box">
+            <i class="fa fa-search"></i>
+            <form id="mobile-search-form" action="<?php echo $search_action; ?>" method="get">
+                <input type="search" name="<?php echo $search_query_string; ?>" placeholder="<?php echo $search_placeholder; ?>" class="mobile-search-input" />
+            </form>
+        </div>
+    </div>
+
     <ul>
         <?php
         global $url_paths;
-        echo '<li class="menu-item"><a href="' . $url_paths["main"] . '">Home</a></li>';
-
-        if (!$has_sub_nav) {
-            ?>
-            <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/news/">News</a></li>
-            <li class="menu-item"><a href="<?php echo $url_paths["trends"]; ?>">Research</a></li>
-            <li class="menu-item"><a href="<?php echo $url_paths["forum"]; ?>">Conferences</a></li>
-            <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/daily">Newsletters</a></li>
-            <li class="menu-item"><a href="<?php echo $url_paths["main"]; ?>/advertising">Advertising</a></li>
-            <li class="menu-item"><a href="<?php echo $url_paths["table"]; ?>">Skift Table</a></li>
-            <?php if ($show_wellness_logo) { ?>
-                <li class="menu-item"><a href="<?php echo $url_paths["wellness"]; ?>">Skift Wellness</a></li>
-            <?php } ?>
-            <?php
-        } else {
-            wp_nav_menu(array(
-                'theme_location' => $sub_nav,
-                'container' => false,
-                'items_wrap' => '%3$s'
-            ));
-        }
-
+        do_action('sk_header_before_nav', $mobile_nav_name);
+        wp_nav_menu(array(
+            'theme_location' => $mobile_nav_name,
+            'container' => false,
+            'items_wrap' => '%3$s'
+        ));
+        do_action('sk_header_after_nav', $mobile_nav_name);
+        
         if ($show_login_form) {
 
             if ($signed_in) {
             ?>
-                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login?logout=true">Sign Out</a></li>
+                <li class="menu-item"><a href="<?php if (function_exists('mysk_get_logout_link')) echo mysk_get_logout_link(); ?>">Sign Out</a></li>
             <?php
             } else {
             ?>
-                <li class="menu-item"><a href="<?php echo $url_paths['myskift'];?>/login">Sign In</a></li>
+                <li class="menu-item"><a href="<?php if (function_exists('mysk_get_login_link')) echo mysk_get_login_link(); ?>">Sign In</a></li>
             <?php
             }
         }
