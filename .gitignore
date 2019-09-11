@@ -1,0 +1,4 @@
+# Ignore any CodeKit files
+*.codekit
+*.codekit3
+config.rb
