@@ -1,8 +1,8 @@
 <?php
 
-namespace HeaderFooter;
+namespace Skift\Header_Footer;
 
-class CacheUtility {
+class Cache_Utility {
     public function __construct($cache) {
         $cache_location = get_template_directory() . '/inc/resource-cache/' . $cache;
         $cache_location = apply_filters('sk_resource_cache_location', $cache_location, $cache);

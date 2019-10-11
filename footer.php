@@ -1,7 +1,7 @@
 <?php
-require_once 'resources/utility.php';
-require_once 'resources/podcasts.php';
-require_once 'resources/twitter.php';
+require_once 'inc/class-utility.php';
+require_once 'inc/class-podcasts.php';
+require_once 'inc/class-twitter.php';
 
 global $url_paths;
 

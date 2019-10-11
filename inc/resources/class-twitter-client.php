@@ -1,7 +1,7 @@
-<?php
-namespace HeaderFooter;
+<?php 
+namespace Skift\Header_Footer;
 
-class TwitterClient {
+class Twitter_Client {
     public $latest_tweet;
     private static $api_key = 'yaa6xQpwIrIAFhJgsTgpQfqcm'; // Consumer Key (API Key)
     private static $api_secret = 'uHCaJ3bQmIMARlbOjsmoMn90siO2le90ltQ9zrZTEQ63dk4oUO'; // Consumer Secret (API Secret)
@@ -11,7 +11,7 @@ class TwitterClient {
 
     public function __construct($tweet_count = 1) {
         $this->tweet_count = $tweet_count;
-        $this->utility = new CacheUtility('latest-tweet.json');
+        $this->utility = new Cache_Utility('latest-tweet.json');
         $this->read_or_fetch_tweets();
         $tweets = $this->latest_tweets;
         if (is_array($tweets)) {
@@ -82,42 +82,3 @@ class TwitterClient {
         }
     }
 }
-
-class Tweet {
-    public function __construct() {
-        $client = new TwitterClient();
-        $latest_tweet = $client->latest_tweet;
-        if ($latest_tweet) {
-            $this->tweet = (object)$client->latest_tweet;
-            $this->text = $this->tweet->text;
-            $this->parse_urls();
-            $this->time = $this->set_time();
-        } else {
-            $this->tweet = false;
-            $this->text = false;
-            $this->time = false;
-        }
-    }
-
-    private function set_time() {
-        $time = human_time_diff(time(), strtotime($this->tweet->created_at));
-        return $time . ' ago';
-    }
-
-    private function parse_urls() {
-        $url_regex = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-        $text = $this->text;
-        if (preg_match_all($url_regex, $text, $url)) {
-
-            // make the urls links
-            $urls = $url[0];
-
-            foreach ($urls as $link) {
-               $text = str_replace($link, "<a href=\"$link\">$link</a>", $text);
-            }
-        }
-        $this->text = $text;
-    }
-}
-
-?>
