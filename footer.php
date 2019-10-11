@@ -1,6 +1,8 @@
 <?php
-require_once 'inc/class-utility.php';
-require_once 'inc/class-podcasts.php';
+require_once 'inc/class-cache-utility.php';
+require_once 'inc/class-podcast-client.php';
+require_once 'inc/class-podcast.php';
+require_once 'inc/class-twitter-client.php';
 require_once 'inc/class-twitter.php';
 
 global $url_paths;
