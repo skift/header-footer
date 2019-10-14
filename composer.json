@@ -1,0 +1,18 @@
+{
+    "name": "skift/header-footer",
+    "type": "skift-theme-part",
+    "version": "3.0.0",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/skift/header-footer.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://packagist.org"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
