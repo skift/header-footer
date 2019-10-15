@@ -2,3 +2,4 @@
 *.codekit
 *.codekit3
 config.rb
+vendor/
