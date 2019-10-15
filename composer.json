@@ -1,6 +1,6 @@
 {
     "name": "skift/header-footer",
-    "type": "skift-theme-part",
+    "type": "wordpress-theme",
     "version": "3.0.0",
     "repositories": [
         {
