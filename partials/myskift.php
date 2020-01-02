@@ -1,6 +1,6 @@
 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
     <?php
-    if (!$signed_in && !$whitelisted_org && false) {
+    if (!$signed_in && !$whitelisted_org) {
         ?>
         <div class="account"><a href="javascript:" class="account-btn trigger-sign-in">Sign In</a></div>
         <?php
