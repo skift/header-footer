@@ -32,11 +32,11 @@
 
             if ($signed_in) {
             ?>
-                <li class="menu-item"><a href="<?php if (function_exists('mysk_get_logout_link')) echo mysk_get_logout_link(); ?>">Sign Out</a></li>
+                <li class="menu-item"><a href="javascript:" class="trigger-sign-out">Sign Out</a></li>
             <?php
             } else {
             ?>
-                <li class="menu-item"><a href="<?php if (function_exists('mysk_get_login_link')) echo mysk_get_login_link(); ?>">Sign In</a></li>
+                <li class="menu-item"><a href="javascript:" class="trigger-sign-in">Sign In</a></li>
             <?php
             }
         }
