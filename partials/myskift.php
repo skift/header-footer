@@ -1,8 +1,12 @@
+<?php 
+$login_link = function_exists('mysk_get_login_link') ? mysk_get_login_link() : home_url() . '/auth/login';
+$logout_link = home_url() . '/auth/logout';
+?>
 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
     <?php
     if (!$signed_in && !$whitelisted_org) {
         ?>
-        <div class="account"><a href="javascript:" class="account-btn trigger-sign-in">Sign In</a></div>
+        <div class="account"><a href="<?php echo $login_link; ?>" class="account-btn">Sign In</a></div>
         <?php
     } else if ($whitelisted_org) {
         ?>
@@ -21,7 +25,7 @@
             <div class="account-menu-popover">
                 <ul>
                     <li><a href="<?php if (function_exists('mysk_get_dashboard_link')) echo mysk_get_dashboard_link(); ?>">Account</a></li>
-                    <li><a href="javascript:" class="sign-out-btn trigger-sign-out">Sign Out</a></li>
+                    <li><a href="<?php echo $logout_link; ?>" class="sign-out-btn trigger-sign-out">Sign Out</a></li>
                 </ul>
 
                 <?php
