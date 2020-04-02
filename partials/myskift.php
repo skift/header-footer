@@ -1,7 +1,3 @@
-<?php 
-$login_link = function_exists('mysk_get_login_link') ? mysk_get_login_link() : home_url() . '/auth/login';
-$logout_link = home_url() . '/auth/logout';
-?>
 <div id="header-sign-in-with-popover"<?php if ($signed_in) { echo ' class="my-account"'; } ?>>
     <?php
     if (!$signed_in && !$whitelisted_org) {

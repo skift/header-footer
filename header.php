@@ -8,7 +8,8 @@ $search_action = $search_action ?? home_url();
 $search_query_string = $search_query_string ?? 's';
 $primary_nav_name = $primary_nav_name ?? 'primary-nav';
 $mobile_nav_name = $mobile_nav_name ?? 'primary-nav';
-
+$login_link = function_exists('mysk_get_login_link') ? mysk_get_login_link() : home_url() . '/auth/login';
+$logout_link = home_url() . '/auth/logout';
 $primary_nav_max_width = $primary_nav_max_width ?? '650px';
 
 global $url_paths;
