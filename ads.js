@@ -48,7 +48,7 @@ googletag.cmd = googletag.cmd || [];
         'travel-agents': 'travel-agents-and-tour-operators'
     };
 
-    var categories = window.pageData.categories;
+    var categories = (window.pageData || {}).categories || [];
 
     if (categories && categories.length) {
         var sectors = [];
