@@ -61,33 +61,71 @@ $footer_class = isset($footerClass) ? $footerClass : null;
 					do_action('sk_footer_before_column_content', 'social');
 					?>
 					<div class="footer-title">Follow Us</div>
-					<ul>
-						<li>
-							<a href="<?php echo apply_filters('sk_facebook_link', 'https://facebook.com/skiftnews'); ?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
-								<i class="fa fa-facebook" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo apply_filters('sk_twitter_link', 'https://twitter.com/skift'); ?>" class="icon selected" target="_blank" rel="nofollow noopener noreferrer">
-								<i class="fa fa-twitter twitter-icon" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo apply_filters('sk_linkedin_link', 'https://linkedin.com/company/skift');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
-								<i class="fa fa-linkedin" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo apply_filters('sk_instagram_link', 'https://www.instagram.com/skiftnews/');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
-								<i class="fa fa-instagram" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo apply_filters('sk_newsletters_link', $url_paths['main'] . '/newsletters/');?>" class="icon">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
-							</a>
-						</li>
-					</ul>
+					<?php
+					$use_new_icons = $use_new_icons ?? false;
+
+					if ($use_new_icons) {
+						?>
+						<ul>
+							<li>
+								<a href="<?php echo apply_filters('sk_facebook_link', 'https://facebook.com/skiftnews'); ?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fab fa-facebook-f" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_twitter_link', 'https://twitter.com/skift'); ?>" class="icon selected" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fab fa-twitter twitter-icon" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_linkedin_link', 'https://linkedin.com/company/skift');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fab fa-linkedin-in" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_instagram_link', 'https://www.instagram.com/skiftnews/');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fab fa-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_newsletters_link', $url_paths['main'] . '/newsletters/');?>" class="icon">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+						<?php
+					} else {
+						?>
+						<ul>
+							<li>
+								<a href="<?php echo apply_filters('sk_facebook_link', 'https://facebook.com/skiftnews'); ?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_twitter_link', 'https://twitter.com/skift'); ?>" class="icon selected" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fa fa-twitter twitter-icon" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_linkedin_link', 'https://linkedin.com/company/skift');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fa fa-linkedin" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_instagram_link', 'https://www.instagram.com/skiftnews/');?>" class="icon" target="_blank" rel="nofollow noopener noreferrer">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo apply_filters('sk_newsletters_link', $url_paths['main'] . '/newsletters/');?>" class="icon">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+						<?php
+					}
+					?>
 					<div id="footer-tweet-box">
 						<div id="footer-tweet">
 							<?php
