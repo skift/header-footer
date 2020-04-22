@@ -12,10 +12,7 @@
         ?>
         <div class="account account-menu">
             <a href="javascript:" class="account-menu-btn">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle-thin fa-stack-2x"></i>
-                    <i class="fa fa-user fa-stack-1x"></i>
-                </span>
+                <i class="fa fa-user"></i>
             </a>
 
             <div class="account-menu-popover">

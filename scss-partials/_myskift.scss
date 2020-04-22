@@ -37,12 +37,21 @@
             color:rgba(0, 0, 0, 0.65);
             white-space: nowrap;
 
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.65);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             @media screen and (max-width: 850px) {
                 font-size: 13px;
             }
 
             &:hover {
-                color:#252525;
+                border-color: #252525;
+                color: #252525;
                 text-decoration: none;
             }
         }
@@ -70,7 +79,7 @@
 
             &:after {
                 bottom: 100%;
-                right: 40px;
+                right: 37px;
                 border: solid transparent;
                 content: '';
                 height: 0;
