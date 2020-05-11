@@ -50,7 +50,7 @@ $(function() {
             articleTitle = articleTitle.substring(0,70) + '[...]';
         }
 
-        socialPop('http://twitter.com/share?url=_SHARELINK_&via=Skift&text=' + encodeURIComponent(articleTitle), 'Tweet', 555, 275);
+        socialPop('http://twitter.com/intent/tweet?url=_SHARELINK_&via=Skift&text=' + encodeURIComponent(articleTitle), 'Tweet', 555, 275);
     
         sendSocialToGA($(this).hasClass('top'), 'Twitter');
     });
