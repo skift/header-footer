@@ -31,11 +31,11 @@
         if ($show_login_form) {
             if ($signed_in) {
             ?>
-                <li class="menu-item"><a href="<?php echo $logout_link; ?>" class="trigger-sign-out">Sign Out</a></li>
+                <li class="menu-item"><a href="<?php echo $logout_link; ?>" rel="nofollow" class="trigger-sign-out">Sign Out</a></li>
             <?php
             } else {
             ?>
-                <li class="menu-item"><a href="<?php echo $login_link;?>" class="trigger-sign-in">Sign In</a></li>
+                <li class="menu-item"><a href="<?php echo $login_link;?>" rel="nofollow" class="trigger-sign-in">Sign In</a></li>
             <?php
             }
         }
