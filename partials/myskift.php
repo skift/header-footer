@@ -2,7 +2,7 @@
     <?php
     if (!$signed_in && !$whitelisted_org) {
         ?>
-        <div class="account"><a href="<?php echo $login_link; ?>" class="account-btn">Sign In</a></div>
+        <div class="account"><a href="<?php echo $login_link; ?>" class="account-btn" rel="nofollow">Sign In</a></div>
         <?php
     } else if ($whitelisted_org) {
         ?>
@@ -17,8 +17,8 @@
 
             <div class="account-menu-popover">
                 <ul>
-                    <li><a href="<?php if (function_exists('mysk_get_dashboard_link')) echo mysk_get_dashboard_link(); ?>">Account</a></li>
-                    <li><a href="<?php echo $logout_link; ?>" class="sign-out-btn trigger-sign-out">Sign Out</a></li>
+                    <li><a href="<?php if (function_exists('mysk_get_dashboard_link')) echo mysk_get_dashboard_link(); ?>" rel="nofollow">Account</a></li>
+                    <li><a href="<?php echo $logout_link; ?>" class="sign-out-btn trigger-sign-out" rel="nofollow">Sign Out</a></li>
                 </ul>
 
                 <?php
