@@ -111,7 +111,7 @@
             document.head.appendChild(hsScripts);
         }
 
-        if (hbspt && hbspt.forms && typeof hbspt.forms.create === 'function') {
+        if (window.hbspt && window.hbspt.forms && typeof window.hbspt.forms.create === 'function') {
 
             //hubspot library is loaded, load the forms
             for (var i = queuedForms.length-1; i >= 0; i--) {
