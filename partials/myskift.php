@@ -22,12 +22,13 @@
                 </ul>
 
                 <?php
-                global $mysk_current_user;
-                if ($mysk_current_user && !empty($mysk_current_user->name)) {
+                $reader_name = function_exists('mysk_get_reader_name') ? mysk_get_reader_name() : false;
+        xdebug_break();
+                if (!empty($reader_name)) {
                     ?>
-                    <p>Welcome, <?php echo $mysk_current_user->name; ?>!</p>
+                    <p>Welcome, <?php echo $reader_name; ?>!</p>
                     <?php
-                } else if ($mysk_current_user->is_authenticated) {
+                } else if ($signed_in) {
                     ?>
                     <p>Welcome!</p>
                     <?php

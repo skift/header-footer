@@ -49,12 +49,12 @@ if (strpos($_SERVER['HTTP_HOST'],'.wpengine.com') !== false) {
 }
 
 // user authentication
-global $mysk_current_user;
-if (!$mysk_current_user && function_exists('mysk_get_current_user')) {
-    $mysk_current_user = mysk_get_current_user();
+global $mysk_current_reader;
+if (!$mysk_current_reader && function_exists('mysk_get_current_reader')) {
+    $mysk_current_reader = mysk_get_current_reader();
 }
-$signed_in = !empty($mysk_current_user) && $mysk_current_user->is_authenticated;
-$is_subscriber = function_exists('mysk_current_user_is_subscriber') && mysk_current_user_is_subscriber();
+$signed_in = function_exists('mysk_current_reader_is_authed') && mysk_current_reader_is_authed();
+$is_subscriber = function_exists('mysk_current_reader_is_subscriber') && mysk_current_reader_is_subscriber();
 $whitelisted_org = function_exists('mysk_current_whitelisted_org') ? mysk_current_whitelisted_org() : false;
 ?>
 
