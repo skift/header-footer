@@ -23,7 +23,6 @@
 
                 <?php
                 $reader_name = function_exists('mysk_get_reader_name') ? mysk_get_reader_name() : false;
-        xdebug_break();
                 if (!empty($reader_name)) {
                     ?>
                     <p>Welcome, <?php echo $reader_name; ?>!</p>
